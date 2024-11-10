@@ -10,7 +10,6 @@ body {
     flex-direction: column;
 }
 
-
 .header {
     height: 60px;
     background-color: #3D8361;
@@ -32,6 +31,7 @@ body {
 }
   
 .button {
+
     color: white; 
     font-weight: bold; 
     text-decoration: none;
@@ -53,29 +53,44 @@ body {
     margin: 0 30px;
 }
 
+
+.body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    justify-content: flex-start;
+    flex-grow: 1;
+    width: 100%;
+}
 .body-header {
     display: flex;
-    align-items: center;
-    justify-content: space-between; /* Ensures space between elements */
+    flex-direction: column; /* Stack elements vertically */
+    align-items: flex-start; /* Align items to the left */
     padding: 20px;
+    width: 100%;
 }
 
 .body-header-title {
     font-size: 24px;
     color: #000;
-    flex: 1; 
-    padding-top: 20px;
     padding-left: 20px;
+}
+
+.search-container {
+    display: flex; /* Align items horizontally */
+    gap: 20px; /* Space between search bar and button */
+    margin-top: 10px; /* Space between title and search */
+    width: 100%; /* Ensure it takes full width */
 }
 
 .search {
     display: flex;
     align-items: center;
     border-bottom: 2px solid #c6c6c6; /* Adds an underline to both icon and input */
-    padding-bottom: 3px; /* Adds some space between the content and the underline */
+    padding-bottom: 3px;
 }
-
-
 .btn-search {
     margin-right: 5px; 
     color: #c6c6c6; 
@@ -87,10 +102,9 @@ body {
     border: none;
     outline: none;
     box-shadow: none;
-    background-color: transparent; /* Or any color you prefer */
-    color: inherit; /* Ensures it matches surrounding text color */
+    background-color: transparent;
+    color: inherit;
 }
-
 
 .add-btn {
     width: 105px;
@@ -101,11 +115,14 @@ body {
     border-radius: 5px;
     cursor: pointer;
     font-size: 20px;
+    margin-left: auto;
     margin-right: 20px;
 }
 
 
+
 .date-section {
+    width: 100%;
     padding: 20px;
 }
 
@@ -198,60 +215,3 @@ body {
     text-align: right; /* Align text to the right */
 }
 
-.pagination-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 60px;
-    margin-bottom: 0px;
-}
-
-.home-product__pagination {
-    display: flex;
-    gap: 5px;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    align-items: center;
-}
-
-.pagination-link {
-    width: 30px;
-    height: 30px;
-    color: #fff;
-    background-color: #80AF81;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 4px;
-    transition: background-color 0.3s, border-color 0.3s;
-    font-style: normal;
-}
-
-.pagination-doc {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 8px 12px;
-    color: #80AF81;
-    text-decoration: none;
-    border: 1px solid transparent;
-    border-radius: 4px;
-    transition: background-color 0.3s, border-color 0.3s;
-    font-style: normal;
-}
-
-.pagination-icon {
-    font-size: 16px;
-    font-style: normal;
-}
-
-.pagination-link:hover {
-    background-color: #3D8361;
-}
-
-.pagination-active .pagination-link {
-    background-color: #3D8361;
-    color: white;
-}

@@ -62,54 +62,103 @@ body {
     flex-grow: 1;
     width: 100%;
 }
-.details {
+.body-header {
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-  }
-  .detail-item {
+    flex-direction: column; /* Stack elements vertically */
+    align-items: flex-start; /* Align items to the left */
+    padding: 20px;
+    width: 100%;
+}
+.body-header-container {
+    display: flex;
+    justify-content: space-between; /* Đặt khoảng cách đều giữa các phần tử */
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0 20px; /* Tạo khoảng cách bên trái và phải nếu cần */
+}
+
+.team-info {
+    flex: 1; /* Căn đều hai bên */
     display: flex;
     align-items: center;
-  }
-  .details label {
+    gap: 10px;
+    justify-content: center;
+    text-align: center;
+}
+
+.details {
+    flex: 2; /* Chiếm nhiều diện tích hơn để ở giữa */
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    gap: 10px;
+}
+
+/* Điều chỉnh các thành phần chi tiết bên trong */
+.detail-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.details label {
+    text-align: left; /* Căn trái nội dung bên trong label */
     font-weight: bold;
     color: #333;
-    margin-right: 5px; /* Adjust this value to control spacing */
-  }
-  .details .info-box {
-    background-color: #4CAF50;
+
+    padding-left: 380px;
+}
+
+.details .info-box {
+    background-color: #3D8361;
     color: white;
     padding: 5px 10px;
     border-radius: 5px;
     font-size: 16px;
-    text-align: right; /* Align text to the right */
-  }
-  .team-info {
+    text-align: left; /* Căn văn bản bên trong info-box */
+    width: auto; /* Đảm bảo chiều rộng vừa đủ với nội dung */
+    display: inline-block; /* Đặt info-box thành inline-block để không chiếm toàn bộ chiều rộng */
+}
+
+.team-info {
     display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  .team-logo {
+    flex-direction: column; /* Sắp xếp các phần tử theo chiều dọc */
+    align-items: center; /* Căn giữa các phần tử */
+    text-align: center; /* Căn giữa nội dung bên trong */
+    gap: 5px; /* Khoảng cách giữa các phần tử */
+}
+
+.team-logo {
     width: 60px;
     height: 60px;
-  }
-  .team-input {
+    margin-bottom: 10px; /* Khoảng cách giữa logo và các phần tử bên dưới */
+}
+
+.team-input, .team-name {
+    display: inline-block; /* Để team-input và team-name nằm chung một dòng */
     font-weight: bold;
     color: #333;
-  }
-  .team-name {
+    margin: 0 5px; /* Khoảng cách giữa team-input và team-name */
+}
+
+.team-input {
+    text-align: center;
+}
+
+.team-name {
     width: 200px;
     height: 30px;
     border-radius: 5px;
-    background-color: #4CAF50;
+    background-color: #3D8361;
     color: white;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 16px;
-    margin-left: 10px;
-  }
+}
+
+
   
 .table {
     width: 100%; /* Make the table container full width */
@@ -265,7 +314,7 @@ body {
     font-size: 14px;
     transition: background-color 0.3s;
     position: absolute;
-    right: 50px; /* Position buttons to the far right */
+    right: 20px; /* Position buttons to the far right */
 }
 
 .btn-add {

@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./styles/reset.css">
     <link rel="stylesheet" href="./styles/recordResults.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Yellowtail&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
     <title>Team</title>
   </head>
@@ -26,35 +29,39 @@
 
     <!--Body-->
     <div class="body">
-        <h1>Record Results</h1>
-        <div class="details">
-            <div class="detail-item">
-              <label>Round:</label>
-              <div class="info-box">Finally</div>
+        <div class="body-header">
+            <h1 class="body-header-title">Record Results</h1>
+            <div class="body-header-container">
+                <div class="team-info">
+                    <img src="./assets/images/recordResults/teamA.png" alt="AC Milan Logo" class="team-logo">
+                    <div class="team-input">Team A:</div>
+                    <div class="team-name">                 </div>
+                </div>
+                <div class="details">
+                    <div class="detail-item">
+                      <label>Round:</label>
+                      <div class="info-box">Finally</div>
+                    </div>
+                    <div class="detail-item">
+                      <label>Date:</label>
+                      <div class="info-box">30/11/2024</div>
+                    </div>
+                    <div class="detail-item">
+                      <label>Time:</label>
+                      <div class="info-box">19:00</div>
+                    </div>
+                    <div class="detail-item">
+                      <label>Stage:</label>
+                      <div class="info-box">My Dinh</div>
+                    </div>
+                </div>
+                <div class="team-info">
+                    <img src="./assets/images/recordResults/teamB.png" alt="AC Milan Logo" class="team-logo">
+                    <div class="team-input">Team B:</div>
+                    <div class="team-name">                 </div>
+                </div>
             </div>
-            <div class="detail-item">
-              <label>Date:</label>
-              <div class="info-box">30/11/2024</div>
-            </div>
-            <div class="detail-item">
-              <label>Time:</label>
-              <div class="info-box">19:00</div>
-            </div>
-            <div class="detail-item">
-              <label>Stage:</label>
-              <div class="info-box">My Dinh</div>
-            </div>
-        </div>
-        <div class="team-info">
-            <img src="./assets/images/recordResults/teamA.png" alt="AC Milan Logo" class="team-logo">
-            <div class="team-input">Team A:</div>
-            <div class="team-name">                 </div>
-          </div>
-          <div class="team-info">
-            <img src="./assets/images/recordResults/teamB.png" alt="AC Milan Logo" class="team-logo">
-            <div class="team-input">Team B:</div>
-            <div class="team-name">                 </div>
-        </div>
+        </div>        
         <div class="table">
             <table class="player-table">
                 <thead class="header-title">
@@ -141,7 +148,7 @@
                     </a>
                 </li>
             </ul>
-            <button class="btn-add">Add</button>
+            <button class="btn-add">ADD</button>
             <button class="btn-save">SAVE</button>
         </div>
         
