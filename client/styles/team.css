@@ -1,0 +1,169 @@
+body {
+    font-family: 'Exo 2', sans-serif;
+    background-image: url('../assets/images/background.png');
+    background-size: cover;
+    background-position: center; 
+    background-repeat: no-repeat; 
+}
+.header {
+    height: 60px;
+    background-color: #224191;
+    display: flex;
+    align-items: center; 
+    justify-content: space-between; 
+    padding: 0 10px; 
+}
+
+.logo {
+    width: 45px;
+    height: 45px;
+}
+
+.check {
+    display: flex;
+    align-items: center; 
+    gap: 10px; 
+}
+
+.logout {
+    padding: 5px 10px;
+    color: white;
+    text-decoration: none;
+    background-color: #262626;
+    border-radius: 25px;
+    font-size: 14px;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.body {
+    display: flex;
+    height: calc(100vh - 110px); 
+    overflow: hidden;
+}
+
+.side-bar {
+    background-color: #020626;
+    width: 300px;
+    height: calc(100vh - 20px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+}
+
+.button {
+    width: 200px;
+    height: 50px;
+    background-color: #CECECE;
+    color: #262626;
+    border: none;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+.button:hover {
+    background-color: #487BA6; 
+}
+
+.main-page {
+    flex: 1; 
+    display: flex; 
+    align-items: center; 
+    flex-direction: column; 
+    padding: 20px; 
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    width: 600px; 
+    background-color: #224191;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 20px; 
+}
+
+.search-button {
+    background-color: #224191;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    display: flex;
+    transition: background-color 0.3s; 
+}
+
+.search-button:hover {
+    background-color: #1A3E8D; 
+}
+
+.search-input {
+    flex: 1; 
+    padding: 10px;
+    border: none;
+    outline: none;
+    font-size: 20px;
+    color: #fff;
+    background-color: #224191; 
+}
+
+.search-input::placeholder {
+    color: #fff;
+    font-size: 20px;
+}
+
+.search-button i {
+    font-size: 16px;
+}
+
+.add-btn {
+    width: 150px;
+    height: 50px;
+    display: flex;
+    margin-bottom: 20px;
+    background-color: #487BA6; 
+    color: #fff; 
+    align-items: center;
+    justify-content: center;
+    border: none; 
+    padding: 10px 15px; 
+    border-radius: 5px; 
+    cursor: pointer; 
+}
+
+.team-page {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; 
+    gap: 10px; 
+}
+
+.team-page img {
+    width: 100px;
+    height: auto; 
+}
+
+.footer {
+    width: 100%;
+    height: 50px;
+    background-color: #224191;
+    display: flex;
+    align-items: center; 
+    padding: 0 10px; 
+}
+
+.team {
+    width: 100px; 
+    height: auto; 
+    margin-right: 10px; 
+}
+
+.school {
+    color: white; 
+    font-size: 20px; 
+}
