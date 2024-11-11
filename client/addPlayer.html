@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles/reset.css">
+    <link rel="stylesheet" href="./styles/addPages.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Yellowtail&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
+    <title>Add Player</title>
+  </head>
+  <body>
+
+    <!--Header-->
+    <div class="header">
+      <img class="logo" src="assets/images/logo.png" alt="logo">
+      <div class="header-item">
+        <a href="" class="button">Match</a>
+        <a href="" class="button">Team</a>
+        <a href="" class="button">Player</a>
+        <a href="" class="button">Tournament</a>
+      </div>
+      <div class="check">
+        <img src="assets/images/user.png" alt="avatar" class="avatar">
+      </div>
+    </div>
+
+    <!--Body-->
+    <div class="body">
+      <div class="body-header">
+        <h1 class="body-header-title">Add Player</h1>
+      </div>
+        <div class="form-container">
+            <form action="" class="form-content ">
+                <div class = "avatar-img">
+                    <img src="assets/images/avatarPlayer.svg" alt="avatar player">
+                </div>
+                <div class = "content">
+                    <div class ="detail">
+                        <div class="form-group">
+                            <label for="player-name">Player Name:</label>
+                            <input type="text" id="player-name" value="Nguyễn Thành Chung">
+                          </div>
+                          <div class="form-group">
+                            <label for="team">Team:</label>
+                            <input type="text" id="team" value="Đội tuyển Quốc gia Việt Nam">
+                          </div>
+                          <div class="form-group">
+                            <label for="role">Role:</label>
+                            <input type="text" id="role" value="Center-back">
+                          </div>
+                          <div class="form-group">
+                            <label for="goals">Number of Goals:</label>
+                            <input type="number" id="goals" value="3">
+                        </div>
+                    </div>
+                    <div class ="note">
+                        <p>Note</p>
+                        <textarea name="note" id="note" cols="30" rows="10" placeholder="Write something here..."></textarea>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+      
+        <div class="group-button">
+                <button class="btn-cancel">CANCEL</button>
+                <button class="btn-save">SAVE</button>
+        </div>
+      
+      
+    </div>
+    
+    
+  </div>
+</body>
+</html>
