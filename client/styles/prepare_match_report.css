@@ -26,78 +26,40 @@ main
     margin: 0 auto;
 }
 
-  /* Dành cho header */
-header
-{
-    display: flex;
-    justify-content: space-around;
+ /* Phần header */
+header {
+  height: 75px;
+  background: #3d8361;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+}
+.header-logo h1 {
+  font-family: "SeoulHangang CL";
+  font-size: 24px;
+  font-weight: 400;
+  color: white;
+  margin-left: 10px;
+}
 
-    background: #3D8361;
-
+.header-logo {
+  display: flex;
+  align-items: center;
 }
-.item-1
-{
-    width: 25%;
-    /* border: 1px solid red; */
-    margin-top: .94rem;
-    margin-bottom: 1.12rem;
-    display: flex;
+nav a {
+  font-family: "Exo 2";
+  font-size: 20px;
+  font-weight: 700;
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
 }
-.item-2
-{
-    width: 50%;
-    margin-top: 1.56rem;
-    margin-bottom: 1.63rem;
+.nav_tab {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
 }
-.item-3
-{
-    width: 15%;
-    /* border: 1px solid red; */
-    display: flex;
-    justify-content: flex-end;
-    align-items: flex-start;
-    margin-bottom: 0.5rem;
-}
-.header-title
-{
-    align-self: flex-start;
-    margin-left: .5rem;
-    /* border: 1px solid red; */
-    color: #FFF;
-    font-family: "SeoulHangang CM";
-    font-size: 1.5rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-}
-.nav-list
-{
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    /* border: 1px solid red; */
-}
-.nav-list-item
-{
-    margin: 0 4rem;
-
-    
-    
-}
-.nav-link
-{
-    text-decoration: none;
-    color: #FCFCFC;
-    font-family: "Exo 2";
-    font-size: 1.25rem;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-}
-/* .nav-link:hover
-{
-
-} */
+/* Kết thúc phần header */
 .button
 {
     margin-right: .5rem;
