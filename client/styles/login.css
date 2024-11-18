@@ -180,6 +180,11 @@ header
     line-height: normal;
     
 }
+input:focus{
+    outline: none;
+    border:none;
+}
+
 input#email,
 input#phone-number
 {
