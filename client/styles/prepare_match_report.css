@@ -159,8 +159,41 @@ nav a {
     margin: 0 4px;
     
   }
+  /* Trang */
+  /* CSS nút phân trang */
+.pagination {
+  display: flex;
+  justify-content: center;
+}
 
-  .pagination {
+.pagination button {
+  color: #FFF;
+  text-align: center;
+  font-family: Roboto;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  border: none;
+
+  width: var(--height-31, 1.9375rem);
+  height: 1.875rem;
+  border-radius: 0.375rem;
+  background: #80AF81;
+  margin-left: 0.63rem;
+  cursor: pointer;
+  transition: #3D8361 0.3s;
+}
+
+.pagination button.active {
+  background-color: #3D8361;
+}
+
+.pagination button.ect {
+  background: transparent;
+  pointer-events: none; /* Không cho phép nhấn vào nút "..." */
+}
+  /* .pagination {
     display: flex;
     justify-content: center;
   }
@@ -190,7 +223,7 @@ nav a {
   .pagination button.ect
   {
     background: transparent;
-  }
+  } */
 
   .circle {
     width: 1.125rem;
@@ -213,12 +246,27 @@ nav a {
     line-height: var(--line-height-48, 3rem); /* 480% */
 
   }
-  .circle:empty {
+  /* .circle:empty {
     background-color: transparent;
   }
   
   .circle:not(:empty) {
 background: #32A72C;
-  }
+  } */
+   
+   /* Không có dữ liệu */
+.circle:empty {
+  background-color: transparent;
+}
+
+/* Màu cho giá trị 'W' */
+.circle.win {
+  background-color: #32A72C; /* Màu xanh lá */
+}
+
+/* Màu cho giá trị 'D' */
+.circle.draw {
+  background-color: #C1C2D5; /* Màu xám */
+}
 
   
