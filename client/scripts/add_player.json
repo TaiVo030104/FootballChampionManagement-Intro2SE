@@ -1,0 +1,28 @@
+{
+  "players": [
+    {
+      "id": 1,
+      "playerName": "Nguyễn Thành Chung",
+      "team": "Đội tuyển Quốc gia Việt Nam",
+      "role": "Center-back",
+      "goals": 3,
+      "note": "Cầu thủ xuất sắc của mùa giải"
+    },
+    {
+      "id": 2,
+      "playerName": "Nguyễn Quang Hải",
+      "team": "Đội tuyển Quốc gia Việt Nam",
+      "role": "Midfielder",
+      "goals": 5,
+      "note": "Cầu thủ trẻ triển vọng"
+    },
+    {
+      "id": 3,
+      "playerName": "Lương Xuân Trường",
+      "team": "HAGL",
+      "role": "Midfielder",
+      "goals": 2,
+      "note": "Đội trưởng kinh nghiệm"
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "rules": {
+    "pointsForWin": 3,
+    "pointsForLoss": 0,
+    "pointsForDraw": 1,
+    "relegatedTeams": 3,
+    "participatingTeams": 4,
+    "championsLeagueTeams": 2,
+    "europaLeagueTeams": 11,
+    "maxForeignPlayers": 1,
+    "maxAddedTime": 10,
+    "ageLimit": [
+      18,
+      35
+    ],
+    "playerLimit": [
+      10,
+      20
+    ],
+    "rankingCriteria": "points - goals scored - goal difference"
+  },
+  "players": [
+    {
+      "playerName": "Nguyễn Thành Chung",
+      "team": "Đội tuyển Quốc gia Việt Nam",
+      "role": "Center-back",
+      "goals": 11,
+      "note": "hello my name is chung",
+      "id": "1"
+    },
+    {
+      "playerName": "Nguyễn Quang Hải",
+      "team": "Đội tuyển Quốc gia Việt Nam",
+      "role": "Midfielder",
+      "goals": 7,
+      "note": "Cầu thủ trẻ triển vọng",
+      "id": "2"
+    },
+    {
+      "playerName": "Lương Xuân Trường",
+      "team": "HAGL",
+      "role": "Midfielder",
+      "goals": 2,
+      "note": "Đội trưởng kinh nghiệm",
+      "id": "3"
+    },
+    {
+      "playerName": "quang an",
+      "team": "hello anh em",
+      "role": "thủ môn",
+      "goals": 15,
+      "note": "fan messi",
+      "id": "4"
+    }
+  ]
+}

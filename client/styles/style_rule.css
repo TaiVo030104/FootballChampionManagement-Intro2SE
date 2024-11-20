@@ -34,7 +34,11 @@ nav a {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
 }
-
+nav a:hover {
+  background-color: #fff;
+  color: #3d8361;
+  border-radius: 5px;
+}
 body {
   background-image: url("../assets/images/Group 448.svg");
   background-size: cover;
