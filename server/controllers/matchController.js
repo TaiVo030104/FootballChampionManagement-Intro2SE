@@ -51,7 +51,7 @@ const matchController = {
       }
 
       const goal = await Goal.findAll({
-        attributes: ["goal_time", "goal_type"],
+        attributes: ["goaltime", "goaltype"],
         where: {
           match_matchid: req.params.id,
         },
