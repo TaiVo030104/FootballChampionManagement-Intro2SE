@@ -5,9 +5,9 @@ const Match = sequelize.define(
   "Match",
   {
     matchid: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-    match_date: { type: DataTypes.DATEONLY, allowNull: false },
-    match_time: { type: DataTypes.TIME, allowNull: false },
-    round_count: { type: DataTypes.INTEGER, allowNull: false },
+    matchdate: { type: DataTypes.DATEONLY, allowNull: false },
+    matchtime: { type: DataTypes.TIME, allowNull: false },
+    roundcount: { type: DataTypes.INTEGER, allowNull: false },
     fieldname: { type: DataTypes.STRING(45), allowNull: false },
     score1: { type: DataTypes.INTEGER, allowNull: true },
     score2: { type: DataTypes.INTEGER, allowNull: true },

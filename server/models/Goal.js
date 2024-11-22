@@ -3,8 +3,8 @@ const sequelize = require("../config/database");
 const Goal = sequelize.define(
   "Goal",
   {
-    goal_time: { type: DataTypes.TEXT, allowNull: false, primaryKey: true },
-    goal_type: { type: DataTypes.INTEGER, allowNull: false },
+    goaltime: { type: DataTypes.TEXT, allowNull: false, primaryKey: true },
+    goaltype: { type: DataTypes.INTEGER, allowNull: false },
     match_matchid: {
       type: DataTypes.INTEGER,
       allowNull: false,

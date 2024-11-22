@@ -32,7 +32,7 @@ const goalController = {
   },
   createGoal: async (req, res, next) => {
     try {
-      const { player_playerid, goal_time, goal_type } = req.body;
+      const { player_playerid, goaltime, goaltype } = req.body;
       const player = await Player.findByPk(player_playerid);
       if (!player) {
         return next(new AppError("Player not found", 404));
@@ -43,8 +43,8 @@ const goalController = {
       }
       const goal = await Goal.findAll({
         where: {
-          goal_time,
-          match_matchid: parseInt(req.params.id, 10),
+          goaltime,
+          matchmatchid: parseInt(req.params.id, 10),
         },
       });
       if (goal.length > 0) {
@@ -53,8 +53,8 @@ const goalController = {
       const goalData = {
         player_playerid: parseInt(player_playerid, 10),
         match_matchid: parseInt(req.params.id, 10),
-        goal_time,
-        goal_type,
+        goaltime,
+        goaltype,
       };
       const newGoal = await Goal.create(goalData);
       player.goalcount += 1;
@@ -66,14 +66,14 @@ const goalController = {
   },
   updateGoal: async (req, res, next) => {
     try {
-      const { goal_time, goal_type } = req.body;
+      const { goaltime, goaltype } = req.body;
       const match = await Match.findByPk(req.params.matchId);
       if (!match) {
         return next(new AppError("Match not found", 404));
       }
       const newGoal = await Goal.findAll({
         where: {
-          goal_time,
+          goaltime,
           match_matchid: parseInt(req.params.matchId, 10),
         },
       });
@@ -82,7 +82,7 @@ const goalController = {
       }
       const goal = await Goal.findAll({
         where: {
-          goal_time: req.params.goalTime,
+          goaltime: req.params.goalTime,
           match_matchid: parseInt(req.params.matchId, 10),
         },
       });
@@ -90,13 +90,13 @@ const goalController = {
         return next(new AppError("Goal is not exists", 400));
       }
       const data = {
-        goal_time: goal_time,
-        goal_type: goal_type,
+        goaltime: goaltime,
+        goaltype: goaltype,
       };
 
       await Goal.update(data, {
         where: {
-          goal_time: req.params.goalTime,
+          goaltime: req.params.goalTime,
           match_matchid: parseInt(req.params.matchId, 10),
         },
       });
@@ -108,14 +108,14 @@ const goalController = {
   deleteGoal: async (req, res, next) => {
     try {
       const match_matchid = req.params.matchId;
-      const goal_time = req.params.goalTime;
+      const goaltime = req.params.goalTime;
       const match = await Match.findByPk(match_matchid);
       if (!match) {
         return next(new AppError("Match not found", 404));
       }
       const goal = await Goal.findAll({
         where: {
-          goal_time,
+          goaltime,
           match_matchid: parseInt(match_matchid, 10),
         },
       });
@@ -129,7 +129,7 @@ const goalController = {
       }
       await Goal.destroy({
         where: {
-          goal_time,
+          goaltime,
           match_matchid: parseInt(match_matchid, 10),
         },
       });

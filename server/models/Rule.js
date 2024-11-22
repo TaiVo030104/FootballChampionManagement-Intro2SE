@@ -3,13 +3,14 @@ const sequelize = require("../config/database");
 const Rule = sequelize.define(
   "Rule",
   {
-    min_age: { type: DataTypes.INTEGER, allowNull: false },
-    max_age: { type: DataTypes.INTEGER, allowNull: false },
-    goal_type_count: { type: DataTypes.INTEGER, allowNull: false },
-    max_goal_time: { type: DataTypes.INTEGER, allowNull: false },
-    win_score: { type: DataTypes.INTEGER, allowNull: false },
-    lose_score: { type: DataTypes.INTEGER, allowNull: false },
-    draw_score: { type: DataTypes.INTEGER, allowNull: false },
+    ruleid: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+    minage: { type: DataTypes.INTEGER, allowNull: false },
+    maxage: { type: DataTypes.INTEGER, allowNull: false },
+    goaltypecount: { type: DataTypes.INTEGER, allowNull: false },
+    maxgoaltime: { type: DataTypes.INTEGER, allowNull: false },
+    winscore: { type: DataTypes.INTEGER, allowNull: false },
+    losescore: { type: DataTypes.INTEGER, allowNull: false },
+    drawscore: { type: DataTypes.INTEGER, allowNull: false },
   },
   {
     tableName: "rule",

@@ -103,8 +103,8 @@ const matchController = {
   updateMatch: async (req, res, next) => {
     try {
       const {
-        match_date,
-        match_time,
+        matchdate,
+        matchtime,
         //round_count,
         fieldname,
         score1,
@@ -113,13 +113,13 @@ const matchController = {
         //team_team2,
       } = req.body;
       const matchData = {
-        match_date: match_date,
+        matchdate: matchdate,
         //new Date(match_date).toISOString().split("T")[0],
         //round_count: round_count === "" ? 0 : parseInt(round_count, 10),
-        match_time: match_time,
+        matchtime: matchtime,
         fieldname: fieldname,
-        score1: score1 === "" ? 0 : parseInt(round_count, 10),
-        score2: score2 === "" ? 0 : parseInt(round_count, 10),
+        score1: score1 === "" ? null : parseInt(score1, 10),
+        score2: score2 === "" ? null : parseInt(score2, 10),
         //team_team1: parseInt(team_team1, 10),
         //team_team2: parseInt(team_team2, 10),
       };
