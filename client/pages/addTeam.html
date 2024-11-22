@@ -3,74 +3,80 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./styles/reset.css">
+    <link rel="stylesheet" href="../styles/reset.css">
     <link rel="stylesheet" href="../styles/addPages.css">
+    <link rel="stylesheet" href="../styles/style_rule.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Yellowtail&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
-    <title>Add Player</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Add Team</title>
   </head>
   <body>
 
-    <!--Header-->
-    <div class="header">
-      <img class="logo" src="assets/images/logo.png" alt="logo">
-      <div class="header-item">
-        <a href="" class="button">Match</a>
-        <a href="" class="button">Team</a>
-        <a href="" class="button">Player</a>
-        <a href="" class="button">Tournament</a>
+    <header>
+      <div class="header-logo">
+        <a href="../pages/main.html">
+          <img src="../assets/images/Asset 1@4x 1.svg" alt="Logo">
+        </a>
+        <h1>Football Championship</h1>
       </div>
-      <div class="check">
-        <img src="assets/images/user.png" alt="avatar" class="avatar">
+      <nav class="nav-tab">
+          <a href="../pages/match.html">Match</a>
+          <a href="../pages/team.html">Team</a>
+          <a href="../pages/.html">Player</a>
+          <a href="../pages/tournament.html">Tournament</a>
+      </nav>
+      <div class="profile-icon">
+          <!-- <img src="./assets/img/Male_User.svg" alt="Profile Icon"> -->
+          <img src="../assets/images/Male_User.svg" alt="Profile Icon">
       </div>
-    </div>
+  </header>
 
-    <!--Body-->
+    <!-- Body -->
     <div class="body">
       <div class="body-header">
-        <h1 class="body-header-title">Add Player</h1>
+        <h1 class="body-header-title">Add Team</h1>
       </div>
-        <div class="form-container">
-            <form action="" class="form-content add-team ">
-                <div class = "team-logo">
-                    <img src="assets/images/teamLogo.png" alt="Team Logo">
-                </div>
-                <div class = "content">
-                    <div class ="detail">
-                        <div class="form-group">
-                            <label for="team-name">Team Name:</label>
-                            <input type="text" id="team-name" value="Golden Eagles">
-                          </div>
-                          <div class="form-group">
-                            <label for="team-leader">Team leader:</label>
-                            <input type="text" id="team-leader" value="Đội tuyển Quốc gia Việt Nam">
-                          </div>
-                          <div class="form-group">
-                            <label for="nation">Nation:</label>
-                            <input type="text" id="nation" value="Gemany">
-                        </div>
-                          <div class="form-group">
-                            <label for="team-size">Team size:</label>
-                            <input type="number" id="team-size" value="15">
-                          </div>
-                          
-                        </div>
-                </div>
-            </form>
-        </div>
+      <div class="form-container">
+        <form class="form-content add-team">
+          <div class="team-logo">
+            <img src="../assets/images/teamLogo.png" alt="Team Logo">
+            <div class="text h3">
+              <h3>Upload Logo Team</h3>
+            </div>
+            
+          </div>
+          <div class="content">
+            <div class="detail">
+              <div class="form-group">
+                <label for="team-name">Team Name:</label>
+                <input type="text" id="team-name">
+              </div>
+              <div class="form-group">
+                <label for="team-leader">Team Leader:</label>
+                <input type="text" id="team-leader">
+              </div>
+              <div class="form-group">
+                <label for="nation">Nation:</label>
+                <input type="text" id="nation">
+              </div>
+              <div class="form-group">
+                <label for="team-size">Team Size:</label>
+                <input type="number" id="team-size">
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
 
-      
-        <div class="group-button">
-                <button class="btn-cancel">CANCEL</button>
-                <button class="btn-save">SAVE</button>
-        </div>
-      
-      
+      <!-- Buttons -->
+      <div class="group-button">
+        <button class="btn-cancel">CANCEL</button>
+        <button class="btn-save">SAVE</button>
+      </div>
     </div>
-    
-    
-  </div>
-</body>
+
+    <!-- JavaScript -->
+    <script src="../scripts/addTeam.js"></script>
+  </body>
 </html>
