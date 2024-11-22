@@ -2,10 +2,15 @@ const { Player, Team } = require("../models/index");
 const AppError = require("../utils/appError");
 const apiFeatures = require("../utils/apiFeature");
 
-const playerServices = {
+const playerControllers = {
   getAllPlayers: async (req, res, next) => {
     try {
-      const players = await Player.findAll({
+      const features = new apiFeatures(Player, req.query)
+        .filter()
+        .sort()
+        .limitFields()
+        .paginate();
+      const players = await features.execute({
         include: [{ model: Team, as: "team" }],
       });
       res.status(200).json({
@@ -110,4 +115,4 @@ const playerServices = {
     }
   },
 };
-module.exports = playerServices;
+module.exports = playerControllers;

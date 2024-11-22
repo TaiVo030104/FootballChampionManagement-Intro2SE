@@ -5,11 +5,18 @@ const apiFeatures = require("../utils/apiFeature");
 const teamController = {
   getAllTeams: async (req, res, next) => {
     try {
-      const team = await Team.findAll();
+      console.log(req.query);
+      const features = new apiFeatures(Team, req.query)
+        .filter()
+        .sort()
+        .limitFields()
+        .paginate();
+
+      const teams = await features.execute();
       res.status(200).json({
         status: "success",
         data: {
-          team,
+          teams,
         },
       });
     } catch (err) {

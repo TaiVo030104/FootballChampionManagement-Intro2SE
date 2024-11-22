@@ -52,8 +52,9 @@ class APIFeatures {
     return this;
   }
 
-  execute() {
-    return this.query.findAll(this.queryOptions);
+  async execute(option) {
+    this.query = await this.query.findAll({ ...this.queryOptions, ...option });
+    return this.query;
   }
 }
 
