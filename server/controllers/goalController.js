@@ -44,7 +44,7 @@ const goalController = {
       const goal = await Goal.findAll({
         where: {
           goaltime,
-          matchmatchid: parseInt(req.params.id, 10),
+          match_matchid: parseInt(req.params.id, 10),
         },
       });
       if (goal.length > 0) {
