@@ -16,22 +16,22 @@ const ruleController = {
         return next(new AppError("Rule not found", 404));
       }
       const {
-        min_age,
-        max_age,
-        goal_type_count,
-        max_goal_time,
-        win_score,
-        lose_score,
-        draw_score,
+        minage,
+        maxage,
+        goaltypecount,
+        maxgoaltime,
+        winscore,
+        losescore,
+        drawscore,
       } = req.body;
       const ruleData = {
-        min_age: parseInt(min_age, 10),
-        max_age: parseInt(max_age, 10),
-        goal_type_count: parseInt(goal_type_count, 10),
-        max_goal_time: parseInt(max_goal_time, 10),
-        win_score: parseInt(win_score, 10),
-        lose_score: parseInt(lose_score, 10),
-        draw_score: parseInt(draw_score, 10),
+        minage: parseInt(minage, 10),
+        maxage: parseInt(maxage, 10),
+        goaltype_count: parseInt(goaltypecount, 10),
+        maxgoaltime: parseInt(maxgoaltime, 10),
+        winscore: parseInt(winscore, 10),
+        losescore: parseInt(losescore, 10),
+        drawscore: parseInt(drawscore, 10),
       };
       await rule.update(ruleData);
       res.status(200).json({ rule });
