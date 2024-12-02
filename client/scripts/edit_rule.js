@@ -1,3 +1,6 @@
+const URL_RULES =
+  "https://footballchampionshipmanagement.onrender.com/api/v1/rules";
+
 let originalValues = [];
 
 function toggleEditMode() {
@@ -38,7 +41,7 @@ function cancelEdit() {
 // Hàm để tải dữ liệu từ json-server
 async function loadData() {
   try {
-    const response = await fetch("http://localhost:3000/rules");
+    const response = await fetch(URL_RULES);
     const data = await response.json();
 
     // Gán giá trị từ JSON vào các ô input
@@ -97,7 +100,7 @@ async function saveData() {
   };
 
   try {
-    await fetch("http://localhost:3000/rules", {
+    await fetch(URL_RULES, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

@@ -2,22 +2,34 @@ document.addEventListener("DOMContentLoaded", function () {
   const playerTable = document.querySelector(".player-table tbody");
   const addBtn = document.querySelector(".add-btn");
   const searchInput = document.querySelector(".search-bar");
-  const url = "http://localhost:3000/players"; // URL của JSON server
+  const url =
+    "https://footballchampionshipmanagement.onrender.com/api/v1/players?sort=playerid"; // URL API mới
 
   let players = []; // Dữ liệu toàn bộ cầu thủ
   let filteredPlayers = []; // Dữ liệu cầu thủ sau khi tìm kiếm
   let currentPage = 1; // Trang hiện tại
   const playersPerPage = 10; // Số cầu thủ trên mỗi trang
 
-  // Hàm load toàn bộ cầu thủ từ JSON server
+  // Hàm load toàn bộ cầu thủ từ API
   function loadPlayers() {
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
-        players = data; // Lưu toàn bộ cầu thủ vào biến players
-        filteredPlayers = players; // Mặc định là chưa tìm kiếm, nên filteredPlayers bằng players
-        renderPlayers();
-        renderPagination();
+        if (data.status === "success") {
+          players = data.data.players; // Lưu dữ liệu cầu thủ từ API
+
+          // Sắp xếp danh sách cầu thủ theo playerid tăng dần
+          // players.sort((a, b) => a.playerid - b.playerid);
+
+          filteredPlayers = players; // Mặc định là chưa tìm kiếm, nên filteredPlayers bằng players
+          renderPlayers();
+          renderPagination();
+        } else {
+          console.error("Failed to fetch players from API.");
+        }
+      })
+      .catch((error) => {
+        console.error("Error loading players:", error);
       });
   }
 
@@ -31,22 +43,24 @@ document.addEventListener("DOMContentLoaded", function () {
     const playersToDisplay = filteredPlayers.slice(startIndex, endIndex);
 
     // Thêm các cầu thủ vào bảng
-    playersToDisplay.forEach((player) => {
+    playersToDisplay.forEach((player, index) => {
       const row = document.createElement("tr");
-      row.dataset.id = player.id;
+      row.dataset.id = player.playerid;
+
+      // Gán Serial Number (index + 1)
       row.innerHTML = `
-        <td>${player.id}</td>
-        <td>${player.playerName}</td>
-        <td>${player.team}</td>
-        <td>${player.role}</td>
-        <td>${player.goals}</td>
-        <td>
-            <div class="actions">
-                <span class="edit-icon"><i class="fas fa-edit"></i></span>
-                <span class="delete-icon"><i class="fas fa-trash"></i></span>
-            </div>
-        </td>
-      `;
+      <td>${startIndex + index + 1}</td>  <!-- Serial Number -->
+      <td>${player.playername}</td>
+      <td>${player.team.teamname}</td>
+      <td>${player.playertype}</td>
+      <td>${player.goalcount}</td>
+      <td>
+          <div class="actions">
+              <span class="edit-icon"><i class="fas fa-edit"></i></span>
+              <span class="delete-icon"><i class="fas fa-trash"></i></span>
+          </div>
+      </td>
+    `;
       playerTable.appendChild(row);
     });
     attachActionListeners(); // Gắn các sự kiện hành động cho các edit và delete icon
@@ -129,15 +143,17 @@ document.addEventListener("DOMContentLoaded", function () {
   function deletePlayer(id) {
     fetch(`${url}/${id}`, { method: "DELETE" }).then(() => loadPlayers());
   }
+
   // Sự kiện nhấn vào nút "Add"
   addBtn.addEventListener("click", function () {
     window.location.href = "./addPlayer.html"; // Chuyển đến trang addplayer để thêm cầu thủ
   });
+
   // Tìm kiếm cầu thủ theo tên
   searchInput.addEventListener("input", function () {
     const query = searchInput.value.toLowerCase();
     filteredPlayers = players.filter((player) =>
-      player.playerName.toLowerCase().includes(query)
+      player.playername.toLowerCase().includes(query)
     );
     currentPage = 1; // Sau mỗi lần tìm kiếm, quay lại trang 1
     renderPlayers();

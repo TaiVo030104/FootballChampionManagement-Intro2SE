@@ -1,23 +1,75 @@
-// Đường dẫn tới API của JSON Server
-const API_URL = "http://localhost:3000/players";
+const API_URL =
+  "https://footballchampionshipmanagement.onrender.com/api/v1/players";
+
+// Đường dẫn tới API lấy danh sách các đội bóng
+const TEAMS_API_URL =
+  "https://footballchampionshipmanagement.onrender.com/api/v1/teams";
 
 let originalPlayerData = null;
+
+// Hàm tải danh sách đội bóng và hiển thị vào dropdown
+async function loadTeams() {
+  try {
+    // Gọi API để lấy danh sách đội bóng
+    const response = await fetch(TEAMS_API_URL);
+    const result = await response.json();
+
+    if (result.status === "success" && result.data && result.data.teams) {
+      const teams = result.data.teams;
+
+      // Điền danh sách đội vào dropdown
+      const teamSelect = document.getElementById("team");
+      teamSelect.innerHTML = ""; // Xóa danh sách cũ (nếu có)
+
+      // Thêm một lựa chọn "Chọn đội" đầu tiên
+      const defaultOption = document.createElement("option");
+      defaultOption.value = "";
+      defaultOption.textContent = "Choose a team";
+      teamSelect.appendChild(defaultOption);
+
+      // Thêm các đội vào dropdown
+      teams.forEach((team) => {
+        const option = document.createElement("option");
+        option.value = team.teamid; // Lưu teamid vào value
+        option.textContent = team.teamname; // Hiển thị teamname
+        teamSelect.appendChild(option);
+      });
+    } else {
+      console.error("Không thể tải danh sách đội bóng.");
+    }
+  } catch (error) {
+    console.error("Không thể tải danh sách đội bóng:", error);
+  }
+}
 
 // Hàm tải dữ liệu cầu thủ khi trang được mở
 async function loadPlayerData(playerId) {
   try {
     // Gọi API để lấy dữ liệu cầu thủ
     const response = await fetch(`${API_URL}/${playerId}`);
-    const player = await response.json();
+    const result = await response.json();
 
-    originalPlayerData = player;
+    if (result.status === "success" && result.data && result.data.player) {
+      const player = result.data.player; // Lấy dữ liệu cầu thủ từ API
 
-    // Điền dữ liệu vào các ô input
-    document.getElementById("player-name").value = player.playerName;
-    document.getElementById("team").value = player.team;
-    document.getElementById("role").value = player.role;
-    document.getElementById("goals").value = player.goals;
-    document.getElementById("note").value = player.note;
+      originalPlayerData = player;
+
+      // Điền dữ liệu vào các ô input
+      document.getElementById("player-name").value = player.playername || "";
+      document.getElementById("role").value = player.playertype || "";
+      document.getElementById("goals").value = player.goalcount || 0;
+      document.getElementById("note").value = player.notes || "";
+      document.getElementById("birthdate").value = player.birthdate || "";
+
+      // Điền giá trị cho ô select (team)
+      const teamSelect = document.getElementById("team");
+      teamSelect.value = player.team?.teamid || ""; // Chọn đội tương ứng với teamid
+
+      // Gắn thông tin team ID vào input (ẩn hoặc dataset)
+      teamSelect.dataset.teamid = player.team?.teamid || "";
+    } else {
+      console.error("Không tìm thấy dữ liệu cầu thủ hoặc API trả về lỗi.");
+    }
   } catch (error) {
     console.error("Không thể tải dữ liệu cầu thủ:", error);
   }
@@ -27,11 +79,19 @@ async function loadPlayerData(playerId) {
 function resetPlayerData() {
   if (originalPlayerData) {
     document.getElementById("player-name").value =
-      originalPlayerData.playerName;
-    document.getElementById("team").value = originalPlayerData.team;
-    document.getElementById("role").value = originalPlayerData.role;
-    document.getElementById("goals").value = originalPlayerData.goals;
-    document.getElementById("note").value = originalPlayerData.note;
+      originalPlayerData.playername || "";
+    document.getElementById("role").value = originalPlayerData.playertype || "";
+    document.getElementById("goals").value = originalPlayerData.goalcount || 0;
+    document.getElementById("note").value = originalPlayerData.notes || "";
+    document.getElementById("birthdate").value =
+      originalPlayerData.birthdate || "";
+
+    // Khôi phục giá trị cho ô select (team)
+    const teamSelect = document.getElementById("team");
+    teamSelect.value = originalPlayerData.team?.teamid || ""; // Chọn đội tương ứng với teamid
+
+    // Nếu bạn cần khôi phục lại dữ liệu team ID vào dataset (nếu cần gửi API sau đó)
+    teamSelect.dataset.teamid = originalPlayerData.team?.teamid || "";
   }
 }
 
@@ -44,11 +104,12 @@ document
 async function savePlayerData(playerId) {
   // Lấy giá trị từ các ô input
   const updatedPlayer = {
-    playerName: document.getElementById("player-name").value,
-    team: document.getElementById("team").value,
-    role: document.getElementById("role").value,
-    goals: parseInt(document.getElementById("goals").value),
-    note: document.getElementById("note").value,
+    team_teamid: parseInt(document.getElementById("team").value, 10),
+    playername: document.getElementById("player-name").value,
+    birthdate: document.getElementById("birthdate").value,
+    playertype: document.getElementById("role").value,
+    notes: document.getElementById("note").value,
+    goalcount: parseInt(document.getElementById("goals").value),
   };
 
   try {
@@ -64,8 +125,7 @@ async function savePlayerData(playerId) {
     });
 
     if (response.ok) {
-      // alert("Dữ liệu đã được lưu thành công!");
-      window.location.href = "./players.html";
+      window.location.href = "./players.html"; // Quay lại trang danh sách cầu thủ
     } else {
       console.error("Có lỗi khi lưu dữ liệu:", response.statusText);
     }
@@ -76,18 +136,17 @@ async function savePlayerData(playerId) {
 
 // Sự kiện cho nút Save
 document.querySelector(".btn-save").addEventListener("click", () => {
-  // Giả sử playerId đã có hoặc null nếu thêm mới
   const playerId = getPlayerIdFromURL();
-  // const playerId = 1;
+  console.log(playerId);
   savePlayerData(playerId);
 });
 
 // Hàm lấy playerId từ URL (hoặc từ trạng thái trang khác)
 function getPlayerIdFromURL() {
-  // Lấy playerId từ URL hoặc trả về null nếu không có
   const params = new URLSearchParams(window.location.search);
   return params.get("id");
 }
+
 // Hàm thay đổi tiêu đề trang dựa trên chế độ (thêm mới hoặc chỉnh sửa)
 function updateHeaderTitle() {
   const playerId = getPlayerIdFromURL();
@@ -99,10 +158,31 @@ function updateHeaderTitle() {
     headerTitle.textContent = "Add Player";
   }
 }
-// Tải dữ liệu nếu có playerId khi trang được mở
-const playerId = getPlayerIdFromURL();
-if (playerId) {
-  loadPlayerData(playerId);
+
+// // Tải danh sách đội bóng và dữ liệu cầu thủ nếu có playerId khi trang được mở
+// loadTeams(); // Tải danh sách đội bóng
+// const playerId = getPlayerIdFromURL();
+// if (playerId) {
+//   loadPlayerData(playerId);
+// }
+
+// updateHeaderTitle();
+// Hàm khởi tạo trang
+async function initPage() {
+  const playerId = getPlayerIdFromURL(); // Lấy playerId từ URL (nếu có)
+  // Cập nhật tiêu đề trang
+  updateHeaderTitle();
+  try {
+    // 1. Tải danh sách đội bóng
+    await loadTeams();
+    // 2. Nếu có playerId, tải dữ liệu cầu thủ
+    if (playerId) {
+      await loadPlayerData(playerId);
+    }
+  } catch (error) {
+    console.error("Lỗi khi khởi tạo trang:", error);
+  }
 }
 
-updateHeaderTitle();
+// Gọi hàm khởi tạo trang khi DOM đã sẵn sàng
+document.addEventListener("DOMContentLoaded", initPage);
