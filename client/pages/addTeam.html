@@ -12,7 +12,6 @@
     <title>Add Team</title>
   </head>
   <body>
-
     <header>
       <div class="header-logo">
         <a href="../pages/main.html">
@@ -21,16 +20,15 @@
         <h1>Football Championship</h1>
       </div>
       <nav class="nav-tab">
-          <a href="../pages/match.html">Match</a>
-          <a href="../pages/team.html">Team</a>
-          <a href="../pages/.html">Player</a>
-          <a href="../pages/tournament.html">Tournament</a>
+        <a href="../pages/match.html">Match</a>
+        <a href="../pages/team.html">Team</a>
+        <a href="../pages/.html">Player</a>
+        <a href="../pages/tournament.html">Tournament</a>
       </nav>
       <div class="profile-icon">
-          <!-- <img src="./assets/img/Male_User.svg" alt="Profile Icon"> -->
-          <img src="../assets/images/Male_User.svg" alt="Profile Icon">
+        <img src="../assets/images/Male_User.svg" alt="Profile Icon">
       </div>
-  </header>
+    </header>
 
     <!-- Body -->
     <div class="body">
@@ -39,37 +37,41 @@
       </div>
       <div class="form-container">
         <form class="form-content add-team">
-          <div class="team-logo">
-            <img src="../assets/images/teamLogo.png" alt="Team Logo">
-            <div class="text h3">
-              <h3>Upload Logo Team</h3>
-            </div>
-            
+          <!-- Team Logo Upload Section -->
+          <div class="image-team">
+            <div class="logo-upload-area">
+              <label for="logo-upload" class="upload-label">Upload Logo</label>
+              <br>
+              <input type="file" id="logo-upload" />
+              <div id="team-logo-preview" class="team-logo"></div> <!-- Updated ID here -->
+            </div>                          
           </div>
+
+          <!-- Team Details Form Section -->
           <div class="content">
             <div class="detail">
               <div class="form-group">
                 <label for="team-name">Team Name:</label>
-                <input type="text" id="team-name">
+                <input type="text" id="team-name" required>
               </div>
               <div class="form-group">
                 <label for="team-leader">Team Leader:</label>
                 <input type="text" id="team-leader">
               </div>
               <div class="form-group">
-                <label for="nation">Nation:</label>
-                <input type="text" id="nation">
+                <label for="home-ground">Home Stadium:</label>
+                <input type="text" id="home-ground" required>
               </div>
               <div class="form-group">
                 <label for="team-size">Team Size:</label>
-                <input type="number" id="team-size">
+                <input type="number" id="team-size" value="16">
               </div>
             </div>
           </div>
         </form>
       </div>
 
-      <!-- Buttons -->
+      <!-- Action Buttons -->
       <div class="group-button">
         <button class="btn-cancel">CANCEL</button>
         <button class="btn-save">SAVE</button>

@@ -1,61 +1,90 @@
-const TeamData = [
-    {
-      "teamName": "Golden Eagles",
-      "teamLeader": "Đội tuyển Quốc gia Việt Nam",
-      "nation": "Germany",
-      "teamSize": 15
-    },
-    {
-      "teamName": "Blue Sharks",
-      "teamLeader": "John Doe",
-      "nation": "USA",
-      "teamSize": 12
+const API_BASE = 'https://footballchampionshipmanagement.onrender.com/api/v1/teams';
+let teamData = [];
+let currentPage = 1;
+const teamsPerPage = 8;
+let filteredData = [...teamData];
+
+// Logo upload functionality
+const logoUploadInput = document.querySelector('#logo-upload');
+const logoPreviewArea = document.querySelector('#team-logo-preview'); // Updated reference to the correct ID
+
+
+
+logoUploadInput.addEventListener('change', function (event) {
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function () {
+            const logoImg = document.createElement('img');
+            logoImg.src = reader.result;
+            logoImg.classList.add('team-logo-img');
+            logoPreviewArea.innerHTML = ''; // Clear existing content
+            logoPreviewArea.appendChild(logoImg);
+        };
+        reader.readAsDataURL(file);
     }
-];
-
-// Function to load existing team data into the form (e.g., pre-populate if editing an existing team)
-function loadTeamData() {
-    const savedTeams = JSON.parse(localStorage.getItem('teams')) || TeamData;  // Load from localStorage or fallback to TeamData array
-    const team = savedTeams[0]; // Assuming you want to load the first team for editing (can be customized)
-
-    document.querySelector('#team-name').value = team.teamName;
-    document.querySelector('#team-leader').value = team.teamLeader;
-    document.querySelector('#nation').value = team.nation;
-    document.querySelector('#team-size').value = team.teamSize;
-}
+});
 
 // Attach event listener to the SAVE button
 document.querySelector('.btn-save').addEventListener('click', function (event) {
     event.preventDefault(); // Prevent default form submission
-  
+
     // Get values from the input fields
     const teamName = document.querySelector('#team-name').value;
-    const teamLeader = document.querySelector('#team-leader').value;
-    const nation = document.querySelector('#nation').value;
+    const homeGround = document.querySelector('#home-ground').value;
     const teamSize = document.querySelector('#team-size').value;
-  
-    // Create a new team object from form data
+
+    // Validate required fields
+    if (!teamName || !homeGround) {
+        alert('Team Name and Home Stadium are required.');
+        return;
+    }
+
     const newTeam = {
-      teamName: teamName,
-      teamLeader: teamLeader,
-      nation: nation,
-      teamSize: parseInt(teamSize) // Convert teamSize to an integer
+        teamName: teamName,
+        teamLeader: document.querySelector('#team-leader').value, // Optional
+        homeGround: homeGround,
+        teamSize: teamSize || 16, // Default to 16 if empty
+        // teamLogo: logoPreviewArea.querySelector('img') ? logoPreviewArea.querySelector('img').src : null // Optional logo
     };
-  
-    // Add the new team to the TeamData array
-    TeamData.push(newTeam);
-  
-    // Log the updated TeamData to the console
-    console.log('Updated Team Data:', TeamData);
-  
-    // Optional: Save to localStorage or backend
-    saveTeamData();
+
+    // Send POST request to create the team
+    createTeam(newTeam);
 });
 
-// Function to save the updated team data to localStorage
-function saveTeamData() {
-    localStorage.setItem('teams', JSON.stringify(TeamData)); // Save to localStorage
+async function createTeam(teamData) {
+    // Thử tạo team
+    const response = await fetch(API_BASE, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            teamname: teamData.teamName,
+            fieldname: teamData.homeGround,
+            // Chỉ gửi các trường cần thiết
+        }),
+    });
+
+    // Kiểm tra nếu phản hồi không OK
+    if (!response.ok) {
+        const errorData = await response.json();
+        console.error("Error creating team:", errorData);
+        alert(`Error creating team: ${errorData.message || "Unknown error"}`);
+        return;
+    }
+
+    // Nếu phản hồi thành công
+    const newTeam = await response.json();
+    console.log('New team created:', newTeam);
+    alert("Team created successfully!");
+
+    // Cập nhật dữ liệu và render lại các đội
+    filteredData.push(newTeam);
+    renderTeams();
 }
 
-// Call the loadTeamData function on page load to pre-fill the form
-document.addEventListener('DOMContentLoaded', loadTeamData);
+
+document.addEventListener('DOMContentLoaded', () => {
+    fetchTeams();
+});
