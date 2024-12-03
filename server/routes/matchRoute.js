@@ -13,5 +13,5 @@ router
   .get(matchController.getMatchwithAllInfo)
   .put(matchValidation, matchController.updateMatch)
   .delete(matchController.deleteMatch);
-
+router.post("/generate", matchController.generateMatch);
 module.exports = router;

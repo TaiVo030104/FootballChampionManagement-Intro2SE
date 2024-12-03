@@ -132,6 +132,63 @@ const matchController = {
       next(err);
     }
   },
+  generateMatch: async (req, res, next) => {
+    try {
+      const { numberRound } = req.body;
+      if (numberRound < 1) {
+        return next(new AppError("Not enough round to generate match", 400));
+      }
+      const list_team = await Team.findAll();
+      if (list_team.length < 2) {
+        return next(new AppError("Not enough team to generate match", 400));
+      }
+      const list_match = await Match.findAll();
+      if (list_match.length > 0) {
+        return next(new AppError("Match already exists", 400));
+      }
+      const teams = list_team.map((team) => team.toJSON());
+      const totalMatches = (numberRound * teams.length) / 2;
+      const matches = [];
+      for (let round = 1; round <= numberRound; round++) {
+        for (let i = 0; i < teams.length - 1; i++) {
+          for (let j = i + 1; j < teams.length; j++) {
+            const match1 = {
+              team_team1: teams[i].teamid,
+              team_team2: teams[j].teamid,
+              matchdate: Date.now(),
+              matchtime: "00:00:00",
+              fieldname: teams[i].fieldname,
+              roundcount: round,
+              score1: null,
+              score2: null,
+            };
+
+            const match2 = {
+              team_team1: teams[j].teamid,
+              team_team2: teams[i].teamid,
+              matchdate: Date.now(),
+              matchtime: "00:00:00",
+              fieldname: teams[j].fieldname,
+              roundcount: round,
+              score1: null,
+              score2: null,
+            };
+            await Match.create(match1);
+            await Match.create(match2);
+          }
+        }
+        // console.log(matches);
+        // await Match.bulkCreate(matches);
+      }
+
+      res.status(201).json({
+        status: "success",
+        message: "Match generated successfully",
+      });
+    } catch (err) {
+      next(err);
+    }
+  },
   updateMatch: async (req, res, next) => {
     try {
       const {
