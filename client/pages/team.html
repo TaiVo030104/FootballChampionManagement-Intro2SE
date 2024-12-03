@@ -3,136 +3,72 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./styles/reset.css">
-    <link rel="stylesheet" href="./styles/registerApplication.css">
+    <link rel="stylesheet" href="../styles/reset.css">
+    <link rel="stylesheet" href="../styles/team.css">
+    <!-- <link rel="stylesheet" href="../styles/style_rule.css"> -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Yellowtail&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <title>Team</title>
   </head>
   <body>
-
-    <!--Header-->
-    <div class="header">
-      <img class="logo" src="assets/images/logo.png" alt="logo">
-      <div class="header-item">
-        <a href="" class="button">Match</a>
-        <a href="" class="button">Team</a>
-        <a href="" class="button">Player</a>
-        <a href="" class="button">Tournament</a>
+    <!-- Header -->
+    <header>
+      <div class="header-logo">
+        <a href="../pages/main.html">
+          <img src="../assets/images/Asset 1@4x 1.svg" alt="Logo">
+        </a>
+        <h1>Football Championship</h1>
       </div>
-      <div class="check">
-        <img src="assets/images/user.png" alt="avatar" class="avatar">
-      </div>
-    </div>
+      
+      
+        <nav class="nav-tab">
+            <a href="../pages/match.html">Match</a>
+            <a href="">Team</a>
+            <a href="../pages/players.html">Player</a>
+            <a href="../pages/tournament.html">Tournament</a>
+        </nav>
+        <div class="profile-icon">
+            <img src="../assets/images/Male_User.svg" alt="Profile Icon">
+        </div>
+    </header>
 
-    <!--Body-->
+    <!-- Body -->
     <div class="body">
       <div class="body-header">
         <h1 class="body-header-title">Teams</h1>
         <div class="search-container">
           <div class="search">
             <i class="btn-search fa-solid fa-magnifying-glass"></i>
-            <input type="text" class="search-bar" placeholder="Search">
+            <input type="text" id="search" class="search-bar" placeholder="Search by Team name">
           </div>
-          <button class="add-btn">+ Add</button>
+          <button class="add-btn" onclick="window.location.href='../pages/addTeam.html';">+ Add</button>
         </div>
       </div>
+
       <div class="table">
-          <table class="player-table">
-              <thead class="header-title">
-                  <tr>
-                      <th>Serial Number</th>
-                      <th>Team Name</th>
-                      <th>Team Leader</th>
-                      <th>Nation</th>
-                      <th>Team Size</th>
-                      <th>Action</th> 
-                  </tr>
-              </thead>
-              <tbody>
-                  <tr>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td>
-                          <div class="actions">
-                            <span class="edit-icon"><i class="fas fa-edit"></i></span>
-                            <span class="delete-icon"><i class="fas fa-trash"></i></span>
-                        </div>
-                    </td>
-                  </tr>
-                  <tr>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td>
-                          <div class="actions">
-                            <span class="edit-icon"><i class="fas fa-edit"></i></span>
-                            <span class="delete-icon"><i class="fas fa-trash"></i></span>
-                        </div>
-                    </td>
-                  </tr>
-              </tbody>
-          </table>
+        <table class="player-table">
+          <thead class="header-title">
+            <tr>
+              <th>ID</th>
+              <th>Team Name</th>
+              <th>Team Leader</th>
+              <th>Home Ground</th>
+              <th>Team Size</th>
+              <th>Action</th> 
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Team rows will be inserted here by JavaScript -->
+          </tbody>
+        </table>
       </div>
-      
+
       <div class="pagination-container">
-          <ul class="pagination home-product__pagination">
-              <li class="pagination">
-                  <a href="#" class="pagination-link">
-                      <i class="pagination-icon fas fa-angle-left"></i>
-                  </a>
-              </li>
-              <li class="pagination pagination-active">
-                  <a href="#" class="pagination-link">
-                      <i class="pagination-icon">1</i>
-                  </a>
-              </li>
-              <li class="pagination">
-                  <a href="#" class="pagination-link">
-                      <i class="pagination-icon">2</i>
-                  </a>
-              </li>
-              <li class="pagination">
-                  <a href="#" class="pagination-link">
-                      <i class="pagination-icon">3</i>
-                  </a>
-              </li>
-              <li class="pagination">
-                  <a href="#" class="pagination-link">
-                      <i class="pagination-icon">4</i>
-                  </a>
-              </li>
-              <li class="pagination">
-                  <a href="#" class="pagination-doc">
-                      <i class="pagination-icon">...</i>
-                  </a>
-              </li>
-              <li class="pagination">
-                  <a href="#" class="pagination-link">
-                      <i class="pagination-icon">14</i>
-                  </a>
-              </li>
-              <li class="pagination">
-                  <a href="#" class="pagination-link">
-                      <i class="pagination-icon fas fa-angle-right"></i>
-                  </a>
-              </li>
-            </ul>
-            <button class="btn-add">Add</button>
-            <button class="btn-save">SAVE</button>
+        <ul class="pagination home-product__pagination"></ul>
       </div>
-      
-      
     </div>
-    
-    
-  </div>
-</body>
+
+    <script src="../scripts/team.js"></script>
+  </body>
 </html>

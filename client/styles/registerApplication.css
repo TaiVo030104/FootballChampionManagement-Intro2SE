@@ -58,7 +58,6 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
     padding: 20px;
     justify-content: flex-start;
     flex-grow: 1;
@@ -81,7 +80,7 @@ body {
 .search-container {
     display: flex; /* Align items horizontally */
     gap: 20px; /* Space between search bar and button */
-    margin-top: 10px; /* Space between title and search */
+    margin-top: 5px; /* Space between title and search */
     width: 100%; /* Ensure it takes full width */
 }
 
@@ -89,7 +88,7 @@ body {
     display: flex;
     align-items: center;
     border-bottom: 2px solid #c6c6c6; /* Adds an underline to both icon and input */
-    padding-bottom: 3px;
+    /* padding-bottom: 3px; */
 }
 .btn-search {
     margin-right: 5px; 
@@ -103,7 +102,7 @@ body {
     outline: none;
     box-shadow: none;
     background-color: transparent;
-    color: inherit;
+    color: #757575;
 }
 
 .add-btn {
@@ -124,40 +123,78 @@ body {
 .table {
     width: 100%; /* Make the table container full width */
     padding: 20px;
+    margin-top: 0px;
+    overflow-x: auto; /* Enable horizontal scroll for smaller screens */
 }
 
 .player-table {
     width: 100%; /* Make the table itself full width */
     border-collapse: collapse;
     text-align: center;
+    table-layout: fixed; /* Fix column widths */
 }
 
 .header-title th {
     background-color: #f2f2f2;
     padding: 10px;
     font-weight: bold;
+    font-size: 14px;
+    white-space: nowrap; /* Prevent text wrapping */
 }
 
 .player-table th, .player-table td {
     border: 1px solid #ddd;
-    padding: 8px;
+    padding: 12px; /* Increase padding for better spacing */
     text-align: center;
+    overflow: hidden; /* Hide overflowing content */
+    text-overflow: ellipsis; /* Add ellipsis for long text */
+    white-space: nowrap; /* Prevent text wrapping */
 }
 
 .player-table tbody tr:nth-child(even) {
-    background-color: #f2f2f2; /* Background color for odd rows */
+    background-color: #f9f9f9; /* Subtle gray for better contrast */
 }
 
 .player-table tbody tr:nth-child(odd) {
-    background-color: #ffffff; /* Background color for even rows */
+    background-color: #ffffff; /* White for even rows */
 }
 
+.player-table tbody tr:hover {
+    background-color: #e8f0fe; /* Highlight row on hover */
+    transition: background-color 0.3s ease; /* Smooth transition */
+}
 
-/* Make the Serial Number column narrower */
+/* Column Widths */
 .player-table th:first-child,
 .player-table td:first-child {
-    width: 5%; /* Adjust width as needed */
+    width: 15%; /* Serial Number */
 }
+
+.player-table th:nth-child(2),
+.player-table td:nth-child(2) {
+    width: 30%; /* Team Name */
+}
+
+.player-table th:nth-child(3),
+.player-table td:nth-child(3) {
+    width: 20%; /* Team Leader */
+}
+
+.player-table th:nth-child(4),
+.player-table td:nth-child(4) {
+    width: 15%; /* Nation */
+}
+
+.player-table th:nth-child(5),
+.player-table td:nth-child(5) {
+    width: 10%; /* Team Size */
+}
+
+.player-table th:last-child,
+.player-table td:last-child {
+    width: 10%; /* Action buttons */
+}
+
 
 .actions {
     display: flex;
