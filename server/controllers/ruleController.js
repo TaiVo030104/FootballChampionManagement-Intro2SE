@@ -23,6 +23,9 @@ const ruleController = {
         winscore,
         losescore,
         drawscore,
+        minplayer,
+        maxplayer,
+        maxforeign,
       } = req.body;
       const ruleData = {
         minage: parseInt(minage, 10),
@@ -32,6 +35,9 @@ const ruleController = {
         winscore: parseInt(winscore, 10),
         losescore: parseInt(losescore, 10),
         drawscore: parseInt(drawscore, 10),
+        minplayer: parseInt(minplayer, 10),
+        maxplayer: parseInt(maxplayer, 10),
+        maxforeign: parseInt(maxforeign, 10),
       };
       await rule.update(ruleData);
       res.status(200).json({ rule });

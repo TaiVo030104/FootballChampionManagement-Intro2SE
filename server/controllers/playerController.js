@@ -56,7 +56,6 @@ const playerControllers = {
         notes: notes === "NULL" ? null : notes,
         goalcount: parseInt(goalcount, 10),
       };
-
       const player = await Player.create(playerData);
       res.status(201).json({
         status: "success",
@@ -65,6 +64,7 @@ const playerControllers = {
         },
       });
     } catch (err) {
+      console.log(err);
       next(err);
     }
   },
@@ -88,6 +88,9 @@ const playerControllers = {
         goalcount: parseInt(goalcount, 10),
       };
       const player = await Player.findByPk(req.params.id);
+      if (!player) {
+        return next(new AppError("Player not found", 404));
+      }
       await player.update(playerData);
       res.status(200).json({
         status: "success",

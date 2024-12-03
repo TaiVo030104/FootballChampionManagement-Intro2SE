@@ -11,6 +11,9 @@ const Rule = sequelize.define(
     winscore: { type: DataTypes.INTEGER, allowNull: false },
     losescore: { type: DataTypes.INTEGER, allowNull: false },
     drawscore: { type: DataTypes.INTEGER, allowNull: false },
+    minplayer: { type: DataTypes.INTEGER, allowNull: false },
+    maxplayer: { type: DataTypes.INTEGER, allowNull: false },
+    maxforeign: { type: DataTypes.INTEGER, allowNull: false },
   },
   {
     tableName: "rule",

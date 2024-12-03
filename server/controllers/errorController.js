@@ -5,6 +5,17 @@ const {
   ForeignKeyConstraintError,
 } = require("sequelize");
 const AppError = require("../utils/appError");
+require("dotenv").config();
+
+const handleDatabaseErrorSequelize = (err) => {
+  if (err.parent) {
+    if (err.parent.routine === "exec_stmt_raise") {
+      return new AppError(err.parent.message, 400);
+    }
+    console.log("Postgres Error Details:", err.parent);
+  }
+  return new AppError(err.parent.message, 500);
+};
 
 const handleValidationErrorSequelize = (err) => {
   const errors = err.errors.map((el) => el.message);
@@ -54,8 +65,9 @@ const sendErrorProd = (err, res) => {
 module.exports = (err, req, res, next) => {
   err.statusCode = err.statusCode || 500;
   err.status = err.status || "error";
-
-  if (err instanceof ValidationError) {
+  if (err.name === "SequelizeDatabaseError") {
+    err = handleDatabaseErrorSequelize(err);
+  } else if (err instanceof ValidationError) {
     err = handleValidationErrorSequelize(err);
   } else if (err instanceof UniqueConstraintError) {
     err = handleUniqueConstraintErrorSequelize(err);
@@ -64,7 +76,6 @@ module.exports = (err, req, res, next) => {
   } else if (err instanceof ForeignKeyConstraintError) {
     err = handleForeignKeyConstraintErrorSequelize(err);
   }
-
   if (process.env.NODE_ENV === "development") {
     sendErrorDev(err, res);
   } else if (process.env.NODE_ENV === "production") {

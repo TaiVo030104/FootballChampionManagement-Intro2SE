@@ -3,7 +3,8 @@ const sequelize = require("../config/database");
 const Ranking = sequelize.define(
   "Ranking",
   {
-    rank_date: { type: DataTypes.DATE, allowNull: false },
+    current_date: { type: DataTypes.DATE, allowNull: false },
+    teamid: { type: DataTypes.INTEGER, allowNull: false },
     win: { type: DataTypes.INTEGER, allowNull: false },
     draw: { type: DataTypes.INTEGER, allowNull: false },
     lose: { type: DataTypes.INTEGER, allowNull: false },
@@ -17,7 +18,7 @@ const Ranking = sequelize.define(
 );
 
 Ranking.associate = (models) => {
-  Ranking.belongsTo(models.Team, { foreignKey: "team_teamid", as: "team" });
+  Ranking.belongsTo(models.Team, { foreignKey: "teamid", as: "team" });
 };
 
 module.exports = Ranking;

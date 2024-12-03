@@ -20,10 +20,10 @@ app.use(cors());
 // Routes
 app.use("/api/v1/teams", require("./routes/teamRoute"));
 app.use("/api/v1/players", require("./routes/playerRoute"));
-// app.use("/api/v1/goals", require("./routes/goalRoute"));
 app.use("/api/v1/matches", require("./routes/matchRoute"));
 app.use("/api/v1/rules", require("./routes/ruleRoute"));
 app.use("/api/v1/goals", require("./routes/goalRoute"));
+app.use("/api/v1/rank", require("./routes/rankRoute"));
 // End of routes
 
 app.all("*", (req, res, next) => {

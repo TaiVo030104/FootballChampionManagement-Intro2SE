@@ -1,20 +1,15 @@
 const postgres = require("pg");
 require("dotenv").config();
 const { Sequelize } = require("sequelize");
-console.log("Database:", process.env.PG_DATABASE);
-console.log("User:", process.env.PG_USER);
-console.log("Password:", process.env.PG_PASSWORD);
-console.log("Host:", process.env.PG_HOST);
-console.log("Port:", process.env.PG_PORT);
 const sequelize = new Sequelize(
-  process.env.PG_DATABASE,
-  process.env.PG_USER,
-  process.env.PG_PASSWORD,
+  process.env.PG_DATABASE || "footballmanagement",
+  process.env.PG_USER || "postgres",
+  process.env.PG_PASSWORD || "Postgres@123",
   {
-    host: process.env.PG_HOST,
-    port: process.env.PG_PORT,
+    host: process.env.PG_HOST || "127.0.0.1",
+    port: process.env.PG_PORT || 5433,
     dialect: "postgres",
-    logging: false, // Tắt log truy vấn SQL
+    logging: console.log, // Tắt log truy vấn SQL
   }
 );
 sequelize

@@ -36,6 +36,14 @@ const goalController = {
       const player = await Player.findByPk(player_playerid);
       if (!player) {
         return next(new AppError("Player not found", 404));
+      } else {
+        const teamInMatch = await Match.findByPk(req.params.id);
+        if (
+          teamInMatch.team1_teamid !== player.team_teamid &&
+          teamInMatch.team2_teamid !== player.team_teamid
+        ) {
+          return next(new AppError("Player is not in the match teams", 400));
+        }
       }
       const match = await Match.findByPk(req.params.id);
       if (!match) {
@@ -53,9 +61,10 @@ const goalController = {
       const goalData = {
         player_playerid: parseInt(player_playerid, 10),
         match_matchid: parseInt(req.params.id, 10),
-        goaltime,
+        goaltime: goaltime.toString(),
         goaltype,
       };
+      console.log(goalData);
       const newGoal = await Goal.create(goalData);
       player.goalcount += 1;
       await player.save();
