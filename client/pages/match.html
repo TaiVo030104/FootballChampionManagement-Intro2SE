@@ -3,28 +3,34 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./styles/reset.css">
-    <link rel="stylesheet" href="./styles/match.css">
+    <link rel="stylesheet" href="../styles/reset.css">
+    <link rel="stylesheet" href="../styles/match.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="../scripts/match.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Yellowtail&display=swap" rel="stylesheet">
     <title>Match</title>
   </head>
   <body>
-<!--Header-->
-    <div class="header">
-        <img class="logo" src="assets/images/logo.png" alt="logo">
-        <div class="header-item">
-        <a href="" class="button">Match</a>
-        <a href="" class="button">Team</a>
-        <a href="" class="button">Player</a>
-        <a href="" class="button">Tournament</a>
+    <header>
+        <div class="header-logo">
+            <!-- <img src="./assets/img/Asset 1@4x 1.svg" alt="Logo"> -->
+            <img src="../assets/images/Asset 1@4x 1.svg" alt="Logo">
+            <h1>Football Championship</h1>
         </div>
-        <div class="check">
-            <img src="assets/images/user.png" alt="avatar" class="avatar">
+        <nav class="nav-tab">
+            <a href="../pages/match.html">Match</a>
+            <a href="../pages/team.html">Team</a>
+            <a href="../pages/">Player</a>
+            <a href="../pages/tournament.html">Tournament</a>
+            <a href="../pages/edit_rule.html">Rule</a>
+        </nav>
+        <div class="profile-icon">
+            <!-- <img src="./assets/img/Male_User.svg" alt="Profile Icon"> -->
+            <img src="../assets/images/Male_User.svg" alt="Profile Icon">
         </div>
-    </div>
+    </header>
 
     <!--Body-->
     <div class="body">
@@ -35,7 +41,8 @@
                 <i class="btn-search fa-solid fa-magnifying-glass"></i>
                 <input type="text" class="search-bar" placeholder="Search">
                 </div>
-                <button class="add-btn">+ Add</button>
+                <a href="../pages/addMatch.html"><button class="add-btn">+ Add</button></a>
+                
             </div>
         </div>
         <div class="date-section">
@@ -51,7 +58,8 @@
                     <div class="team">
                         <span>Atalanta</span>
                         <span class="score">3</span>
-                        <i class="edit-btn fas fa-edit"></i>
+                        <a href="../pages/tournament.html"><i class="edit-btn fas fa-edit"></i></a>
+                        
                     </div>
                 </div>
                 <div class="match-card">
@@ -63,7 +71,7 @@
                     <div class="team">
                         <span>Feyenoord</span>
                         <span class="score">3</span>
-                        <i class="edit-btn fas fa-edit"></i>
+                        <a href="../pages/tournament.html"><i class="edit-btn fas fa-edit"></i></a>
                     </div>
                 </div>
                 <div class="match-card">
@@ -75,7 +83,7 @@
                     <div class="team">
                         <span>Bologna</span>
                         <span class="score">0</span>
-                        <i class="edit-btn fas fa-edit"></i>
+                        <a href="../pages/tournament.html"><i class="edit-btn fas fa-edit"></i></a>
                     </div>
                 </div>
             </div>

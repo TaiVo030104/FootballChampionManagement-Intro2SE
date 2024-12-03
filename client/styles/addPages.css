@@ -11,6 +11,7 @@ body {
   flex-direction: column;
 }
 
+<<<<<<< HEAD
 .header {
   height: 60px;
   background-color: #3D8361;
@@ -52,6 +53,41 @@ body {
   margin: 0 30px;
 }
 
+=======
+header {
+  height: 75px;
+  background: #3d8361;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+}
+.header-logo h1 {
+  font-family: "SeoulHangang CL";
+  font-size: 24px;
+  font-weight: 400;
+  color: white;
+  margin-left: 10px;
+}
+
+.header-logo {
+  display: flex;
+  align-items: center;
+}
+nav a {
+  font-family: "Exo 2";
+  font-size: 20px;
+  font-weight: 700;
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
+}
+.nav_tab {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+
+>>>>>>> origin/TaiVo_v2
 .body {
   display: flex;
   flex-direction: column;
@@ -84,12 +120,121 @@ margin-left: 60px;
 }
 
 .form-container {
+<<<<<<< HEAD
   width: 1168px;
   height: 507px;
   flex-shrink: 0;
   border-radius: 8px;
   border: var(--stroke-weight-1, 1px) solid #E5E5E5;
   background: #FFF;
+=======
+    width: 1168px;
+    height: 507px;
+    flex-shrink: 0;
+    border-radius: 8px;
+    border: var(--stroke-weight-1, 1px) solid #E5E5E5;
+    background: #FFF;
+
+  }
+.form-content {
+    display: flex;
+    gap: 138px;
+    padding: 70px 70px;
+    height: 100%;
+    align-items: center;
+  }
+
+  .avatar-img img {
+    width: 187.013px;
+    height: 251.312px;
+  }
+  
+  .content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 34px;
+  }
+  .detail {
+    display: flex;
+    flex-direction: column;
+    gap: 34px;
+  }
+  .form-group {
+    display: flex;
+    align-items: center;
+  }
+  
+.form-group label {
+    font-size: 15px;
+    color: rgba(0, 0, 0, 0.80);
+    opacity: 0.6;
+    font-weight: 700;
+    flex: 0 0 140px; 
+  }
+  
+  .form-group input {
+    width: 220px;
+    flex: 1;
+    padding: 6px 0px 6px 18px;
+    font-size: 15px;
+    color: #000;
+    opacity: 0.6;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-sizing: border-box;
+  }
+
+  .image-team .form-group {
+    margin-top: 70px;
+  }
+  .add-match.form-group label {
+    flex: 0 0 70px; 
+  }
+  .add-match.form-content {
+    padding: 40px 70px 70px 70px;
+    align-items: flex-start;
+  }
+
+  .image-team {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 60px;
+  }
+  .add-match .detail{
+    gap: 14px;
+  }
+
+  .add-team.form-content{
+    padding: 100px;
+  }
+  .note p {
+    font-size: 15px;
+    color: rgba(0, 0, 0, 0.80);
+    opacity: 0.6;
+    font-weight: 700;
+    margin-bottom: 14px;
+  }
+
+  
+  .note textarea {
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    font-size: 14px;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-sizing: border-box;
+    resize: none;
+  }
+.group-button {
+    margin-top: 38px;
+>>>>>>> origin/TaiVo_v2
 }
 
 .form-content {
