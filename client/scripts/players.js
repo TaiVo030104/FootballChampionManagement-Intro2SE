@@ -3,8 +3,9 @@ document.addEventListener("DOMContentLoaded", function () {
   const addBtn = document.querySelector(".add-btn");
   const searchInput = document.querySelector(".search-bar");
   const url =
-    "https://footballchampionshipmanagement.onrender.com/api/v1/players?sort=playerid"; // URL API mới
-
+    "https://footballchampionshipmanagement.onrender.com/api/v1/players"; // URL API mới
+  // const URLBASE =
+  //   "https://footballchampionshipmanagement.onrender.com/api/v1/players"; // URL API cũ
   let players = []; // Dữ liệu toàn bộ cầu thủ
   let filteredPlayers = []; // Dữ liệu cầu thủ sau khi tìm kiếm
   let currentPage = 1; // Trang hiện tại
@@ -141,6 +142,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Hàm xóa cầu thủ
   function deletePlayer(id) {
+    // console.log(`${URLBASE}/${id}`);
     fetch(`${url}/${id}`, { method: "DELETE" }).then(() => loadPlayers());
   }
 
