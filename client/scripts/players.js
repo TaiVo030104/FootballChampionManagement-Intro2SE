@@ -3,9 +3,9 @@ document.addEventListener("DOMContentLoaded", function () {
   const addBtn = document.querySelector(".add-btn");
   const searchInput = document.querySelector(".search-bar");
   const url =
-    "https://footballchampionshipmanagement.onrender.com/api/v1/players"; // URL API mới
-  // const URLBASE =
-  //   "https://footballchampionshipmanagement.onrender.com/api/v1/players"; // URL API cũ
+    "https://footballchampionshipmanagement.onrender.com/api/v1/players?sort=playerid"; // URL API mới
+  const URLBASE =
+    "https://footballchampionshipmanagement.onrender.com/api/v1/players"; // URL API cũ
   let players = []; // Dữ liệu toàn bộ cầu thủ
   let filteredPlayers = []; // Dữ liệu cầu thủ sau khi tìm kiếm
   let currentPage = 1; // Trang hiện tại
@@ -23,6 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
           // players.sort((a, b) => a.playerid - b.playerid);
 
           filteredPlayers = players; // Mặc định là chưa tìm kiếm, nên filteredPlayers bằng players
+          console.log(filteredPlayers.length);
           renderPlayers();
           renderPagination();
         } else {
@@ -142,8 +143,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Hàm xóa cầu thủ
   function deletePlayer(id) {
-    // console.log(`${URLBASE}/${id}`);
-    fetch(`${url}/${id}`, { method: "DELETE" }).then(() => loadPlayers());
+    console.log(id);
+    fetch(`${URLBASE}/${id}`, { method: "DELETE" }).then(() => loadPlayers());
   }
 
   // Sự kiện nhấn vào nút "Add"
