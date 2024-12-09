@@ -24,6 +24,7 @@ app.use("/api/v1/matches", require("./routes/matchRoute"));
 app.use("/api/v1/rules", require("./routes/ruleRoute"));
 app.use("/api/v1/goals", require("./routes/goalRoute"));
 app.use("/api/v1/rank", require("./routes/rankRoute"));
+app.use("/api/v1/auth", require("./routes/authRoute"));
 // End of routes
 
 app.all("*", (req, res, next) => {

@@ -135,9 +135,6 @@ const matchController = {
   generateMatch: async (req, res, next) => {
     try {
       const { numberRound } = req.body;
-      if (numberRound < 1) {
-        return next(new AppError("Not enough round to generate match", 400));
-      }
       const list_team = await Team.findAll();
       if (list_team.length < 2) {
         return next(new AppError("Not enough team to generate match", 400));
@@ -148,39 +145,73 @@ const matchController = {
       }
       const teams = list_team.map((team) => team.toJSON());
       const totalMatches = (numberRound * teams.length) / 2;
+      const numberOfTeams = teams.length;
+      // Tính số vòng đấu tối thiểu
+      const minRounds = 2 * (numberOfTeams - 1);
+      // Kiểm tra điều kiện
+      if (numberRound < minRounds) {
+        return next(
+          new AppError(
+            `Số vòng đấu phải >= ${minRounds} để đảm bảo mỗi đội thi đấu 2 lần với mỗi đội khác.`
+          ),
+          400
+        );
+      }
       const matches = [];
-      for (let round = 1; round <= numberRound; round++) {
-        for (let i = 0; i < teams.length - 1; i++) {
-          for (let j = i + 1; j < teams.length; j++) {
-            const match1 = {
-              team_team1: teams[i].teamid,
-              team_team2: teams[j].teamid,
-              matchdate: Date.now(),
-              matchtime: "00:00:00",
-              fieldname: teams[i].fieldname,
-              roundcount: round,
-              score1: null,
-              score2: null,
-            };
+      // Nếu số đội lẻ, thêm một đội giả ("BYE")
+      if (numberOfTeams % 2 !== 0) {
+        teams.push({ teamid: "BYE", fieldname: "N/A" });
+      }
+      const totalTeams = teams.length;
+      // Vòng lặp qua từng vòng đấu (Lượt đi)
+      for (let round = 0; round < numberOfTeams - 1; round++) {
+        for (let i = 0; i < totalTeams / 2; i++) {
+          const home = teams[i];
+          const away = teams[totalTeams - 1 - i];
 
-            const match2 = {
-              team_team1: teams[j].teamid,
-              team_team2: teams[i].teamid,
+          if (home.teamid !== "BYE" && away.teamid !== "BYE") {
+            const match = {
               matchdate: Date.now(),
               matchtime: "00:00:00",
-              fieldname: teams[j].fieldname,
-              roundcount: round,
+              roundcount: round + 1,
+              fieldname: home.fieldname,
               score1: null,
               score2: null,
+              team_team1: home.teamid,
+              team_team2: away.teamid,
             };
-            await Match.create(match1);
-            await Match.create(match2);
+            matches.push(match);
+            await Match.create(match); // Lưu vào cơ sở dữ liệu
           }
         }
-        // console.log(matches);
-        // await Match.bulkCreate(matches);
+
+        // Xoay vòng đội, trừ đội cố định đầu tiên
+        const lastTeam = teams.pop();
+        teams.splice(1, 0, lastTeam);
       }
 
+      // Vòng lặp tạo lượt về
+      const secondLegMatches = matches.map((match) => ({
+        matchdate: Date.now(),
+        matchtime: "00:00:00",
+        roundcount: match.roundcount + numberOfTeams - 1,
+        fieldname: teams.find((t) => t.teamid === match.team_team2).fieldname,
+        score1: null,
+        score2: null,
+        team_team1: match.team_team2,
+        team_team2: match.team_team1,
+      }));
+
+      for (const match of secondLegMatches) {
+        await Match.create(match);
+        matches.push(match);
+      }
+      //console.log(matches);
+      // console.log(
+      //   "---------------------------------------------------------------------"
+      // );
+      console.log(matches);
+      //await Match.bulkCreate(matches);
       res.status(201).json({
         status: "success",
         message: "Match generated successfully",
