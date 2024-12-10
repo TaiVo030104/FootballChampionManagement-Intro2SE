@@ -1,0 +1,243 @@
+body {
+  font-family: "Exo 2", sans-serif;
+  background-image: url("../assets/images/Group 448.svg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  /* height: 100vh; Set to full viewport height */
+  display: flex;
+  flex-direction: column;
+}
+
+/* .header {
+  height: 60px;
+  background-color: #3d8361;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  width: 270px;
+  height: 45px;
+  margin: 0 30px;
+}
+.header-item {
+  display: flex;
+  justify-content: center;
+  gap: 100px;
+}
+
+.button {
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 20px;
+  padding: 2px 2px;
+  border-radius: 5px;
+  transition: color 0.3s, background-color 0.3s;
+}
+
+.button:hover {
+  color: #3d8361;
+  background-color: #fff;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin: 0 30px;
+} */
+header {
+  height: 75px;
+  background: #3d8361;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+}
+.header-logo h1 {
+  font-family: "SeoulHangang CL";
+  font-size: 24px;
+  font-weight: 400;
+  color: white;
+  margin-left: 10px;
+}
+
+.header-logo {
+  display: flex;
+  align-items: center;
+}
+nav a {
+  font-family: "Exo 2";
+  font-size: 20px;
+  font-weight: 700;
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
+}
+
+nav a:hover {
+  background-color: #fff;
+  color: #3d8361;
+  border-radius: 5px;
+}
+
+.nav_tab {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  gap: 20px;
+  /* padding: 20px; */
+  justify-content: flex-start;
+  flex-grow: 1;
+  width: 100%;
+}
+
+.body-header-title {
+  font-size: 24px;
+  color: #000;
+  margin: 18px 80px 0;
+  font-weight: 700;
+  line-height: 50px;
+}
+
+.form-container {
+  width: 1168px;
+  height: 550px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  border: var(--stroke-weight-1, 1px) solid #e5e5e5;
+  background: #fff;
+  margin-left: 100px;
+  margin-right: 50px;
+}
+.form-content {
+  display: flex;
+  gap: 138px;
+  padding: 70px 70px;
+  height: 100%;
+  align-items: center;
+}
+
+.avatar-img img {
+  width: 187.013px;
+  height: 251.312px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 34px;
+}
+.detail {
+  display: flex;
+  flex-direction: column;
+  gap: 34px;
+}
+.form-group {
+  display: flex;
+  align-items: center;
+}
+
+.form-group label {
+  font-size: 15px;
+  color: rgba(0, 0, 0, 0.8);
+  opacity: 0.6;
+  font-weight: 700;
+  flex: 0 0 140px;
+}
+
+.form-group input,
+select {
+  flex: 1;
+  padding: 6px 0px 6px 18px;
+  font-size: 15px;
+  color: #000;
+  opacity: 0.6;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  box-sizing: border-box;
+}
+
+.image-team .form-group {
+  margin-top: 70px;
+}
+.add-match.form-group label {
+  flex: 0 0 70px;
+}
+.add-match.form-content {
+  padding: 40px 70px 70px 70px;
+  align-items: flex-start;
+}
+
+.image-team {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 60px;
+}
+.add-match .detail {
+  gap: 14px;
+}
+
+.add-team.form-content {
+  padding: 100px;
+}
+.note p {
+  font-size: 15px;
+  color: rgba(0, 0, 0, 0.8);
+  opacity: 0.6;
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+
+.note textarea {
+  width: 100%;
+  height: 100px;
+  padding: 10px;
+  font-size: 14px;
+  color: #333;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  box-sizing: border-box;
+  resize: none;
+}
+.group-button {
+  display: flex;
+  justify-content: flex-end;
+  margin: 30px 88px;
+  font-size: 14px;
+  font-weight: 500;
+}
+.btn-cancel,
+.btn-save {
+  width: 108px;
+  height: 30px;
+  /* padding: 6px; */
+  background-color: #3d8361;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s;
+
+  /* position: absolute; */
+  /* right: 50px; Position buttons to the far right */
+}
+
+.btn-cancel {
+  margin-right: 10px; /* Slight adjustment to space the Add button */
+  background-color: #af8080;
+}

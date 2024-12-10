@@ -1,0 +1,325 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%; /* Chiều cao luôn chiếm toàn bộ viewport */
+}
+
+body {
+    font-family: 'Exo 2', sans-serif;
+    background-image: url('../assets/images/background.png');
+    background-size: cover; /* Ảnh bao phủ toàn bộ màn hình */
+    background-position: center; /* Canh giữa */
+    background-repeat: no-repeat; /* Không lặp */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Đảm bảo chiều cao tối thiểu là viewport height */
+}
+
+
+header {
+    height: 75px;
+    background: #3d8361;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+  }
+  .header-logo h1 {
+    font-family: "SeoulHangang CL";
+    font-size: 24px;
+    font-weight: 400;
+    color: white;
+    margin-left: 10px;
+  }
+  
+  .header-logo {
+    display: flex;
+    align-items: center;
+  }
+  nav a {
+    font-family: "Exo 2";
+    font-size: 20px;
+    font-weight: 700;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+  }
+  .nav_tab {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+  }
+.body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    justify-content: flex-start;
+    flex-grow: 1;
+    width: 100%;
+}
+.body-header {
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    align-items: flex-start; /* Align items to the left */
+    padding: 20px;
+    width: 100%;
+}
+.body-header-container {
+    display: flex;
+    justify-content: space-between; /* Đặt khoảng cách đều giữa các phần tử */
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0 20px; /* Tạo khoảng cách bên trái và phải nếu cần */
+}
+
+.team-info {
+    flex: 1; /* Căn đều hai bên */
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+    text-align: center;
+}
+.player-table thead {
+    background-color: #cccccc; /* Màu xám */
+    padding: 10px;
+    font-weight: bold;
+    color: black; /* Văn bản màu đen cho dễ đọc */
+}
+
+
+.details {
+    flex: 2; /* Chiếm nhiều diện tích hơn để ở giữa */
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    gap: 10px;
+}
+
+/* Điều chỉnh các thành phần chi tiết bên trong */
+.detail-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.details label {
+    text-align: left; /* Căn trái nội dung bên trong label */
+    font-weight: bold;
+    color: #333;
+
+    padding-left: 380px;
+}
+
+.details .info-box {
+    background-color: #3D8361;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 16px;
+    text-align: left; /* Căn văn bản bên trong info-box */
+    width: auto; /* Đảm bảo chiều rộng vừa đủ với nội dung */
+    display: inline-block; /* Đặt info-box thành inline-block để không chiếm toàn bộ chiều rộng */
+}
+
+.team-info {
+    display: flex;
+    flex-direction: column; /* Sắp xếp các phần tử theo chiều dọc */
+    align-items: center; /* Căn giữa các phần tử */
+    text-align: center; /* Căn giữa nội dung bên trong */
+    gap: 5px; /* Khoảng cách giữa các phần tử */
+}
+
+.team-logo {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 10px; /* Khoảng cách giữa logo và các phần tử bên dưới */
+}
+
+.team-input, .team-name {
+    display: inline-block; /* Để team-input và team-name nằm chung một dòng */
+    font-weight: bold;
+    color: #333;
+    margin: 0 5px; /* Khoảng cách giữa team-input và team-name */
+}
+
+.team-input {
+    text-align: center;
+}
+
+.team-name {
+    width: 200px;
+    height: 30px;
+    border-radius: 5px;
+    background-color: #3D8361;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+}
+
+
+  
+.table {
+    width: 100%; /* Make the table container full width */
+    padding: 20px;
+}
+
+.player-table {
+    width: 100%; /* Make the table itself full width */
+    border-collapse: collapse;
+    text-align: center;
+}
+
+.header-title th {
+    background-color: #f2f2f2;
+    padding: 10px;
+    font-weight: bold;
+}
+
+.player-table th, .player-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+.player-table tbody tr:nth-child(even) {
+    background-color: #f2f2f2; /* Background color for odd rows */
+}
+
+.player-table tbody tr:nth-child(odd) {
+    background-color: #ffffff; /* Background color for even rows */
+}
+
+
+/* Make the Serial Number column narrower */
+.player-table th:first-child,
+.player-table td:first-child {
+    width: 5%; /* Adjust width as needed */
+}
+
+.actions {
+    display: flex;
+    justify-content: center;
+}
+
+.actions span {
+    margin: 0 5px;
+}
+
+
+.player-table .edit-icon, .player-table .delete-icon {
+    font-size: 16px; 
+    color: #3D8361; 
+    cursor: pointer; 
+}
+
+.player-table .delete-icon {
+    margin-left: 30px;
+    color: #d9534f; 
+}
+
+.pagination-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding-bottom: 20px;
+    margin-top: auto;
+    position: relative; /* Allows absolute positioning of buttons */
+}
+.home-product__pagination {
+    display: flex;
+    gap: 5px;
+    list-style: none;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    flex-grow: 1;
+}
+.pagination-link {
+    width: 30px;
+    height: 30px;
+    color: #fff;
+    background-color: #80AF81;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.pagination-doc {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 12px;
+    color: #80AF81;
+    text-decoration: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+.pagination-icon {
+    font-size: 16px;
+}
+
+.pagination-link:hover {
+    background-color: #3D8361;
+}
+
+.pagination-active .pagination-link {
+    background-color: #3D8361;
+    color: white;
+}
+
+.pagination-doc {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 12px;
+    color: #80AF81;
+    text-decoration: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    transition: background-color 0.3s, border-color 0.3s;
+    font-style: normal;
+}
+
+.pagination-icon {
+    font-size: 16px;
+    font-style: normal;
+}
+
+.pagination-link:hover {
+    background-color: #3D8361;
+}
+
+.pagination-active .pagination-link {
+    background-color: #3D8361;
+    color: white;
+}
+
+.btn-add,
+.btn-save {
+    width: 100px;
+    height: 40px;
+    padding: 8px 16px;
+    background-color: #3D8361;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+    position: absolute;
+    right: 20px; /* Position buttons to the far right */
+}
+
+.btn-add {
+    margin-right: 110px; /* Slight adjustment to space the Add button */
+}
