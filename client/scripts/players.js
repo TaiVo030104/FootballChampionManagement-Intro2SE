@@ -2,8 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const playerTable = document.querySelector(".player-table tbody");
   const addBtn = document.querySelector(".add-btn");
   const searchInput = document.querySelector(".search-bar");
-  const url =
-    "https://footballchampionshipmanagement.onrender.com/api/v1/players?sort=playerid"; // URL API mới
+  const url = "http://localhost:3000/api/v1/players?sort=playerid"; // URL API mới
 
   let players = []; // Dữ liệu toàn bộ cầu thủ
   let filteredPlayers = []; // Dữ liệu cầu thủ sau khi tìm kiếm
@@ -12,7 +11,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Hàm load toàn bộ cầu thủ từ API
   function loadPlayers() {
-    fetch(url)
+    fetch(url, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    })
       .then((response) => response.json())
       .then((data) => {
         if (data.status === "success") {

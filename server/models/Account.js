@@ -8,11 +8,13 @@ const Account = sequelize.define(
       primaryKey: true,
       autoIncrement: true,
     },
-    accountusername: { type: DataTypes.STRING(45), allowNull: false },
-    accountpassword: { type: DataTypes.STRING(45), allowNull: false },
+    accountname: { type: DataTypes.STRING(45), allowNull: false },
+    accountpassword: { type: DataTypes.TEXT, allowNull: false },
   },
   {
     tableName: "account",
     timestamps: false,
   }
 );
+
+module.exports = Account;

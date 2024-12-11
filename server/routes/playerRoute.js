@@ -2,10 +2,11 @@ const playerController = require("../controllers/playerController");
 const express = require("express");
 const router = express.Router();
 const playerValidation = require("../validation/playerValidation");
+const auth = require("../middleware/authentication");
 
 router
   .route("/")
-  .get(playerController.getAllPlayers)
+  .get(auth.verifyToken, playerController.getAllPlayers)
   .post(playerValidation, playerController.createPlayer);
 
 router

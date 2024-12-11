@@ -35,7 +35,7 @@
           <form action="#" id="login-form" method="">
             <!-- Email -->
             <div class="container-input">
-              <label for="email" class="label"> Email </label>
+              <label for="email" class="label"> Username </label>
               <svg
                 class="email"
                 xmlns="http://www.w3.org/2000/svg"
@@ -51,9 +51,9 @@
               </svg>
               <input
                 class="input"
-                type="email"
-                id="email"
-                placeholder="Enter your email address"
+                type="text"
+                id="username"
+                placeholder="Enter your username"
                 value=""
                 required
               />
@@ -128,7 +128,7 @@
             <!-- Button -->
             <div class="container-input border-bottom">
               <button
-                class="create-account"
+                class="create-account login-button"
                 type="submit"
                 form="login-form"
                 value=""
@@ -136,15 +136,10 @@
                 Login
               </button>
             </div>
-            <!-- Log in -->
-            <div class="container-input no-border form-bottom-style">
-              <span class="span-style-1">Create account</span>
-              <span class="span-style-2">Remember your password</span>
-              <a class="log-in" href="reset_password.html">Reset password</a>
-            </div>
           </form>
         </div>
       </div>
     </main>
+    <script src="../scripts/login.js"></script>
   </body>
 </html>
