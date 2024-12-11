@@ -55,7 +55,11 @@
                           </div>
                           <div class="form-group">
                             <label for="role">Role:</label>
-                            <input type="text" id="role">
+                            <select id="role">
+                              <option value="TrongNuoc ">TrongNuoc</option>
+                              <option value="NgoaiNuoc ">NgoaiNuoc</option>
+                            </select>
+                            
                           </div>
                           <div class="form-group">
                             <label for="goals">Number of Goals:</label>                                       
@@ -74,7 +78,8 @@
         <div class="group-button">
                 <button class="btn-cancel">CANCEL</button>
                 <button class="btn-save">SAVE</button>
-        </div>    
+        </div>  
+        <div id="notification-container"></div>  
     </div>
   </div>
   <script src="../scripts/add_player.js"></script>

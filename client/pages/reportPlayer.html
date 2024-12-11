@@ -1,10 +1,11 @@
+<!-- chưa thực hiện chuyển trang cho trang report player-->
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="../styles/reset.css">
-        <link rel="stylesheet" href="../styles/players.css">
+        <link rel="stylesheet" href="../styles/reportPlayer.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Yellowtail&display=swap" rel="stylesheet">
@@ -32,14 +33,13 @@
         <!--Body-->
         <div class="body">
             <div class="body-header">
-                <h1 class="body-header-title">Players</h1>
+                <h1 class="body-header-title">Report Players</h1>
                 <div class="search-container">
                     <div class="search">
                         <i class="btn-search fa-solid fa-magnifying-glass"></i>
                         <input type="text" class="search-bar"
                             placeholder="Search">
                     </div>
-                    <button class="add-btn">+ Add</button>
                 </div>
             </div>
             <div class="table">
@@ -51,7 +51,7 @@
                             <th>Team</th>
                             <th>Role</th>
                             <th>Number of Goal</th>
-                            <th>Action</th>
+                            <!-- <th>Action</th> -->
                         </tr>
                     </thead>
                     <tbody>
@@ -74,8 +74,7 @@
                             </a>
                         </li>
                     </ul>
-                    <!-- <button class="btn-add">ADD</button>
-                    <button class="btn-save">SAVE</button> -->
+                    <button class="btn-back">BACK</button>
                 </div>
                 <div id="notificationContainer" class="notification-container">
                     <span id="notificationMessage"></span>
@@ -84,6 +83,6 @@
             </div>
 
         </div>
-        <script src="../scripts/players.js"></script>
+        <script src="../scripts/reportPlayer.js"></script>
     </body>
 </html>
