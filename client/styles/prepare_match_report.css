@@ -97,7 +97,7 @@ nav a {
     margin: 0 auto;
     margin-bottom: 1.25rem;
 
-    overflow: auto;
+    overflow: none;
 
 
     font-family: var(--font-family-Font-1, Manrope);
