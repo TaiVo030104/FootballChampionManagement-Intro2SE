@@ -31,19 +31,19 @@ document.querySelector('.btn-save').addEventListener('click', function (event) {
 
     // Get values from the input fields
     const teamName = document.querySelector('#team-name').value;
-    const homeGround = document.querySelector('#home-ground').value;
+    // const homeGround = document.querySelector('#home-ground').value;
     const teamSize = document.querySelector('#team-size').value;
 
     // Validate required fields
-    if (!teamName || !homeGround) {
-        alert('Team Name and Home Stadium are required.');
+    if (!teamName ) {
+        showNotification('Team Name and Home Stadium are required.');
         return;
     }
 
     const newTeam = {
         teamName: teamName,
-        teamLeader: document.querySelector('#team-leader').value, // Optional
-        homeGround: homeGround,
+        // teamLeader: document.querySelector('#team-leader').value, // Optional
+        // homeGround: homeGround,
         teamSize: teamSize || 16, // Default to 16 if empty
         // teamLogo: logoPreviewArea.querySelector('img') ? logoPreviewArea.querySelector('img').src : null // Optional logo
     };
@@ -53,7 +53,15 @@ document.querySelector('.btn-save').addEventListener('click', function (event) {
 });
 
 async function createTeam(teamData) {
-    // Thử tạo team
+    const homeGround = document.querySelector('#home-ground').value;  // Capture home ground from the form
+    
+    // Ensure homeGround is provided before making the POST request
+    if (!homeGround) {
+        showNotification('Home Ground is required.');
+        return;
+    }
+
+    // Send POST request to create the team
     const response = await fetch(API_BASE, {
         method: 'POST',
         headers: {
@@ -61,30 +69,47 @@ async function createTeam(teamData) {
         },
         body: JSON.stringify({
             teamname: teamData.teamName,
-            fieldname: teamData.homeGround,
-            // Chỉ gửi các trường cần thiết
+            fieldname: homeGround, // Correct field name
+            teamSize: teamData.teamSize, // Include teamSize if needed
+            // If you plan to include a logo, uncomment the following line
+            // teamLogo: teamData.teamLogo
         }),
     });
 
-    // Kiểm tra nếu phản hồi không OK
+    // Handle errors from the server
     if (!response.ok) {
         const errorData = await response.json();
         console.error("Error creating team:", errorData);
-        alert(`Error creating team: ${errorData.message || "Unknown error"}`);
+        showNotification(`Error creating team: ${errorData.message || "Unknown error"}`);
         return;
     }
 
-    // Nếu phản hồi thành công
+    // If team is created successfully
     const newTeam = await response.json();
     console.log('New team created:', newTeam);
-    alert("Team created successfully!");
+    showNotification("Team created successfully!");
 
-    // Cập nhật dữ liệu và render lại các đội
+    // Optionally, update the team list or render new data
     filteredData.push(newTeam);
-    renderTeams();
 }
 
 
-document.addEventListener('DOMContentLoaded', () => {
-    fetchTeams();
-});
+function showNotification(message, type = 'success') {
+    const container = document.getElementById('notification-container');
+    if (!container) {
+        console.error("Notification container is missing.");
+        return;
+    }
+
+    const notification = document.createElement('div');
+    notification.className = `notification ${type}`;
+    notification.innerText = message;
+
+    container.appendChild(notification);
+
+    // Automatically remove notification after 4 seconds
+    setTimeout(() => {
+        notification.remove();
+    }, 4000);
+}
+
