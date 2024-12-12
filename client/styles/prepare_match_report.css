@@ -1,0 +1,272 @@
+* {
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh; /* Chiếm toàn bộ chiều cao màn hình */
+}
+main
+{
+    flex: 1;
+    /* display: flex;
+    align-items: center; */
+}
+
+.background-image
+{
+    background-image: url(../assets/images/report.png);
+    background-size: cover;
+}
+.container
+{
+    width: 100%;
+    margin: 0 auto;
+}
+
+ /* Phần header */
+header {
+  height: 75px;
+  background: #3d8361;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+}
+.header-logo h1 {
+  font-family: "SeoulHangang CL";
+  font-size: 24px;
+  font-weight: 400;
+  color: white;
+  margin-left: 10px;
+}
+
+.header-logo {
+  display: flex;
+  align-items: center;
+}
+nav a {
+  font-family: "Exo 2";
+  font-size: 20px;
+  font-weight: 700;
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
+}
+.nav_tab {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+/* Kết thúc phần header */
+.button
+{
+    margin-right: .5rem;
+
+    text-decoration: none;
+    color: #3D8361;
+    font-family: "Exo 2";
+    font-size: 0.9375rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 1.40625rem; /* 1.40625rem */
+    padding: 0.5rem 0.4375rem 0.47319rem 0.5625rem;
+
+    border-radius: 0.5rem;
+    background: #FCFCFC;
+    flex-shrink: 0;
+}
+/* Phần heading */
+.table-heading
+{
+    padding-left: 5rem;
+    margin-top: 1.44rem;
+
+    color: #000;
+    font-family: "Exo 2";
+    font-size: 1.5rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 3.125rem; /* 208.333% */
+}
+/* Phần bảng */
+  .table-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    margin-bottom: 1.25rem;
+
+    overflow: none;
+
+
+    font-family: var(--font-family-Font-1, Manrope);
+    font-size: var(--font-size-14, 0.875rem);
+    font-style: normal;
+    font-weight: var(--font-weight-400, 400);
+    line-height: var(--line-height-21, 1.3125rem); /* 150% */
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  th, td {
+    min-width: 4rem;
+    padding: 1.5rem 0;
+    text-align: center;
+  }
+
+  thead th {
+    color: #455C67;
+    text-align: center;
+    font-family: var(--font-family-Font-1, Manrope);
+    font-size: var(--font-size-12, 0.75rem);
+    font-style: normal;
+    font-weight: var(--font-weight-400, 400);
+    line-height: var(--line-height-15_6, 0.975rem); /* 130% */
+  }
+
+  tbody tr:nth-child(even) {
+    background-color: #fff;
+  }
+
+  tbody tr:nth-child(odd) {
+    background-color: #F7F7F8;
+  }
+
+
+  .form-guide>div, .actions>div, .team>div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    white-space: nowrap;
+    width: 100%;
+  }
+  .team>div
+  {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 4px;
+    white-space: nowrap;
+    width: 100%;
+  }
+
+  .form-guide div, .actions svg {
+    margin: 0 4px;
+    
+  }
+  /* Trang */
+  /* CSS nút phân trang */
+.pagination {
+  display: flex;
+  justify-content: center;
+}
+
+.pagination button {
+  color: #FFF;
+  text-align: center;
+  font-family: Roboto;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  border: none;
+
+  width: var(--height-31, 1.9375rem);
+  height: 1.875rem;
+  border-radius: 0.375rem;
+  background: #80AF81;
+  margin-left: 0.63rem;
+  cursor: pointer;
+  transition: #3D8361 0.3s;
+}
+
+.pagination button.active {
+  background-color: #3D8361;
+}
+
+.pagination button.ect {
+  background: transparent;
+  pointer-events: none; /* Không cho phép nhấn vào nút "..." */
+}
+  /* .pagination {
+    display: flex;
+    justify-content: center;
+  }
+
+  .pagination button {
+    color: #FFF;
+    text-align: center;
+    font-family: Roboto;
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    border: none;
+
+    width: var(--height-31, 1.9375rem);
+    height: 1.875rem;
+    border-radius: 0.375rem;
+    background: #80AF81;
+    margin-left: 0.63rem;
+
+
+  }
+
+  .pagination button.active {
+    background-color: #3D8361;
+  }
+  .pagination button.ect
+  {
+    background: transparent;
+  } */
+
+  .circle {
+    width: 1.125rem;
+    height: 1.125rem;
+    /* background-color: blue; */
+    border-radius: 50%;
+    border: var(--stroke-weight-1, 1px) solid var(--color-blue-89, #DBDDE9);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    color: #FFF;
+
+    /* www.uefa.com/Semantic/Button */
+    font-family: var(--font-family-Font-1, Manrope);
+    font-size: var(--font-size-10, 0.625rem);
+    font-style: normal;
+    font-weight: var(--font-weight-400, 400);
+    line-height: var(--line-height-48, 3rem); /* 480% */
+
+  }
+  /* .circle:empty {
+    background-color: transparent;
+  }
+  
+  .circle:not(:empty) {
+background: #32A72C;
+  } */
+   
+   /* Không có dữ liệu */
+.circle:empty {
+  background-color: transparent;
+}
+
+/* Màu cho giá trị 'W' */
+.circle.win {
+  background-color: #32A72C; /* Màu xanh lá */
+}
+
+/* Màu cho giá trị 'D' */
+.circle.draw {
+  background-color: #C1C2D5; /* Màu xám */
+}
+
+  
