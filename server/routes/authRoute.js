@@ -3,5 +3,5 @@ const authController = require("../controllers/authController");
 const auth = require("../middleware/authentication");
 router.post("/login", authController.login);
 router.post("/refresh", authController.refreshToken);
-router.post("/logout", auth.verifyToken, authController.logout);
+router.post("/logout", authController.logout);
 module.exports = router;
