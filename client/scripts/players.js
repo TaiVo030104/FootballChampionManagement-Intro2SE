@@ -249,7 +249,10 @@ document.addEventListener("DOMContentLoaded", function () {
   function deletePlayer(id) {
     fetch(`${URLBASE}/${id}`, {
       method: "DELETE",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
     })
       .then((response) => {
         if (response.ok) {

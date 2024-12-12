@@ -2,7 +2,7 @@
     box-sizing: border-box;
   }
   
-  header {
+  /* header {
     height: 75px;
     background: #3d8361;
     display: flex;
@@ -16,7 +16,7 @@
     font-weight: 400;
     color: white;
     margin-left: 10px;
-  }
+  } */
   .button
 {
     margin-right: .5rem;
@@ -34,7 +34,8 @@
     background: #FCFCFC;
     flex-shrink: 0;
 }
-  .header-logo {
+
+  /* .header-logo {
     display: flex;
     align-items: center;
   }
@@ -49,13 +50,13 @@
   .nav_tab {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-  }
+  } */
   
   body {
     background-image: url("../assets/images/Group 448.svg");
     background-size: cover;
     background-position: center;
-    background-repeat: no-repeat;
+    background-repeat: repeat;
   }
   
   .view_rules h2 {
@@ -175,27 +176,27 @@ body {
   flex-direction: column;
 }
 
-.header {
+/* .header {
   height: 60px;
   background-color: #3D8361;
   display: flex;
   align-items: center; 
   justify-content: space-between; 
 
-}
+} */
 
 .logo {
   width: 270px;
   height: 45px;
   margin: 0 30px;
 }
-.header-item {
+/* .header-item {
   display: flex;
   justify-content: center; 
   gap: 100px; 
-}
+} */
 
-.button {
+/* .button {
 
   color: white; 
   font-weight: bold; 
@@ -204,19 +205,19 @@ body {
   padding: 2px 2px;
   border-radius: 5px;
   transition: color 0.3s, background-color 0.3s; 
-}
+} */
 
-.button:hover {
+/* .button:hover {
   color: #3D8361;
   background-color: #fff;
-}
+} */
 
-.avatar {
+/* .avatar {
   width: 40px;
   height: 40px;
   border-radius: 50%;
   margin: 0 30px;
-}
+} */
 
 
 .body {
@@ -510,7 +511,7 @@ body {
   box-sizing: border-box;
 }
 
-header {
+/* header {
   height: 75px;
   background: #3d8361;
   display: flex;
@@ -529,8 +530,8 @@ header {
 .header-logo {
   display: flex;
   align-items: center;
-}
-nav a {
+} */
+/* nav a {
   font-family: "Exo 2";
   font-size: 20px;
   font-weight: 700;
@@ -541,7 +542,7 @@ nav a {
 .nav_tab {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-}
+} */
 
 body {
   background-image: url("../assets/images/Group 448.svg");

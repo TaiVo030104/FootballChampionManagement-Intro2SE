@@ -1,4 +1,5 @@
-const URL = "http://localhost:3000/api/v1/auth/login";
+const URL =
+  "https://footballchampionshipmanagement.onrender.com/api/v1/auth/login";
 const loginForm = document.getElementById("login-form");
 console.log(loginForm);
 loginForm.addEventListener("submit", async (e) => {
@@ -23,16 +24,20 @@ loginForm.addEventListener("submit", async (e) => {
     console.log(data);
     localStorage.setItem("token", data.accessToken);
     localStorage.setItem("user", JSON.stringify(data.user));
-    window.location.href = "../pages/login.html";
+    window.location.href = "../pages/match.html";
   }
 });
 async function logout() {
-  const response = await fetch("http://localhost:3000/api/v1/auth/logout", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
+  const response = await fetch(
+    "https://footballchampionshipmanagement.onrender.com/api/v1/auth/logout",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    }
+  );
   const data = await response.json();
   if (data.message === "Logout success") {
     localStorage.removeItem("token");

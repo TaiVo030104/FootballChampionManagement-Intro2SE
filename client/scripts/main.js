@@ -1,10 +1,14 @@
 async function logout() {
-  const response = await fetch("http://localhost:3000/api/v1/auth/logout", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
+  const response = await fetch(
+    "https://footballchampionshipmanagement.onrender.com/api/v1/auth/logout",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    }
+  );
   const data = await response.json();
   if (data.message === "Logout success") {
     localStorage.removeItem("token");

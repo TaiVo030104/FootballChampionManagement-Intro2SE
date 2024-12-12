@@ -10,14 +10,6 @@ body {
     flex-direction: column;
 }
 
-.header {
-    height: 60px;
-    background-color: #3D8361;
-    display: flex;
-    align-items: center; 
-    justify-content: space-between; 
-
-}
 .button
 {
     margin-right: .5rem;
@@ -41,11 +33,11 @@ body {
     height: 45px;
     margin: 0 30px;
 }
-.header-item {
+/* .header-item {
     display: flex;
     justify-content: center; 
     gap: 100px; 
-}
+} */
   
 .button {
 

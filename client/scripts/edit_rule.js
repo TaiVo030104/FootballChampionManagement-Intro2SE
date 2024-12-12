@@ -62,7 +62,11 @@ function cancelEdit() {
 // Hàm để tải dữ liệu từ json-server
 async function loadData() {
   try {
-    const response = await fetch(URL_RULES);
+    const response = await fetch(URL_RULES, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
     const data = await response.json();
 
     // Giả sử JSON có cấu trúc { "rules": [ ... ] }
@@ -98,32 +102,34 @@ async function loadData() {
 async function saveData() {
   const updatedData = {
     rules: [
-              {
-                winscore: parseInt(document.getElementById("pointsForWin").value),
-                losescore: parseInt(document.getElementById("pointsForLoss").value),
-                drawscore: parseInt(document.getElementById("pointsForDraw").value),
-                relegatedTeams: parseInt(document.getElementById("relegatedTeams").value),
-                participatingTeams: parseInt(
-                  document.getElementById("participatingTeams").value
-                ),
-                championsLeagueTeams: parseInt(
-                  document.getElementById("championsLeagueTeams").value
-                ),
-                europaLeagueTeams: parseInt(
-                  document.getElementById("europaLeagueTeams").value
-                ),
-                maxforeign: parseInt(
-                  document.getElementById("maxForeignPlayers").value
-                ),
-                maxgoaltime: parseInt(document.getElementById("maxAddedTime").value),
+      {
+        winscore: parseInt(document.getElementById("pointsForWin").value),
+        losescore: parseInt(document.getElementById("pointsForLoss").value),
+        drawscore: parseInt(document.getElementById("pointsForDraw").value),
+        relegatedTeams: parseInt(
+          document.getElementById("relegatedTeams").value
+        ),
+        participatingTeams: parseInt(
+          document.getElementById("participatingTeams").value
+        ),
+        championsLeagueTeams: parseInt(
+          document.getElementById("championsLeagueTeams").value
+        ),
+        europaLeagueTeams: parseInt(
+          document.getElementById("europaLeagueTeams").value
+        ),
+        maxforeign: parseInt(
+          document.getElementById("maxForeignPlayers").value
+        ),
+        maxgoaltime: parseInt(document.getElementById("maxAddedTime").value),
 
-                minage:  parseInt(document.getElementById("ageLimitMin").value),
-                maxage: parseInt(document.getElementById("ageLimitMax").value),
-                minplayer: parseInt(document.getElementById("playerLimitMin").value),
-                maxplayer: parseInt(document.getElementById("playerLimitMax").value),
-                rankingCriteria: document.getElementById("rankingCriteria").value,
-            }
-          ]
+        minage: parseInt(document.getElementById("ageLimitMin").value),
+        maxage: parseInt(document.getElementById("ageLimitMax").value),
+        minplayer: parseInt(document.getElementById("playerLimitMin").value),
+        maxplayer: parseInt(document.getElementById("playerLimitMax").value),
+        rankingCriteria: document.getElementById("rankingCriteria").value,
+      },
+    ],
   };
 
   try {
@@ -131,6 +137,7 @@ async function saveData() {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
       body: JSON.stringify(updatedData),
     });

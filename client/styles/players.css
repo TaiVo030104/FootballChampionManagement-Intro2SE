@@ -3,7 +3,7 @@ body {
   background-image: url("../assets/images/Group 448.svg");
   background-size: cover;
   background-position: center;
-  background-repeat: no-repeat;
+  background-repeat: repeat;
   margin: 0; /* Remove default margin */
   /* height: 100vh; Set to full viewport height */
   display: flex;
@@ -27,45 +27,6 @@ body {
     flex-shrink: 0;
 }
 
-header {
-  height: 75px;
-  background: #3d8361;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 20px;
-}
-.header-logo h1 {
-  font-family: "SeoulHangang CL";
-  font-size: 24px;
-  font-weight: 400;
-  color: white;
-  margin-left: 10px;
-}
-
-.header-logo {
-  display: flex;
-  align-items: center;
-}
-nav a {
-  font-family: "Exo 2";
-  font-size: 20px;
-  font-weight: 700;
-  color: white;
-  padding: 10px 20px;
-  text-decoration: none;
-}
-
-nav a:hover {
-  background-color: #fff;
-  color: #3d8361;
-  border-radius: 5px;
-}
-
-.nav_tab {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-}
 
 .body {
   display: flex;

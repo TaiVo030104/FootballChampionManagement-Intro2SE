@@ -6,7 +6,11 @@ document.addEventListener("DOMContentLoaded", () => {
   // Fetch dữ liệu từ API và hiển thị
   async function fetchAndDisplayMatches() {
     try {
-      const response = await fetch(API_URL);
+      const response = await fetch(API_URL, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
       const data = await response.json();
       const matches = data.data.matches || [];
 
@@ -16,6 +20,13 @@ document.addEventListener("DOMContentLoaded", () => {
         const autoMatchButton = document.createElement("button");
         autoMatchButton.textContent = "Auto Match Team";
         autoMatchButton.classList.add("auto-match-btn");
+        autoMatchButton.style.margin = "auto";
+        autoMatchButton.style.display = "block";
+        autoMatchButton.style.cursor = "pointer";
+        autoMatchButton.style.padding = "10px 20px";
+        autoMatchButton.style.backgroundColor = "#3D8361";
+        autoMatchButton.style.color = "white";
+        autoMatchButton.style.borderRadius = "5px";
         autoMatchButton.addEventListener("click", autoMatchTeams);
         matchContainer.appendChild(autoMatchButton);
       } else {
@@ -27,16 +38,19 @@ document.addEventListener("DOMContentLoaded", () => {
           const score2 = match.score2 ?? "-";
 
           matchCard.innerHTML = `
-                        <div class="team">
-                            <span>${match.team1.teamname}</span>
-                            <span class="score">${score1}</span>
-                            <i class="trash-btn fas fa-trash"></i>
-                        </div>
-                        <div class="team">
-                            <span>${match.team2.teamname}</span>
-                            <span class="score">${score2}</span>
-                        </div>
-                    `;
+          <div class="team">
+              <span>${match.team1.teamname}</span>
+              <span class="score">${score1}</span>
+              <i class="trash-btn fas fa-trash"></i>
+          </div>
+          <div class="team">
+              <span>${match.team2.teamname}</span>
+              <span class="score">${score2}</span>
+              <a href="../pages/addMatch.html?id=${match.matchid}">
+                  <i class="edit-btn fas fa-edit"></i>
+              </a>
+          </div>
+      `;
           matchContainer.appendChild(matchCard);
         });
       }
@@ -52,6 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
           body: JSON.stringify({}),
         }

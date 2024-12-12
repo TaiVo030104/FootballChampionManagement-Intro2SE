@@ -2,7 +2,7 @@
   box-sizing: border-box;
 }
 
-header {
+/* header {
   height: 75px;
   background: #3d8361;
   display: flex;
@@ -16,7 +16,7 @@ header {
   font-weight: 400;
   color: white;
   margin-left: 10px;
-}
+} */
 .button
 {
     margin-right: .5rem;
@@ -34,7 +34,7 @@ header {
     background: #FCFCFC;
     flex-shrink: 0;
 }
-.header-logo {
+/* .header-logo {
   display: flex;
   align-items: center;
 }
@@ -54,7 +54,7 @@ nav a:hover {
   background-color: #fff;
   color: #3d8361;
   border-radius: 5px;
-}
+} */
 body {
   background-image: url("../assets/images/Group 448.svg");
   background-size: cover;

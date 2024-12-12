@@ -11,7 +11,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Hàm load toàn bộ cầu thủ từ API
   function loadPlayers() {
-    fetch(url)
+    fetch(url, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    })
       .then((response) => response.json())
       .then((data) => {
         if (data.status === "success") {

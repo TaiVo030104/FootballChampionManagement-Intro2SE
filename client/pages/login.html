@@ -5,23 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login Page</title>
     <link rel="stylesheet" href="../styles/login.css" />
+    <link rel="stylesheet" href="../styles/header.css" />
   </head>
   <body>
     <!-- phần header -->
     <header>
       <div class="header-logo">
-        <!-- <img src="./assets/img/Asset 1@4x 1.svg" alt="Logo"> -->
         <img src="../assets/images/Asset 1@4x 1.svg" alt="Logo" />
         <h1>Football Championship</h1>
       </div>
       <nav class="nav-tab">
-        <a href="match.html">Match</a>
-        <a href="team.html">Team</a>
-        <a href="#">Player</a>
-        <a href="tournament.html">Tournament</a>
+        <a href="./match.html">Match</a>
+        <a href="./team.html">Team</a>
+        <a href="./players.html">Player</a>
+        <a href="./prepare_match_report.html">Rank</a>
+        <a href="./edit_rule.html">Rule</a>
       </nav>
       <div class="item-3">
-        <a class="button" href="signup.html">Sign Up</a>
         <a class="button" href="#">Login</a>
       </div>
     </header>
@@ -34,7 +34,7 @@
           <form action="#" id="login-form" method="">
             <!-- Email -->
             <div class="container-input">
-              <label for="email" class="label"> Email </label>
+              <label for="username" class="label"> Username </label>
               <svg
                 class="email"
                 xmlns="http://www.w3.org/2000/svg"
@@ -50,9 +50,9 @@
               </svg>
               <input
                 class="input"
-                type="email"
-                id="email"
-                placeholder="Enter your email address"
+                type="text"
+                id="username"
+                placeholder="Enter your username"
                 value=""
                 required
               />
@@ -136,11 +136,6 @@
               </button>
             </div>
             <!-- Log in -->
-            <div class="container-input no-border form-bottom-style">
-              <span class="span-style-1">Create account</span>
-              <span class="span-style-2">Remember your password</span>
-              <a class="log-in" href="reset_password.html">Reset password</a>
-            </div>
           </form>
         </div>
       </div>
