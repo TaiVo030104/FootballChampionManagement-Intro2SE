@@ -9,23 +9,6 @@ body {
   display: flex;
   flex-direction: column;
 }
-.button
-{
-    margin-right: .5rem;
-
-    text-decoration: none;
-    color: #3D8361;
-    font-family: "Exo 2";
-    font-size: 0.9375rem;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 1.40625rem; /* 1.40625rem */
-    padding: 0.5rem 0.4375rem 0.47319rem 0.5625rem;
-
-    border-radius: 0.5rem;
-    background: #FCFCFC;
-    flex-shrink: 0;
-}
 
 header {
   height: 75px;
@@ -119,15 +102,15 @@ nav a:hover {
   color: inherit;
 }
 
-.add-btn {
+.btn-back {
   width: 105px;
-  height: 40px;
+  height: 35px;
   background-color: #3d8361;
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 10px;
   cursor: pointer;
-  font-size: 20px;
+  font-size: 15px;
   margin-left: auto;
   margin-right: 20px;
 }
@@ -170,27 +153,6 @@ nav a:hover {
   width: 5%; /* Adjust width as needed */
 }
 
-.actions {
-  display: flex;
-  justify-content: center;
-}
-
-.actions span {
-  margin: 0 5px;
-}
-
-.player-table .edit-icon,
-.player-table .delete-icon {
-  font-size: 16px;
-  color: #4f81bd;
-  cursor: pointer;
-}
-
-.player-table .delete-icon {
-  margin-left: 30px;
-  color: #d9534f;
-}
-
 .pagination-container {
   display: flex;
   align-items: center;
@@ -208,6 +170,8 @@ nav a:hover {
   justify-content: center;
   margin: 0;
   flex-grow: 1;
+  /* margin-left: 310px;
+  margin-right: 150px; */
 }
 .pagination-link {
   width: 30px;

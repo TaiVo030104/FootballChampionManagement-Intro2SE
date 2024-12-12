@@ -8,6 +8,7 @@ body {
   display: flex;
   flex-direction: column;
 }
+
 .button
 {
     margin-right: .5rem;
@@ -65,6 +66,7 @@ body {
   border-radius: 50%;
   margin: 0 30px;
 } */
+
 header {
   height: 75px;
   background: #3d8361;
@@ -256,4 +258,54 @@ select {
 .btn-cancel {
   margin-right: 10px; /* Slight adjustment to space the Add button */
   background-color: #af8080;
+}
+#notification-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: none;
+  justify-content: center; /* Căn giữa theo chiều ngang */
+  align-items: center; /* Căn giữa theo chiều dọc */
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.5); /* Nền mờ phía sau */
+}
+
+.notification {
+  padding: 15px 20px;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 16px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fff; /* Màu nền của thông báo */
+  width: 300px; /* Kích thước cố định cho ô thông báo */
+  text-align: center; /* Căn giữa nội dung văn bản */
+}
+
+.notification.success {
+  background-color: #d4edda; /* Xanh nhạt */
+  color: #26913f; /* Xanh đậm */
+}
+
+.notification.error {
+  background-color: #f8d7da; /* Đỏ nhạt */
+  color: #8d353e; /* Đỏ đậm */
+}
+
+.notification .btn-ok {
+  margin-top: 10px;
+  padding: 5px 10px;
+  background-color: #fff;
+  color: #000;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.notification .btn-ok:hover {
+  background-color: #ddd;
 }

@@ -40,9 +40,13 @@ async function loadTeams() {
       });
     } else {
       console.error("Không thể tải danh sách đội bóng.");
+
+      // Hiển thị thông báo lỗi từ server
+      showNotification(`Failed to load team: ${result.message}`, false);
     }
   } catch (error) {
     console.error("Không thể tải danh sách đội bóng:", error);
+    showNotification(`Failed to load team: ${error.message}`, false); // Hiển thị thông báo lỗi
   }
 }
 
@@ -77,9 +81,12 @@ async function loadPlayerData(playerId) {
       teamSelect.dataset.teamid = player.team?.teamid || "";
     } else {
       console.error("Không tìm thấy dữ liệu cầu thủ hoặc API trả về lỗi.");
+      // Hiển thị thông báo lỗi từ server
+      showNotification(`Failed to load player: ${result.message}`, false);
     }
   } catch (error) {
     console.error("Không thể tải dữ liệu cầu thủ:", error);
+    showNotification(`Failed to load player: ${error.message}`, false); // Hiển thị thông báo lỗi
   }
 }
 
@@ -101,6 +108,7 @@ function resetPlayerData() {
     // Nếu bạn cần khôi phục lại dữ liệu team ID vào dataset (nếu cần gửi API sau đó)
     teamSelect.dataset.teamid = originalPlayerData.team?.teamid || "";
   }
+  window.location.href = "./players.html";
 }
 
 // Sự kiện cho nút Cancel
@@ -110,7 +118,6 @@ document
 
 // Hàm lưu dữ liệu khi nhấn nút Save
 async function savePlayerData(playerId) {
-  // Lấy giá trị từ các ô input
   const updatedPlayer = {
     team_teamid: parseInt(document.getElementById("team").value, 10),
     playername: document.getElementById("player-name").value,
@@ -121,11 +128,9 @@ async function savePlayerData(playerId) {
   };
 
   try {
-    // Kiểm tra xem đây là chỉnh sửa hay thêm mới
     const method = playerId ? "PUT" : "POST";
     const url = playerId ? `${API_URL}/${playerId}` : API_URL;
 
-    // Gửi yêu cầu cập nhật hoặc thêm mới
     const response = await fetch(url, {
       method: method,
       headers: {
@@ -136,19 +141,23 @@ async function savePlayerData(playerId) {
     });
 
     if (response.ok) {
-      window.location.href = "./players.html"; // Quay lại trang danh sách cầu thủ
+      showNotification("Player saved successfully!", true); // Hiển thị thông báo thành công với nút "OK"
     } else {
-      console.error("Có lỗi khi lưu dữ liệu:", response.statusText);
+      // showNotification("Failed to save player. Please try again.", false); // Hiển thị thông báo lỗi
+      return response.json().then((error) => {
+        // Hiển thị thông báo lỗi từ server
+        showNotification(`Failed to save player: ${error.message}`, false);
+      });
     }
   } catch (error) {
     console.error("Không thể lưu dữ liệu:", error);
+    showNotification("An error occurred. Please try again.", false); // Hiển thị thông báo lỗi
   }
 }
 
 // Sự kiện cho nút Save
 document.querySelector(".btn-save").addEventListener("click", () => {
   const playerId = getPlayerIdFromURL();
-  console.log(playerId);
   savePlayerData(playerId);
 });
 
@@ -170,14 +179,6 @@ function updateHeaderTitle() {
   }
 }
 
-// // Tải danh sách đội bóng và dữ liệu cầu thủ nếu có playerId khi trang được mở
-// loadTeams(); // Tải danh sách đội bóng
-// const playerId = getPlayerIdFromURL();
-// if (playerId) {
-//   loadPlayerData(playerId);
-// }
-
-// updateHeaderTitle();
 // Hàm khởi tạo trang
 async function initPage() {
   const playerId = getPlayerIdFromURL(); // Lấy playerId từ URL (nếu có)
@@ -194,6 +195,32 @@ async function initPage() {
     console.error("Lỗi khi khởi tạo trang:", error);
   }
 }
+// Thêm hàm hiển thị thông báo
+function showNotification(message, isSuccess = true) {
+  const notificationContainer = document.getElementById(
+    "notification-container"
+  );
+  notificationContainer.innerHTML = `
+    <div class="notification ${isSuccess ? "success" : "error"}">
+      <p>${message}</p>
+      <button class="btn-ok">OK</button>
+    </div>
+  `;
+  notificationContainer.style.display = "flex";
 
+  // Xử lý sự kiện khi nhấn nút OK
+  const btnOk = notificationContainer.querySelector(".btn-ok");
+  btnOk.addEventListener("click", () => {
+    notificationContainer.style.display = "none";
+    if (isSuccess) {
+      window.location.href = "./players.html"; // Quay lại trang danh sách cầu thủ
+    }
+  });
+
+  // // Tự ẩn thông báo sau 3 giây nếu không có sự kiện nhấn "OK"
+  // setTimeout(() => {
+  //   notificationContainer.style.display = "none";
+  // }, 3000);
+}
 // Gọi hàm khởi tạo trang khi DOM đã sẵn sàng
 document.addEventListener("DOMContentLoaded", initPage);
