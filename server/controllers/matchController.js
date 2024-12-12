@@ -134,7 +134,6 @@ const matchController = {
   },
   generateMatch: async (req, res, next) => {
     try {
-      const { numberRound } = req.body;
       const list_team = await Team.findAll();
       if (list_team.length < 2) {
         return next(new AppError("Not enough team to generate match", 400));
@@ -144,19 +143,21 @@ const matchController = {
         return next(new AppError("Match already exists", 400));
       }
       const teams = list_team.map((team) => team.toJSON());
-      const totalMatches = (numberRound * teams.length) / 2;
+
       const numberOfTeams = teams.length;
-      // Tính số vòng đấu tối thiểu
       const minRounds = 2 * (numberOfTeams - 1);
+      const totalMatches = (minRounds * teams.length) / 2;
+      // Tính số vòng đấu tối thiểu
+
       // Kiểm tra điều kiện
-      if (numberRound < minRounds) {
-        return next(
-          new AppError(
-            `Số vòng đấu phải >= ${minRounds} để đảm bảo mỗi đội thi đấu 2 lần với mỗi đội khác.`
-          ),
-          400
-        );
-      }
+      // if (numberRound < minRounds) {
+      //   return next(
+      //     new AppError(
+      //       `Số vòng đấu phải >= ${minRounds} để đảm bảo mỗi đội thi đấu 2 lần với mỗi đội khác.`
+      //     ),
+      //     400
+      //   );
+      // }
       const matches = [];
       // Nếu số đội lẻ, thêm một đội giả ("BYE")
       if (numberOfTeams % 2 !== 0) {
@@ -210,7 +211,7 @@ const matchController = {
       // console.log(
       //   "---------------------------------------------------------------------"
       // );
-      console.log(matches);
+      //console.log(matches);
       //await Match.bulkCreate(matches);
       res.status(201).json({
         status: "success",
