@@ -11,7 +11,11 @@ let originalPlayerData = null;
 async function loadTeams() {
   try {
     // Gọi API để lấy danh sách đội bóng
-    const response = await fetch(TEAMS_API_URL);
+    const response = await fetch(TEAMS_API_URL, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
     const result = await response.json();
 
     if (result.status === "success" && result.data && result.data.teams) {
@@ -46,7 +50,11 @@ async function loadTeams() {
 async function loadPlayerData(playerId) {
   try {
     // Gọi API để lấy dữ liệu cầu thủ
-    const response = await fetch(`${API_URL}/${playerId}`);
+    const response = await fetch(`${API_URL}/${playerId}`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
     const result = await response.json();
 
     if (result.status === "success" && result.data && result.data.player) {
@@ -120,7 +128,10 @@ async function savePlayerData(playerId) {
     // Gửi yêu cầu cập nhật hoặc thêm mới
     const response = await fetch(url, {
       method: method,
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
       body: JSON.stringify(updatedPlayer),
     });
 
