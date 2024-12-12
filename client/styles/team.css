@@ -315,6 +315,29 @@ body {
   text-overflow: ellipsis; /* Add ellipsis for long text */
   white-space: nowrap; /* Prevent text wrapping */
 }
+/* Input fields for editing */
+.player-table input[type="text"] {
+  width: 100%; /* Ensure the input takes up the full cell width */
+  padding: 8px; /* Add padding for better clickability */
+  border: 1px solid #ccc; /* Subtle border */
+  border-radius: 4px; /* Rounded corners */
+  box-sizing: border-box; /* Include padding in width */
+  font-size: 14px; /* Match table font size */
+  text-align: left; /* Align text to the left for readability */
+}
+
+/* Highlight input on focus */
+.player-table input[type="text"]:focus {
+  border-color: #4CAF50; /* Green border on focus */
+  outline: none; /* Remove default outline */
+  background-color: #f9f9f9; /* Subtle background change */
+}
+
+/* Placeholder styling (if needed) */
+.player-table input[type="text"]::placeholder {
+  color: #aaa; /* Light gray placeholder text */
+  font-style: italic;
+}
 
 .player-table tbody tr:nth-child(even) {
   background-color: #f9f9f9; /* Subtle gray for better contrast */
@@ -619,3 +642,67 @@ label {
   background: white;
   align-content: center;
 }
+#notification-container {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  z-index: 1000;
+  width: 300px;
+}
+
+.notification {
+  background-color: #333;
+  color: #fff;
+  padding: 10px 20px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  transform: translateY(-10px);
+  animation: fadeInOut 4s forwards;
+}
+
+.notification.success {
+  background-color: #4CAF50;
+}
+
+.notification.error {
+  background-color: #F44336;
+}
+
+@keyframes fadeInOut {
+  0% {
+      opacity: 0;
+      transform: translateY(-10px);
+  }
+  10% {
+      opacity: 1;
+      transform: translateY(0);
+  }
+  90% {
+      opacity: 1;
+      transform: translateY(0);
+  }
+  100% {
+      opacity: 0;
+      transform: translateY(-10px);
+  }
+}
+.editable-input {
+  width: 100%; /* Ensure the input stretches to fit the table cell */
+  box-sizing: border-box; /* Include padding and border in width */
+  padding: 5px; /* Add some padding for better usability */
+  border: 1px solid #ccc; /* Define a subtle border */
+  border-radius: 4px; /* Rounded corners */
+  font-size: 14px; /* Match the font size with the table content */
+  background-color: #f9f9f9; /* Slightly different background for inputs */
+  outline: none; /* Remove the default blue outline */
+  transition: border-color 0.3s ease-in-out; /* Smooth border transition */
+}
+
+.editable-input:focus {
+  border-color: #007bff; /* Highlight the input when focused */
+  background-color: #fff; /* Make the background white */
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Add a soft shadow */
+}
+
