@@ -16,14 +16,14 @@ app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
-
+const auth = require("./middleware/authentication");
 // Routes
-app.use("/api/v1/teams", require("./routes/teamRoute"));
-app.use("/api/v1/players", require("./routes/playerRoute"));
-app.use("/api/v1/matches", require("./routes/matchRoute"));
-app.use("/api/v1/rules", require("./routes/ruleRoute"));
-app.use("/api/v1/goals", require("./routes/goalRoute"));
-app.use("/api/v1/rank", require("./routes/rankRoute"));
+app.use("/api/v1/teams", auth.verifyToken, require("./routes/teamRoute"));
+app.use("/api/v1/players", auth.verifyToken, require("./routes/playerRoute"));
+app.use("/api/v1/matches", auth.verifyToken, require("./routes/matchRoute"));
+app.use("/api/v1/rules", auth.verifyToken, require("./routes/ruleRoute"));
+app.use("/api/v1/goals", auth.verifyToken, require("./routes/goalRoute"));
+app.use("/api/v1/rank", auth.verifyToken, require("./routes/rankRoute"));
 app.use("/api/v1/auth", require("./routes/authRoute"));
 // End of routes
 
