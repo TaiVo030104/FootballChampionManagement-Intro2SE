@@ -35,73 +35,75 @@
           </header>
         <!-- Phần main -->
         <main>
-            <section class="view_rules">
-                <h2>VIEW RULE</h2>
-                <div class="rule_content">
-                    <div class="logo_rule">
-                        <img src="../assets/images/i.svg" alt="NWSL Logo">
-                        <h3>NWSL</h3>
+                <section class="view_rules">
+                    <h2>VIEW RULE</h2>
+                    <div class = "container">
+                        <div class="rule_content">
+                            <div class="logo_rule">
+                                <img src="../assets/images/i.svg" alt="NWSL Logo">
+                                <h3>NWSL</h3>
+                            </div>
+                            <div class="rule-form">
+                                <div class="grid-item r1">
+                                    <label>Points for a win:</label>
+                                    <input type="number" id="pointsForWin"
+                                        readonly>
+                                </div>
+                                <div class="grid-item r2">
+                                    <label>Points for a loss:</label>
+                                    <input type="number" id="pointsForLoss" readonly>
+                                </div>
+                                <div class="grid-item r3">
+                                    <label>Points for a draw:</label>
+                                    <input type="number" id="pointsForDraw" readonly>
+                                </div>
+                                <div class="grid-item r4">
+                                    <label>Relegated Teams:</label>
+                                    <input type="number" id="relegatedTeams" readonly>
+                                </div>
+                                <div class="grid-item r5">
+                                    <label>Participating Teams:</label>
+                                    <input type="number" id="participatingTeams"
+                                        readonly>
+                                </div>
+                                <div class="grid-item r6">
+                                    <label>Champions League Teams:</label>
+                                    <input type="number" id="championsLeagueTeams"
+                                        readonly>
+                                </div>
+                                <div class="grid-item r7">
+                                    <label>Europa League Teams:</label>
+                                    <input type="number" id="europaLeagueTeams"
+                                        readonly>
+                                </div>
+                                <div class="grid-item r8">
+                                    <label>Max Foreign Players:</label>
+                                    <input type="number" id="maxForeignPlayers"
+                                        readonly>
+                                </div>
+                                <div class="grid-item r9">
+                                    <label>Max Added Time:</label>
+                                    <input type="number" id="maxAddedTime" readonly>
+                                </div>
+                                <div class="grid-item r10">
+                                    <label>Age Limit:</label>
+                                    <input type="number" id="ageLimitMin" readonly>
+                                    <input type="number" id="ageLimitMax" readonly>
+                                </div>
+                                <div class="grid-item r11">
+                                    <label>Player Limit:</label>
+                                    <input type="number" id="playerLimitMin" readonly>
+                                    <input type="number" id="playerLimitMax" readonly>
+                                </div>
+                                <div class="grid-text r12">
+                                    <label>Ranking Criteria:</label>
+                                    <input type="text"
+                                        id="rankingCriteria"
+                                        readonly>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="rule-form">
-                        <div class="grid-item r1">
-                            <label>Points for a win:</label>
-                            <input type="number" id="pointsForWin"
-                                readonly>
-                        </div>
-                        <div class="grid-item r2">
-                            <label>Points for a loss:</label>
-                            <input type="number" id="pointsForLoss" readonly>
-                        </div>
-                        <div class="grid-item r3">
-                            <label>Points for a draw:</label>
-                            <input type="number" id="pointsForDraw" readonly>
-                        </div>
-                        <div class="grid-item r4">
-                            <label>Relegated Teams:</label>
-                            <input type="number" id="relegatedTeams" readonly>
-                        </div>
-                        <div class="grid-item r5">
-                            <label>Participating Teams:</label>
-                            <input type="number" id="participatingTeams"
-                                readonly>
-                        </div>
-                        <div class="grid-item r6">
-                            <label>Champions League Teams:</label>
-                            <input type="number" id="championsLeagueTeams"
-                                readonly>
-                        </div>
-                        <div class="grid-item r7">
-                            <label>Europa League Teams:</label>
-                            <input type="number" id="europaLeagueTeams"
-                                readonly>
-                        </div>
-                        <div class="grid-item r8">
-                            <label>Max Foreign Players:</label>
-                            <input type="number" id="maxForeignPlayers"
-                                readonly>
-                        </div>
-                        <div class="grid-item r9">
-                            <label>Max Added Time:</label>
-                            <input type="number" id="maxAddedTime" readonly>
-                        </div>
-                        <div class="grid-item r10">
-                            <label>Age Limit:</label>
-                            <input type="number" id="ageLimitMin" readonly>
-                            <input type="number" id="ageLimitMax" readonly>
-                        </div>
-                        <div class="grid-item r11">
-                            <label>Player Limit:</label>
-                            <input type="number" id="playerLimitMin" readonly>
-                            <input type="number" id="playerLimitMax" readonly>
-                        </div>
-                        <div class="grid-text r12">
-                            <label>Ranking Criteria:</label>
-                            <input type="text"
-                                id="rankingCriteria"
-                                readonly>
-                        </div>
-                    </div>
-
                 </section>
                 <div class="btn">
                     <button class="cancel-btn"
