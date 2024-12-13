@@ -73,8 +73,8 @@ body {
 .rule_content {
   background: white;
   display: inline-flex;
-  margin-left: 159px;
-  margin-right: 50px;
+  /* margin-left: 159px;
+  margin-right: 50px; */
   font-family: "Roboto";
   border-radius: 8px;
 }
