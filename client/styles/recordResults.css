@@ -194,7 +194,30 @@ body {
     margin: 0 5px;
 }
 
-
+.player-table input {
+    width: 100%;
+    border: none;
+    outline: none;
+    background: transparent;
+    padding: 5px;
+    font-size: 14px;
+    font-family: inherit;
+    text-align: left;
+    box-sizing: border-box;
+  }
+  
+  .player-table td {
+    padding: 10px;
+  }
+  
+  
+  .btn-remove i {
+    color: red;
+    cursor: pointer;
+    font-size: 16px;
+    background-color: none;
+  }
+  
 .player-table .edit-icon, .player-table .delete-icon {
     font-size: 16px; 
     color: #3D8361; 

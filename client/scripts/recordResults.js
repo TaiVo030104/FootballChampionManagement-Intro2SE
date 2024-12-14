@@ -1,34 +1,42 @@
 document.addEventListener("DOMContentLoaded", () => {
-  document.addEventListener("DOMContentLoaded", () => {
-
+ 
     const urlParams = new URLSearchParams(window.location.search);
-    const id = urlParams.get("id");
-    alert(`Match ID: ${id}`);
-    if (id) {
-      // Fetch match data from the API
-      fetch('https://footballchampionshipmanagement.onrender.com/api/v1/matches')
-        .then(response => response.json())
-        .then(data => {
-   
-          const match = data.find(m => m.matchid == id);
+    const matchId = urlParams.get("id");
   
-          if (match) {
-  
-            document.getElementById("teamA-input").value = match.team1.teamname;
-            document.getElementById("teamB-input").value = match.team2.teamname;
-            document.getElementById("round-info").textContent = match.roundcount;
-            document.getElementById("date-info").textContent = match.matchdate;
-            document.getElementById("time-info").textContent = match.matchtime;
-            document.getElementById("stage-info").textContent = match.fieldname;
-          } else {
-            console.error(`No match found with id ${id}`);
-          }
-        })
-        .catch(error => console.error('Error fetching data:', error));
-    } else {
-      console.error("No `id` parameter found in the URL");
+ 
+    if (!matchId) {
+      console.error("No match ID provided in the URL.");
+      return;
     }
-  });
+  
+
+    fetch('https://footballchampionshipmanagement.onrender.com/api/v1/matches')
+      .then(response => response.json())
+      .then(data => {
+
+        console.log("API Data:", data);
+  
+        const match = data.find(m => m.matchid == matchId);
+  
+        if (!match) {
+          console.error(`No match found with ID ${matchId}`);
+          return;
+        }
+  
+        console.log("Filtered Match:", match);
+  
+        document.getElementById("teamA-input").value = match.team1.teamname; // Team A
+        document.getElementById("teamB-input").value = match.team2.teamname; // Team B
+        document.getElementById("round-info").textContent = match.roundcount; // Round
+        document.getElementById("date-info").textContent = match.matchdate;   // Date
+        document.getElementById("time-info").textContent = match.matchtime;   // Time
+        document.getElementById("stage-info").textContent = match.fieldname;  // Stage
+      })
+      .catch(error => {
+        console.error("Error fetching match data:", error);
+      });
+
+  
   
 
   const addButton = document.querySelector('.btn-add');
@@ -46,7 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
       <td><input type="text" class="team-name" /></td>
       <td><input type="text" class="role-type" /></td>
       <td><input type="text" class="time" /></td>
-      <td><button class="btn-remove">Remove</button></td>
+      <td><button class="btn-remove"><i class="trash-btn fas fa-trash"></i></button></td>
     `;
 
     // Append the new row to the table body
