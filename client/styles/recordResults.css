@@ -124,7 +124,7 @@ body {
 
 .team-input, .team-name {
     display: inline-block; /* Để team-input và team-name nằm chung một dòng */
-    font-weight: bold;
+
     color: #333;
     margin: 0 5px; /* Khoảng cách giữa team-input và team-name */
 }
@@ -133,7 +133,7 @@ body {
     text-align: center;
 }
 
-.team-name {
+.teamA-input, .teamB-input {
     width: 200px;
     height: 30px;
     border-radius: 5px;
@@ -210,6 +210,32 @@ body {
     padding: 10px;
   }
   
+  /* Loại bỏ màu nền và viền */
+select, input {
+    background-color: transparent;
+    border: none;
+    width: 100%;  /* Đảm bảo các phần tử chiếm hết chiều rộng của cột */
+  }
+  
+  /* Tăng chiều cao của các phần tử */
+  select, input {
+    height: 100%;
+  }
+  
+  /* Đảm bảo các phần tử trong bảng khớp với các cột */
+  td {
+    padding: 10px;  /* Tăng khoảng cách giữa các ô */
+  }
+  
+  /* Thêm chiều rộng cho cột chứa dropdown và input */
+  td select, td input {
+    width: 100%;
+  }
+  
+  /* Đảm bảo các ô input trong bảng có chiều rộng đầy đủ */
+  input.time {
+    width: 100%;
+  }
   
   .btn-remove i {
     color: red;
