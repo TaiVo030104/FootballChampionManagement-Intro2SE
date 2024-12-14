@@ -142,11 +142,12 @@ async function deleteItem(index) {
   const teamId = teamData[index].id;
 
   try {
-    const response = await fetch(
-      `${API_BASE}/${teamId}`,
-      { method: "DELETE" },
-      { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } }
-    );
+    const response = await fetch(`${API_BASE}/${teamId}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
     if (response.ok) {
       showNotification("Team deleted successfully!");
       teamData.splice(index, 1);
@@ -183,11 +184,12 @@ async function deleteItem(index) {
   const teamId = teamData[index].id;
 
   try {
-    const response = await fetch(
-      `${API_BASE}/${teamId}`,
-      { method: "DELETE" },
-      { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } }
-    );
+    const response = await fetch(`${API_BASE}/${teamId}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
     if (response.ok) {
       showNotification("Team deleted successfully!");
       teamData.splice(index, 1);
