@@ -1,118 +1,113 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const apiUrl =
-    "https://footballchampionshipmanagement.onrender.com/api/v1/matches";
-  const rowsPerPage = 8; // Số lượng dòng mỗi trang
+  const API_URL = "https://footballchampionshipmanagement.onrender.com/api/v1/matches";
+  const matchId = new URLSearchParams(window.location.search).get("id");
 
-  let currentPage = 1;
-  let matches = [];
+  if (!matchId) {
+    console.error("No match ID provided in the URL.");
+    return;
+  }
 
-  // Fetch matches data from the API
-  const fetchMatches = async () => {
+  // Fetch và hiển thị thông tin trận đấu
+  async function fetchMatchDetails() {
     try {
-      const response = await fetch(apiUrl, {
-        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+      const response = await fetch(API_URL, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
       });
-      if (!response.ok) throw new Error("Failed to fetch matches");
       const data = await response.json();
-      matches = data.data.matches; // Assuming the matches are in this structure
-      updateTable();
-      updatePagination();
-    } catch (error) {
-      console.error("Error fetching matches:", error);
-      alert("Failed to load matches data.");
-    }
-  };
+      const matches = data.data.matches || [];
 
-  // Populate match data into the table with pagination
-  const updateTable = () => {
-    const tableBody = document.getElementById("player-table-body");
-    tableBody.innerHTML = ""; // Clear existing table rows
+      const match = matches.find((m) => m.matchid == matchId);
 
-    // Calculate the start and end indices for the current page
-    const startIndex = (currentPage - 1) * rowsPerPage;
-    const endIndex = Math.min(startIndex + rowsPerPage, matches.length);
-
-    // Generate rows for the current page
-    for (let i = startIndex; i < endIndex; i++) {
-      const match = matches[i];
-      const teamA = match.team1?.teamname || "N/A";
-      const teamB = match.team2?.teamname || "N/A";
-
-      const row = document.createElement("tr");
-      row.innerHTML = `
-                <td>${i + 1}</td>
-                <td>${teamA}</td>
-                <td>${teamB}</td>
-                <td>${match.matchdate} ${match.matchtime}</td>
-                <td>${match.fieldname}</td>
-                <td>Round ${match.roundcount}</td>
-                <td>
-                    <div class="actions">
-                        <span class="edit-icon"><i class="fas fa-edit"></i></span>
-                        <span class="delete-icon"><i class="fas fa-trash"></i></span>
-                    </div>
-                </td>
-            `;
-      tableBody.appendChild(row);
-    }
-  };
-
-  // Update pagination buttons based on the number of pages
-  const updatePagination = () => {
-    const paginationContainer = document.querySelector(
-      ".home-product__pagination"
-    );
-    paginationContainer.innerHTML = ""; // Clear existing pagination buttons
-
-    const totalPages = Math.ceil(matches.length / rowsPerPage);
-
-    // Create previous button
-    const prevButton = document.createElement("li");
-    prevButton.classList.add("pagination");
-    prevButton.innerHTML = `
-            <a href="#" class="pagination-link">
-                <i class="pagination-icon fas fa-angle-left"></i>
-            </a>
-        `;
-    prevButton.addEventListener("click", () => goToPage(currentPage - 1));
-    paginationContainer.appendChild(prevButton);
-
-    // Create page number buttons
-    for (let i = 1; i <= totalPages; i++) {
-      const pageButton = document.createElement("li");
-      pageButton.classList.add("pagination");
-      if (i === currentPage) {
-        pageButton.classList.add("pagination-active");
+      if (!match) {
+        console.error(`No match found with ID ${matchId}`);
+        return;
       }
-      pageButton.innerHTML = `
-                <a href="#" class="pagination-link">${i}</a>
-            `;
-      pageButton.addEventListener("click", () => goToPage(i));
-      paginationContainer.appendChild(pageButton);
+
+      // Hiển thị thông tin trận đấu lên giao diện
+      document.getElementById("teamA-input").value = match.team1.teamname; // Team A
+      document.getElementById("teamB-input").value = match.team2.teamname; // Team B
+      document.getElementById("round-info").textContent = match.roundcount; // Round
+      document.getElementById("date-info").textContent = match.matchdate;   // Date
+      document.getElementById("time-info").textContent = match.matchtime;   // Time
+      document.getElementById("stage-info").textContent = match.fieldname;  // Stage
+
+      // Lưu tên đội để dùng cho dropdown trong bảng
+      window.teamNames = [match.team1.teamname, match.team2.teamname];
+    } catch (error) {
+      console.error("Error fetching match data:", error);
     }
+  }
 
-    // Create next button
-    const nextButton = document.createElement("li");
-    nextButton.classList.add("pagination");
-    nextButton.innerHTML = `
-            <a href="#" class="pagination-link">
-                <i class="pagination-icon fas fa-angle-right"></i>
-            </a>
-        `;
-    nextButton.addEventListener("click", () => goToPage(currentPage + 1));
-    paginationContainer.appendChild(nextButton);
-  };
+  fetchMatchDetails();
 
-  // Change the current page and update table and pagination
-  const goToPage = (page) => {
-    const totalPages = Math.ceil(matches.length / rowsPerPage);
-    if (page >= 1 && page <= totalPages) {
-      currentPage = page;
-      updateTable();
-      updatePagination();
+  // Thêm hàng vào bảng
+  const addButton = document.querySelector(".btn-add");
+  const playerTableBody = document.getElementById("player-table-body");
+
+  addButton.addEventListener("click", () => {
+    const newRow = document.createElement("tr");
+
+    // Tạo dropdown để chọn tên đội
+    const teamDropdown = `
+      <select class="team-name">
+        <option value="">Select Team</option>
+        ${window.teamNames
+          .map((teamName) => `<option value="${teamName}">${teamName}</option>`)
+          .join("")}
+      </select>`;
+
+    newRow.innerHTML = `
+      <td><input type="text" class="serial-number" /></td>
+      <td><input type="text" class="player-name" /></td>
+      <td>${teamDropdown}</td>
+      <td><input type="text" class="role-type" /></td>
+      <td><input type="text" class="time" /></td>
+      <td><button class="btn-remove"><i class="trash-btn fas fa-trash"></i></button></td>
+    `;
+    playerTableBody.appendChild(newRow);
+
+    // Thêm sự kiện "Xóa" cho nút Remove
+    const removeButton = newRow.querySelector(".btn-remove");
+    removeButton.addEventListener("click", () => {
+      playerTableBody.removeChild(newRow);
+    });
+  });
+
+  // Lưu dữ liệu
+  const saveButton = document.querySelector(".btn-save");
+  saveButton.addEventListener("click", async () => {
+    const rows = document.querySelectorAll("#player-table-body tr");
+    const goalData = Array.from(rows).map((row) => ({
+      serialnumber: row.querySelector(".serial-number").value,
+      playername: row.querySelector(".player-name").value,
+      teamname: row.querySelector(".team-name").value,
+      goaltype: row.querySelector(".role-type").value,
+      goaltime: row.querySelector(".time").value,
+    }));
+
+    try {
+      const response = await fetch(
+        `https://footballchampionshipmanagement.onrender.com/api/v1/goals/${matchId}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+          body: JSON.stringify(goalData),
+        }
+      );
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log("Success:", data);
+      } else {
+        console.error("Failed to save goal data:", response.statusText);
+      }
+    } catch (error) {
+      console.error("Error saving goal data:", error);
     }
-  };
-
-  // Initialize the page by fetching data and populating the table
-  fetchMatches();
+  });
 });

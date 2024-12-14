@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
           <div class="team">
               <span>${match.team2.teamname}</span>
               <span class="score">${score2}</span>
-              <a href="../pages/addMatch.html?id=${match.matchid}">
+              <a href="../pages/recordResults.html?id=${match.matchid}">
                   <i class="edit-btn fas fa-edit"></i>
               </a>
           </div>
