@@ -112,33 +112,13 @@ const displayTable = async (data, page) => {
             <td>${teamData.rank}</td>
             <td class="team">
               <div>
-                <img src="${
-                  teamData.team?.logo ?? "../assets/images/dortmund.png"
-                }" alt="${teamData.team?.name ?? "Unknown"} logo">
                 <div>${teamName ?? "Unknown"}</div>
               </div>
             </td>
-            <td>${teamData.played ?? 0}</td>
             <td>${teamData.win}</td>
             <td>${teamData.draw}</td>
             <td>${teamData.lose}</td>
-            <td>${teamData.goalsFor ?? 0}</td>
-            <td>${teamData.goalsAgainst ?? 0}</td>
-            <td>${teamData.goalDifference ?? 0}</td>
             <td>${teamData.score}</td>
-            <td class="form-guide">
-              <div>
-                ${
-                  teamData.form
-                    ?.map((f) => `<div class="circle">${f}</div>`)
-                    .join("") ??
-                  '<div class="circle"></div><div class="circle"></div><div class="circle"></div><div class="circle" ></div><div class="circle"></div>'
-                }
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
-                  <path fill-rule="evenodd" clip-rule="evenodd" d="M3.72624 6.08599C3.32953 6.46796 3.32953 7.10303 3.72624 7.48499L8.47955 12.0617C8.76995 12.3413 9.22954 12.3413 9.51994 12.0617L14.2732 7.48499C14.67 7.10303 14.67 6.46796 14.2732 6.08599C13.8972 5.72394 13.3023 5.72394 12.9262 6.08599L8.99974 9.86657L5.07325 6.08599C4.69723 5.72394 4.10226 5.72394 3.72624 6.08599Z" fill="#C1C2D5"/>
-                </svg>
-              </div>
-            </td>
         `;
     tbody.appendChild(row);
   }
