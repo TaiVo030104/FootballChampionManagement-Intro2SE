@@ -66,7 +66,6 @@ const goalController = {
       };
       console.log(goalData);
       const newGoal = await Goal.create(goalData);
-      player.goalcount += 1;
       await player.save();
       res.status(201).json({ newGoal });
     } catch (error) {
