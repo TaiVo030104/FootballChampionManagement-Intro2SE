@@ -1,107 +1,113 @@
 document.addEventListener("DOMContentLoaded", () => {
- 
-    const urlParams = new URLSearchParams(window.location.search);
-    const matchId = urlParams.get("id");
-  
- 
-    if (!matchId) {
-      console.error("No match ID provided in the URL.");
-      return;
-    }
-  
+  const API_URL = "https://footballchampionshipmanagement.onrender.com/api/v1/matches";
+  const matchId = new URLSearchParams(window.location.search).get("id");
 
-    fetch('https://footballchampionshipmanagement.onrender.com/api/v1/matches')
-      .then(response => response.json())
-      .then(data => {
+  if (!matchId) {
+    console.error("No match ID provided in the URL.");
+    return;
+  }
 
-        console.log("API Data:", data);
-  
-        const match = data.find(m => m.matchid == matchId);
-  
-        if (!match) {
-          console.error(`No match found with ID ${matchId}`);
-          return;
-        }
-  
-        console.log("Filtered Match:", match);
-  
-        document.getElementById("teamA-input").value = match.team1.teamname; // Team A
-        document.getElementById("teamB-input").value = match.team2.teamname; // Team B
-        document.getElementById("round-info").textContent = match.roundcount; // Round
-        document.getElementById("date-info").textContent = match.matchdate;   // Date
-        document.getElementById("time-info").textContent = match.matchtime;   // Time
-        document.getElementById("stage-info").textContent = match.fieldname;  // Stage
-      })
-      .catch(error => {
-        console.error("Error fetching match data:", error);
+  // Fetch và hiển thị thông tin trận đấu
+  async function fetchMatchDetails() {
+    try {
+      const response = await fetch(API_URL, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
       });
+      const data = await response.json();
+      const matches = data.data.matches || [];
 
-  
-  
+      const match = matches.find((m) => m.matchid == matchId);
 
-  const addButton = document.querySelector('.btn-add');
-  const playerTableBody = document.getElementById('player-table-body');
+      if (!match) {
+        console.error(`No match found with ID ${matchId}`);
+        return;
+      }
 
+      // Hiển thị thông tin trận đấu lên giao diện
+      document.getElementById("teamA-input").value = match.team1.teamname; // Team A
+      document.getElementById("teamB-input").value = match.team2.teamname; // Team B
+      document.getElementById("round-info").textContent = match.roundcount; // Round
+      document.getElementById("date-info").textContent = match.matchdate;   // Date
+      document.getElementById("time-info").textContent = match.matchtime;   // Time
+      document.getElementById("stage-info").textContent = match.fieldname;  // Stage
 
-  addButton.addEventListener('click', function() {
-    
-    const newRow = document.createElement('tr');
-    
+      // Lưu tên đội để dùng cho dropdown trong bảng
+      window.teamNames = [match.team1.teamname, match.team2.teamname];
+    } catch (error) {
+      console.error("Error fetching match data:", error);
+    }
+  }
+
+  fetchMatchDetails();
+
+  // Thêm hàng vào bảng
+  const addButton = document.querySelector(".btn-add");
+  const playerTableBody = document.getElementById("player-table-body");
+
+  addButton.addEventListener("click", () => {
+    const newRow = document.createElement("tr");
+
+    // Tạo dropdown để chọn tên đội
+    const teamDropdown = `
+      <select class="team-name">
+        <option value="">Select Team</option>
+        ${window.teamNames
+          .map((teamName) => `<option value="${teamName}">${teamName}</option>`)
+          .join("")}
+      </select>`;
 
     newRow.innerHTML = `
       <td><input type="text" class="serial-number" /></td>
       <td><input type="text" class="player-name" /></td>
-      <td><input type="text" class="team-name" /></td>
+      <td>${teamDropdown}</td>
       <td><input type="text" class="role-type" /></td>
       <td><input type="text" class="time" /></td>
       <td><button class="btn-remove"><i class="trash-btn fas fa-trash"></i></button></td>
     `;
-
-    // Append the new row to the table body
     playerTableBody.appendChild(newRow);
 
-    // Add functionality to the "Remove" button in the new row
-    const removeButton = newRow.querySelector('.btn-remove');
-    removeButton.addEventListener('click', function() {
+    // Thêm sự kiện "Xóa" cho nút Remove
+    const removeButton = newRow.querySelector(".btn-remove");
+    removeButton.addEventListener("click", () => {
       playerTableBody.removeChild(newRow);
     });
   });
 
-  // Save button event listener
-  const saveButton = document.querySelector('.btn-save');
-  saveButton.addEventListener('click', function() {
-    const rows = document.querySelectorAll('#player-table-body tr');
-    
-    const goalData = [];
-    rows.forEach(row => {
-      const serialnumber = row.querySelector('.serial-number').value;
-      const playername = row.querySelector('.player-name').value;
-      const teamname = row.querySelector('.team-name').value;
-      const goaltype = row.querySelector('.role-type').value;
-      const goaltime = row.querySelector('.time').value;
+  // Lưu dữ liệu
+  const saveButton = document.querySelector(".btn-save");
+  saveButton.addEventListener("click", async () => {
+    const rows = document.querySelectorAll("#player-table-body tr");
+    const goalData = Array.from(rows).map((row) => ({
+      serialnumber: row.querySelector(".serial-number").value,
+      playername: row.querySelector(".player-name").value,
+      teamname: row.querySelector(".team-name").value,
+      goaltype: row.querySelector(".role-type").value,
+      goaltime: row.querySelector(".time").value,
+    }));
 
-      goalData.push({
-        serialnumber,
-        playername,
-        teamname,
-        goaltype,
-        goaltime
-      });
-    });
+    try {
+      const response = await fetch(
+        `https://footballchampionshipmanagement.onrender.com/api/v1/goals/${matchId}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+          body: JSON.stringify(goalData),
+        }
+      );
 
-    fetch(`https://footballchampionshipmanagement.onrender.com/api/v1/goals/${matchid}`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(goalData)
-    })
-    .then(response => response.json())
-    .then(data => {
-      console.log('Success:', data);
-    })
-    .catch((error) => {
-      console.error('Error:', error);
-    });
+      if (response.ok) {
+        const data = await response.json();
+        console.log("Success:", data);
+      } else {
+        console.error("Failed to save goal data:", response.statusText);
+      }
+    } catch (error) {
+      console.error("Error saving goal data:", error);
+    }
   });
 });
