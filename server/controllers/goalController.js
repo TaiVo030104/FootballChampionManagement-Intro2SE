@@ -34,13 +34,14 @@ const goalController = {
     try {
       const { player_playerid, goaltime, goaltype } = req.body;
       const player = await Player.findByPk(player_playerid);
+      //console.log(player);
       if (!player) {
         return next(new AppError("Player not found", 404));
       } else {
         const teamInMatch = await Match.findByPk(req.params.id);
         if (
-          teamInMatch.team1_teamid !== player.team_teamid &&
-          teamInMatch.team2_teamid !== player.team_teamid
+          teamInMatch.team_team1 != player.team_teamid &&
+          teamInMatch.team_team2 != player.team_teamid
         ) {
           return next(new AppError("Player is not in the match teams", 400));
         }
