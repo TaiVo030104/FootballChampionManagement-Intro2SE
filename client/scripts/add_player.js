@@ -69,7 +69,7 @@ async function loadPlayerData(playerId) {
       // Điền dữ liệu vào các ô input
       document.getElementById("player-name").value = player.playername || "";
       document.getElementById("role").value = player.playertype || "";
-      document.getElementById("goals").value = player.goalcount || 0;
+      document.getElementById("goals").value = player.goalcount || "0";
       document.getElementById("note").value = player.notes || "";
       document.getElementById("birthdate").value = player.birthdate || "";
 

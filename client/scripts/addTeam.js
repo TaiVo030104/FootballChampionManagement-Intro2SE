@@ -90,7 +90,7 @@ async function createTeam(teamData) {
   const newTeam = await response.json();
   console.log("New team created:", newTeam);
   showNotification("Team created successfully!");
-
+  window.location.href = "../pages/team.html"; // Redirect to team page
   // Optionally, update the team list or render new data
   filteredData.push(newTeam);
 }
