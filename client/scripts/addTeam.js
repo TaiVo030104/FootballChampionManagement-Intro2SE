@@ -88,13 +88,14 @@ async function createTeam(teamData) {
 
   // Keep team on current page (assuming the team is already being displayed)
   filteredData.push(newTeam);
+  window.location.href = "../pages/team.html";
+
   renderTeamList(); // Function to update the display with the new team
 
   // Clear the form and prepare for next entry
   resetForm(); // Reset form after successful team creation
 
   // Optionally, redirect after successful creation (remove this if not required)
-  window.location.href = "../pages/team.html";
 }
 
 // Cancel button functionality to reset form
