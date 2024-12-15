@@ -9,24 +9,22 @@ body {
   display: flex;
   flex-direction: column;
 }
-.button
-{
-    margin-right: .5rem;
+.button {
+  margin-right: 0.5rem;
 
-    text-decoration: none;
-    color: #3D8361;
-    font-family: "Exo 2";
-    font-size: 0.9375rem;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 1.40625rem; /* 1.40625rem */
-    padding: 0.5rem 0.4375rem 0.47319rem 0.5625rem;
+  text-decoration: none;
+  color: #3d8361;
+  font-family: "Exo 2";
+  font-size: 0.9375rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.40625rem; /* 1.40625rem */
+  padding: 0.5rem 0.4375rem 0.47319rem 0.5625rem;
 
-    border-radius: 0.5rem;
-    background: #FCFCFC;
-    flex-shrink: 0;
+  border-radius: 0.5rem;
+  background: #fcfcfc;
+  flex-shrink: 0;
 }
-
 
 .body {
   display: flex;
@@ -92,7 +90,15 @@ body {
   margin-left: auto;
   margin-right: 20px;
 }
-
+.view-report-btn {
+  height: 40px;
+  background-color: #3d8361;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 20px;
+}
 .table {
   width: 100%; /* Make the table container full width */
   padding: 20px;

@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
   const playerTable = document.querySelector(".player-table tbody");
-  const addBtn = document.querySelector(".add-btn");
+  const backButton = document.querySelector(".btn-back");
   const searchInput = document.querySelector(".search-bar");
   const url =
     "https://footballchampionshipmanagement.onrender.com/api/v1/players?sort=playerid"; // URL API mới
@@ -8,10 +8,10 @@ document.addEventListener("DOMContentLoaded", function () {
   let filteredPlayers = []; // Dữ liệu cầu thủ sau khi tìm kiếm
   let currentPage = 1; // Trang hiện tại
   const playersPerPage = 10; // Số cầu thủ trên mỗi trang
-
+  const limitPlayers = 1000;
   // Hàm load toàn bộ cầu thủ từ API
   function loadPlayers() {
-    fetch(url, {
+    fetch(`${url}&limit=${limitPlayers}`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
@@ -19,8 +19,8 @@ document.addEventListener("DOMContentLoaded", function () {
       .then((response) => response.json())
       .then((data) => {
         if (data.status === "success") {
-          players = data.data.players; // Lưu dữ liệu cầu thủ từ API
-          filteredPlayers = players; // Mặc định là chưa tìm kiếm, nên filteredPlayers bằng players
+          players = data.data.players.filter((player) => player.goalcount > 0); // Lưu dữ liệu cầu thủ từ API
+          filteredPlayers = players;
           renderPlayers();
           renderPagination();
         } else {
@@ -201,6 +201,34 @@ document.addEventListener("DOMContentLoaded", function () {
     renderPagination();
   });
 
+  backButton.addEventListener("click", function () {
+    window.location.href = "players.html";
+  });
   // Tải danh sách cầu thủ khi trang load
+
+  // Cập nhật thời gian hiển thị
+  function updateTime() {
+    const currentTimeElement = document.getElementById("current-time");
+    const currentDate = new Date();
+
+    // Lấy các thành phần của thời gian
+    const hours = currentDate.getHours().toString().padStart(2, "0");
+    const minutes = currentDate.getMinutes().toString().padStart(2, "0");
+    const seconds = currentDate.getSeconds().toString().padStart(2, "0");
+    const day = currentDate.getDate().toString().padStart(2, "0");
+    const month = (currentDate.getMonth() + 1).toString().padStart(2, "0"); // Tháng bắt đầu từ 0
+    const year = currentDate.getFullYear();
+
+    // Định dạng thời gian theo kiểu hour:minute:second day/month/year
+    const formattedTime = `${hours}:${minutes}:${seconds} ${day}/${month}/${year}`;
+
+    // Cập nhật nội dung cho phần tử
+    currentTimeElement.textContent = `Time report: ${formattedTime}`;
+  }
+
+  // Cập nhật thời gian mỗi giây
+  //setInterval(updateTime, 1000);
+  // Gọi hàm updateTime một lần ngay khi trang được tải
+  updateTime();
   loadPlayers();
 });
