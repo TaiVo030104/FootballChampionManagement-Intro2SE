@@ -90,10 +90,29 @@ async function createTeam(teamData) {
   const newTeam = await response.json();
   console.log("New team created:", newTeam);
   showNotification("Team created successfully!");
-  window.location.href = "../pages/team.html"; // Redirect to team page
+  // window.location.href = "../pages/team.html"; // Redirect to team page
   // Optionally, update the team list or render new data
   filteredData.push(newTeam);
+  cancelForm();
 }
+function cancelForm() {
+  // Clear the form fields
+  document.querySelector("#team-name").value = "";
+  document.querySelector("#home-ground").value = "";
+  document.querySelector("#team-size").value = 16;
+
+  // Clear the logo preview
+  logoPreviewArea.innerHTML = "";
+
+  // Optionally, reset any other inputs or settings if needed
+  // For example, reset a drop-down list:
+  // document.querySelector("#team-leader").selectedIndex = 0; 
+}
+
+document.querySelector(".btn-cancel").addEventListener("click", function (event) {
+  event.preventDefault(); // Prevent default action
+  cancelForm(); // Call the cancel function
+});
 
 function showNotification(message, type = "success") {
   const container = document.getElementById("notification-container");
