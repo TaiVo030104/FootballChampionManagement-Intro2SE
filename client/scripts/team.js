@@ -3,7 +3,7 @@ const API_BASE =
 
 let teamData = [];
 let currentPage = 1;
-const teamsPerPage = 10;
+const teamsPerPage = 8;
 let filteredData = [];
 
 // Fetch teams data from API
