@@ -90,7 +90,7 @@ async function createTeam(teamData) {
   // window.location.href = "../pages/team.html"; // Redirect to team page
   // Optionally, update the team list or render new data
   filteredData.push(newTeam);
-  cancelForm();
+  window.location.href = "../pages/team.html"; // Redirect to team page
 }
 function cancelForm() {
   // Clear the form fields
