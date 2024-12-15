@@ -3,13 +3,58 @@ body {
   background-image: url("../assets/images/Group 448.svg");
   background-size: cover;
   background-position: center;
-  background-repeat: no-repeat;
+  background-repeat: repeat;
   margin: 0; /* Remove default margin */
   /* height: 100vh; Set to full viewport height */
   display: flex;
   flex-direction: column;
 }
 
+.button {
+  margin-right: 0.5rem;
+
+  text-decoration: none;
+  color: #3d8361;
+  font-family: "Exo 2";
+  font-size: 0.9375rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.40625rem; /* 1.40625rem */
+  padding: 0.5rem 0.4375rem 0.47319rem 0.5625rem;
+
+  border-radius: 0.5rem;
+  background: #fcfcfc;
+  flex-shrink: 0;
+}
+
+/* .time-report {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  margin-left: auto;
+}
+
+.time-container {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  margin-right: auto;
+} */
+.time-report-header {
+  text-align: center;
+  background-color: #f9f9f9;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 10px 0;
+}
+
+#current-time {
+  font-size: 16px;
+  color: #333;
+  display: inline-block; /* Đảm bảo văn bản không bị tách ra */
+}
 .body {
   display: flex;
   flex-direction: column;

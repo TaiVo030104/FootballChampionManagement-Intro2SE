@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
   const playerTable = document.querySelector(".player-table tbody");
   const addBtn = document.querySelector(".add-btn");
+  const viewreportBtn = document.querySelector(".view-report-btn");
   const searchInput = document.querySelector(".search-bar");
   const url =
     "https://footballchampionshipmanagement.onrender.com/api/v1/players?sort=playerid"; // URL API mới
@@ -11,10 +12,10 @@ document.addEventListener("DOMContentLoaded", function () {
   let filteredPlayers = []; // Dữ liệu cầu thủ sau khi tìm kiếm
   let currentPage = 1; // Trang hiện tại
   const playersPerPage = 10; // Số cầu thủ trên mỗi trang
-
+  const limitPlayers = 1000;
   // Hàm load toàn bộ cầu thủ từ API
   function loadPlayers() {
-    fetch(url, {
+    fetch(`${url}&limit=${limitPlayers}`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
@@ -73,57 +74,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
     attachActionListeners(); // Gắn các sự kiện hành động cho các edit và delete icon
   }
-
-  // Hàm render phân trang
-  // function renderPagination() {
-  //   const paginationContainer = document.querySelector(".pagination-container");
-  //   const totalPages = Math.ceil(filteredPlayers.length / playersPerPage);
-  //   const pagination = document.querySelector(".home-product__pagination");
-
-  //   pagination.innerHTML = ""; // Xóa các trang hiện tại
-
-  //   // Thêm nút quay lại
-  //   const prevPage = document.createElement("li");
-  //   prevPage.classList.add("pagination");
-  //   prevPage.innerHTML = `<a href="#" class="pagination-link"><i class="pagination-icon fas fa-angle-left"></i></a>`;
-  //   prevPage.addEventListener("click", function () {
-  //     if (currentPage > 1) {
-  //       currentPage--;
-  //       renderPlayers();
-  //       renderPagination();
-  //     }
-  //   });
-  //   pagination.appendChild(prevPage);
-
-  //   // Thêm các nút trang
-  //   for (let i = 1; i <= totalPages; i++) {
-  //     const page = document.createElement("li");
-  //     page.classList.add("pagination");
-  //     if (i === currentPage) {
-  //       page.classList.add("pagination-active");
-  //     }
-  //     page.innerHTML = `<a href="#" class="pagination-link">${i}</a>`;
-  //     page.addEventListener("click", function () {
-  //       currentPage = i;
-  //       renderPlayers();
-  //       renderPagination();
-  //     });
-  //     pagination.appendChild(page);
-  //   }
-
-  //   // Thêm nút tiến lên
-  //   const nextPage = document.createElement("li");
-  //   nextPage.classList.add("pagination");
-  //   nextPage.innerHTML = `<a href="#" class="pagination-link"><i class="pagination-icon fas fa-angle-right"></i></a>`;
-  //   nextPage.addEventListener("click", function () {
-  //     if (currentPage < totalPages) {
-  //       currentPage++;
-  //       renderPlayers();
-  //       renderPagination();
-  //     }
-  //   });
-  //   pagination.appendChild(nextPage);
-  // }
 
   function renderPagination() {
     const paginationContainer = document.querySelector(".pagination-container");
@@ -301,6 +251,10 @@ document.addEventListener("DOMContentLoaded", function () {
   // Sự kiện nhấn vào nút "Add"
   addBtn.addEventListener("click", function () {
     window.location.href = "./addPlayer.html"; // Chuyển đến trang addplayer để thêm cầu thủ
+  });
+
+  viewreportBtn.addEventListener("click", function () {
+    window.location.href = "./reportPlayer.html"; // Chuyển đến trang reportPlayer để xem báo cáo
   });
 
   // Tìm kiếm cầu thủ theo tên
