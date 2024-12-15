@@ -248,17 +248,17 @@ const matchController = {
       if (!match) {
         return next(new AppError("Match not found", 404));
       }
-      const Team1 = await Team.findByPk(match.team_team1);
-      const Team2 = await Team.findByPk(match.team_team2);
-      if (!Team1 || !Team2) {
-        return next(new AppError("Team not found", 404));
-      }
-      if (team_team1 === team_team2) {
-        return next(new AppError("Team1 and Team2 cannot be the same", 400));
-      }
-      if (Team1.fieldname !== fieldname && Team2.fieldname !== fieldname) {
-        return next(new AppError("Fieldname does not match", 400));
-      }
+      // const Team1 = await Team.findByPk(match.team_team1);
+      // const Team2 = await Team.findByPk(match.team_team2);
+      // if (!Team1 || !Team2) {
+      //   return next(new AppError("Team not found", 404));
+      // }
+      // if (team_team1 === team_team2) {
+      //   return next(new AppError("Team1 and Team2 cannot be the same", 400));
+      // }
+      // if (Team1.fieldname !== fieldname && Team2.fieldname !== fieldname) {
+      //   return next(new AppError("Fieldname does not match", 400));
+      // }
       await match.update(matchData);
       res.status(200).json({
         status: "success",
