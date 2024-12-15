@@ -7,7 +7,7 @@ let filteredData = [...teamData];
 
 // Logo upload functionality
 const logoUploadInput = document.querySelector("#logo-upload");
-const logoPreviewArea = document.querySelector("#team-logo-preview");
+const logoPreviewArea = document.querySelector("#team-logo-preview"); // Updated reference to the correct ID
 
 logoUploadInput.addEventListener("change", function (event) {
   const file = event.target.files[0];
@@ -66,8 +66,10 @@ async function createTeam(teamData) {
     },
     body: JSON.stringify({
       teamname: teamData.teamName,
-      fieldname: homeGround,
-      teamSize: teamData.teamSize,
+      fieldname: homeGround, // Correct field name
+      teamSize: teamData.teamSize, // Include teamSize if needed
+      // If you plan to include a logo, uncomment the following line
+      // teamLogo: teamData.teamLogo
     }),
   });
 
@@ -85,34 +87,31 @@ async function createTeam(teamData) {
   const newTeam = await response.json();
   console.log("New team created:", newTeam);
   showNotification("Team created successfully!");
-
-  // Keep team on current page (assuming the team is already being displayed)
+  // window.location.href = "../pages/team.html"; // Redirect to team page
+  // Optionally, update the team list or render new data
   filteredData.push(newTeam);
-  window.location.href = "../pages/team.html";
+  cancelForm();
+}
+function cancelForm() {
+  // Clear the form fields
+  document.querySelector("#team-name").value = "";
+  document.querySelector("#home-ground").value = "";
+  document.querySelector("#team-size").value = 16;
 
-  renderTeamList(); // Function to update the display with the new team
+  // Clear the logo preview
+  logoPreviewArea.innerHTML = "";
 
-  // Clear the form and prepare for next entry
-  resetForm(); // Reset form after successful team creation
-
-  // Optionally, redirect after successful creation (remove this if not required)
+  // Optionally, reset any other inputs or settings if needed
+  // For example, reset a drop-down list:
+  // document.querySelector("#team-leader").selectedIndex = 0;
 }
 
-// Cancel button functionality to reset form
 document
   .querySelector(".btn-cancel")
   .addEventListener("click", function (event) {
-    event.preventDefault(); // Prevent any default behavior
-    resetForm(); // Reset the form fields
+    event.preventDefault(); // Prevent default action
+    cancelForm(); // Call the cancel function
   });
-
-// Function to reset the form inputs
-function resetForm() {
-  document.querySelector("#team-name").value = "";
-  document.querySelector("#home-ground").value = "";
-  document.querySelector("#team-size").value = "";
-  logoPreviewArea.innerHTML = ""; // Clear logo preview
-}
 
 function showNotification(message, type = "success") {
   const container = document.getElementById("notification-container");
@@ -131,25 +130,4 @@ function showNotification(message, type = "success") {
   setTimeout(() => {
     notification.remove();
   }, 4000);
-}
-
-// Function to render the updated team list (for pagination or immediate display)
-function renderTeamList() {
-  const teamListContainer = document.querySelector("#team-list-container");
-  teamListContainer.innerHTML = ""; // Clear existing list
-
-  const teamsToRender = filteredData.slice(
-    (currentPage - 1) * teamsPerPage,
-    currentPage * teamsPerPage
-  );
-  teamsToRender.forEach((team) => {
-    const teamElement = document.createElement("div");
-    teamElement.classList.add("team");
-    teamElement.innerHTML = `
-      <h3>${team.teamName}</h3>
-      <p>${team.homeGround}</p>
-      <p>Size: ${team.teamSize}</p>
-    `;
-    teamListContainer.appendChild(teamElement);
-  });
 }
