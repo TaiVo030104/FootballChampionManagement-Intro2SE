@@ -3,8 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./styles/reset.css">
-    <link rel="stylesheet" href="./styles/addPages.css">
+    <link rel="stylesheet" href="../styles/reset.css">
+    <link rel="stylesheet" href="../styles/addPlayer.css">
+    <link rel="stylesheet" href="../styles/header.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Yellowtail&display=swap" rel="stylesheet">
@@ -12,49 +13,59 @@
     <title>Add Player</title>
   </head>
   <body>
-
-    <!--Header-->
-    <div class="header">
-      <img class="logo" src="assets/images/logo.png" alt="logo">
-      <div class="header-item">
-        <a href="" class="button">Match</a>
-        <a href="" class="button">Team</a>
-        <a href="" class="button">Player</a>
-        <a href="" class="button">Tournament</a>
+    <header>
+      <div class="header-logo">
+        <img src="../assets/images/Asset 1@4x 1.svg" alt="Logo" />
+        <h1>Football Championship</h1>
       </div>
-      <div class="check">
-        <img src="assets/images/user.png" alt="avatar" class="avatar">
+      <nav class="nav-tab">
+        <a href="./match.html">Match</a>
+        <a href="./team.html">Team</a>
+        <a href="./players.html">Player</a>
+        <a href="./prepare_match_report.html">Rank</a>
+        <a href="./edit_rule.html">Rule</a>
+      </nav>
+      <div class="item-3">
+        <a class="button" href="#">Login</a>
       </div>
-    </div>
+    </header>
 
     <!--Body-->
     <div class="body">
-      <div class="body-header">
         <h1 class="body-header-title">Add Player</h1>
-      </div>
         <div class="form-container">
             <form action="" class="form-content ">
                 <div class = "avatar-img">
-                    <img src="assets/images/avatarPlayer.svg" alt="avatar player">
+                    <img src="../assets/images/avatarPlayer.svg" alt="avatar player">
                 </div>
                 <div class = "content">
                     <div class ="detail">
                         <div class="form-group">
                             <label for="player-name">Player Name:</label>
-                            <input type="text" id="player-name" value="Nguyễn Thành Chung">
+                            <input type="text" id="player-name">
                           </div>
                           <div class="form-group">
                             <label for="team">Team:</label>
-                            <input type="text" id="team" value="Đội tuyển Quốc gia Việt Nam">
+                            <select id="team">
+                              <!-- Các đội bóng sẽ được thêm vào đây -->
+                            </select>
+                          </div>
+                          <div class="form-group">
+                            <label for="birthdate">BirthDay</label>
+                            <input type="date" id="birthdate" name="birthdate" />
                           </div>
                           <div class="form-group">
                             <label for="role">Role:</label>
-                            <input type="text" id="role" value="Center-back">
+                            <select id="role">
+                              <option value="TrongNuoc ">TrongNuoc</option>
+                              <option value="NgoaiNuoc ">NgoaiNuoc</option>
+                            </select>
+                            
                           </div>
                           <div class="form-group">
-                            <label for="goals">Number of Goals:</label>
-                            <input type="number" id="goals" value="3">
-                        </div>
+                            <label for="goals">Number of Goals:</label>                                       
+                            <input type="number" id="goals" value="0" readonly>
+                        </div>                
                     </div>
                     <div class ="note">
                         <p>Note</p>
@@ -68,12 +79,11 @@
         <div class="group-button">
                 <button class="btn-cancel">CANCEL</button>
                 <button class="btn-save">SAVE</button>
-        </div>
-      
-      
+        </div>  
+        <div id="notification-container"></div>  
     </div>
-    
-    
   </div>
+  <script src="../scripts/add_player.js"></script>
+  <script src="../scripts/main.js"></script>
 </body>
 </html>

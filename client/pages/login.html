@@ -5,28 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login Page</title>
     <link rel="stylesheet" href="../styles/login.css" />
+    <link rel="stylesheet" href="../styles/header.css" />
   </head>
   <body>
+    <!-- phần header -->
     <header>
-      <div class="logo item-1">
-        <img src="../assets/images/Asset 1@4x 1.png" />
-        <span class="header-title">Football Championship</span>
+      <div class="header-logo">
+        <img src="../assets/images/Asset 1@4x 1.svg" alt="Logo" />
+        <h1>Football Championship</h1>
       </div>
-      <nav class="item-2">
-        <ul class="nav-list">
-          <li class="nav-list-item"><a class="nav-link" href="#">Match</a></li>
-          <li class="nav-list-item"><a class="nav-link" href="#">Team</a></li>
-          <li class="nav-list-item"><a class="nav-link" href="#">Player</a></li>
-          <li class="nav-list-item">
-            <a class="nav-link" href="#">Tournament</a>
-          </li>
-        </ul>
+      <nav class="nav-tab">
+        <a href="./match.html">Match</a>
+        <a href="./team.html">Team</a>
+        <a href="./players.html">Player</a>
+        <a href="./prepare_match_report.html">Rank</a>
+        <a href="./edit_rule.html">Rule</a>
       </nav>
       <div class="item-3">
-        <a class="button" href="signup.html">Sign Up</a>
         <a class="button" href="#">Login</a>
       </div>
     </header>
+
     <main>
       <div class="container background-image">
         <div class="field"></div>
@@ -35,7 +34,7 @@
           <form action="#" id="login-form" method="">
             <!-- Email -->
             <div class="container-input">
-              <label for="email" class="label"> Email </label>
+              <label for="username" class="label"> Username </label>
               <svg
                 class="email"
                 xmlns="http://www.w3.org/2000/svg"
@@ -51,9 +50,9 @@
               </svg>
               <input
                 class="input"
-                type="email"
-                id="email"
-                placeholder="Enter your email address"
+                type="text"
+                id="username"
+                placeholder="Enter your username"
                 value=""
                 required
               />
@@ -63,6 +62,7 @@
               <label for="password" class="label"> Password </label>
               <div class="flex">
                 <svg
+                class="password"
                   xmlns="http://www.w3.org/2000/svg"
                   width="16"
                   height="16"
@@ -92,33 +92,6 @@
                   value=""
                   required
                 />
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  viewBox="0 0 16 16"
-                  fill="none"
-                >
-                  <g clip-path="url(#clip0_0_441)">
-                    <path
-                      d="M7.87842 5.46574L10.1688 7.75613L10.1797 7.63616C10.1797 6.43278 9.20177 5.45483 7.99839 5.45483L7.87842 5.46574Z"
-                      fill="#4B5563"
-                    />
-                    <path
-                      d="M7.99807 4.00074C10.0049 4.00074 11.6336 5.62947 11.6336 7.63629C11.6336 8.10527 11.5391 8.55244 11.3755 8.96325L13.5023 11.09C14.6002 10.1739 15.4655 8.98871 15.9999 7.63629C14.7384 4.4443 11.6373 2.18298 7.9981 2.18298C6.98014 2.18298 6.00584 2.36475 5.10059 2.69195L6.67114 4.25885C7.08191 4.0989 7.52908 4.00074 7.99807 4.00074Z"
-                      fill="#4B5563"
-                    />
-                    <path
-                      d="M0.727096 2.01947L2.3849 3.67727L2.71575 4.00812C1.51602 4.94609 0.567144 6.19309 0 7.63637C1.25791 10.8284 4.36264 13.0897 7.99819 13.0897C9.12522 13.0897 10.2013 12.8715 11.1866 12.4753L11.4956 12.7843L13.6151 14.9074L14.5422 13.984L1.65416 1.09241L0.727096 2.01947ZM4.74802 6.03675L5.8714 7.16013C5.83868 7.31647 5.81687 7.47278 5.81687 7.63637C5.81687 8.83975 6.79482 9.8177 7.99819 9.8177C8.16179 9.8177 8.31813 9.79588 8.47082 9.76316L9.5942 10.8865C9.11067 11.1265 8.57263 11.2719 7.99819 11.2719C5.99138 11.2719 4.36264 9.64319 4.36264 7.63637C4.36264 7.06197 4.50808 6.5239 4.74802 6.03675Z"
-                      fill="#4B5563"
-                    />
-                  </g>
-                  <defs>
-                    <clipPath id="clip0_0_441">
-                      <rect width="16" height="16" fill="white" />
-                    </clipPath>
-                  </defs>
-                </svg>
               </div>
             </div>
             <label for="remember-me" class="remember-me">
@@ -137,14 +110,10 @@
               </button>
             </div>
             <!-- Log in -->
-            <div class="container-input no-border form-bottom-style">
-              <span class="span-style-1">Create account</span>
-              <span class="span-style-2">Remember your password</span>
-              <a class="log-in" href="reset_password.html">Reset password</a>
-            </div>
           </form>
         </div>
       </div>
     </main>
+    <script src="../scripts/login.js"></script>
   </body>
 </html>

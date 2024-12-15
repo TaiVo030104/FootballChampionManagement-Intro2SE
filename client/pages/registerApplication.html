@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./styles/reset.css">
+    <link rel="stylesheet" href="../styles/header.css" />
     <link rel="stylesheet" href="./styles/registerApplication.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,18 +15,22 @@
   <body>
 
     <!--Header-->
-    <div class="header">
-      <img class="logo" src="assets/images/logo.png" alt="logo">
-      <div class="header-item">
-        <a href="" class="button">Match</a>
-        <a href="" class="button">Team</a>
-        <a href="" class="button">Player</a>
-        <a href="" class="button">Tournament</a>
-      </div>
-      <div class="check">
-        <img src="assets/images/user.png" alt="avatar" class="avatar">
-      </div>
-    </div>
+    <header>
+        <div class="header-logo">
+          <img src="../assets/images/Asset 1@4x 1.svg" alt="Logo" />
+          <h1>Football Championship</h1>
+        </div>
+        <nav class="nav-tab">
+            <a href="./match.html">Match</a>
+            <a href="./team.html">Team</a>
+            <a href="./players.html">Player</a>
+            <a href="./prepare_match_report.html">Rank</a>
+            <a href="./edit_rule.html">Rule</a>
+          </nav>
+        <div class="item-3">
+          <a class="button" href="#">Login</a>
+        </div>
+      </header>
 
     <!--Body-->
     <div class="body">
@@ -132,5 +137,7 @@
     
     
   </div>
+  <script src="../scripts/main.js"></script>
+
 </body>
 </html>

@@ -26,78 +26,9 @@ main
     margin: 0 auto;
 }
 
-  /* Dành cho header */
-header
-{
-    display: flex;
-    justify-content: space-around;
+ /* Phần header */
 
-    background: #3D8361;
-
-}
-.item-1
-{
-    width: 25%;
-    /* border: 1px solid red; */
-    margin-top: .94rem;
-    margin-bottom: 1.12rem;
-    display: flex;
-}
-.item-2
-{
-    width: 50%;
-    margin-top: 1.56rem;
-    margin-bottom: 1.63rem;
-}
-.item-3
-{
-    width: 15%;
-    /* border: 1px solid red; */
-    display: flex;
-    justify-content: flex-end;
-    align-items: flex-start;
-    margin-bottom: 0.5rem;
-}
-.header-title
-{
-    align-self: flex-start;
-    margin-left: .5rem;
-    /* border: 1px solid red; */
-    color: #FFF;
-    font-family: "SeoulHangang CM";
-    font-size: 1.5rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-}
-.nav-list
-{
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    /* border: 1px solid red; */
-}
-.nav-list-item
-{
-    margin: 0 4rem;
-
-    
-    
-}
-.nav-link
-{
-    text-decoration: none;
-    color: #FCFCFC;
-    font-family: "Exo 2";
-    font-size: 1.25rem;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-}
-/* .nav-link:hover
-{
-
-} */
+/* Kết thúc phần header */
 .button
 {
     margin-right: .5rem;
@@ -135,7 +66,7 @@ header
     margin: 0 auto;
     margin-bottom: 1.25rem;
 
-    overflow: auto;
+    overflow: none;
 
 
     font-family: var(--font-family-Font-1, Manrope);
@@ -197,8 +128,41 @@ header
     margin: 0 4px;
     
   }
+  /* Trang */
+  /* CSS nút phân trang */
+.pagination {
+  display: flex;
+  justify-content: center;
+}
 
-  .pagination {
+.pagination button {
+  color: #FFF;
+  text-align: center;
+  font-family: Roboto;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  border: none;
+
+  width: var(--height-31, 1.9375rem);
+  height: 1.875rem;
+  border-radius: 0.375rem;
+  background: #80AF81;
+  margin-left: 0.63rem;
+  cursor: pointer;
+  transition: #3D8361 0.3s;
+}
+
+.pagination button.active {
+  background-color: #3D8361;
+}
+
+.pagination button.ect {
+  background: transparent;
+  pointer-events: none; /* Không cho phép nhấn vào nút "..." */
+}
+  /* .pagination {
     display: flex;
     justify-content: center;
   }
@@ -228,7 +192,7 @@ header
   .pagination button.ect
   {
     background: transparent;
-  }
+  } */
 
   .circle {
     width: 1.125rem;
@@ -251,12 +215,27 @@ header
     line-height: var(--line-height-48, 3rem); /* 480% */
 
   }
-  .circle:empty {
+  /* .circle:empty {
     background-color: transparent;
   }
   
   .circle:not(:empty) {
 background: #32A72C;
-  }
+  } */
+   
+   /* Không có dữ liệu */
+.circle:empty {
+  background-color: transparent;
+}
+
+/* Màu cho giá trị 'W' */
+.circle.win {
+  background-color: #32A72C; /* Màu xanh lá */
+}
+
+/* Màu cho giá trị 'D' */
+.circle.draw {
+  background-color: #C1C2D5; /* Màu xám */
+}
 
   

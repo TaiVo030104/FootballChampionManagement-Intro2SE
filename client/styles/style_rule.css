@@ -2,7 +2,7 @@
   box-sizing: border-box;
 }
 
-header {
+/* header {
   height: 75px;
   background: #3d8361;
   display: flex;
@@ -16,9 +16,25 @@ header {
   font-weight: 400;
   color: white;
   margin-left: 10px;
-}
+} */
+.button
+{
+    margin-right: .5rem;
 
-.header-logo {
+    text-decoration: none;
+    color: #3D8361;
+    font-family: "Exo 2";
+    font-size: 0.9375rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 1.40625rem; /* 1.40625rem */
+    padding: 0.5rem 0.4375rem 0.47319rem 0.5625rem;
+
+    border-radius: 0.5rem;
+    background: #FCFCFC;
+    flex-shrink: 0;
+}
+/* .header-logo {
   display: flex;
   align-items: center;
 }
@@ -34,7 +50,11 @@ nav a {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
 }
-
+nav a:hover {
+  background-color: #fff;
+  color: #3d8361;
+  border-radius: 5px;
+} */
 body {
   background-image: url("../assets/images/Group 448.svg");
   background-size: cover;
@@ -53,8 +73,8 @@ body {
 .rule_content {
   background: white;
   display: inline-flex;
-  margin-left: 159px;
-  margin-right: 50px;
+  /* margin-left: 159px;
+  margin-right: 50px; */
   font-family: "Roboto";
   border-radius: 8px;
 }
@@ -163,4 +183,8 @@ label {
   border: none;
   cursor: pointer;
   font-weight: 700;
+}
+.container
+{
+  text-align: center;
 }

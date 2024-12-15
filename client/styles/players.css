@@ -1,0 +1,269 @@
+body {
+  font-family: "Exo 2", sans-serif;
+  background-image: url("../assets/images/Group 448.svg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: repeat;
+  margin: 0; /* Remove default margin */
+  /* height: 100vh; Set to full viewport height */
+  display: flex;
+  flex-direction: column;
+}
+.button
+{
+    margin-right: .5rem;
+
+    text-decoration: none;
+    color: #3D8361;
+    font-family: "Exo 2";
+    font-size: 0.9375rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 1.40625rem; /* 1.40625rem */
+    padding: 0.5rem 0.4375rem 0.47319rem 0.5625rem;
+
+    border-radius: 0.5rem;
+    background: #FCFCFC;
+    flex-shrink: 0;
+}
+
+
+.body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+  justify-content: flex-start;
+  flex-grow: 1;
+  width: 100%;
+}
+.body-header {
+  display: flex;
+  flex-direction: column; /* Stack elements vertically */
+  align-items: flex-start; /* Align items to the left */
+  padding: 20px;
+  width: 100%;
+}
+
+.body-header-title {
+  font-size: 24px;
+  color: #000;
+  padding-left: 20px;
+}
+
+.search-container {
+  display: flex; /* Align items horizontally */
+  gap: 20px; /* Space between search bar and button */
+  margin-top: 10px; /* Space between title and search */
+  width: 100%; /* Ensure it takes full width */
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  border-bottom: 2px solid #c6c6c6; /* Adds an underline to both icon and input */
+  padding-bottom: 3px;
+}
+.btn-search {
+  margin-right: 5px;
+  color: #c6c6c6;
+}
+
+.search-bar {
+  width: 200px;
+  padding: 5px 10px;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  background-color: transparent;
+  color: inherit;
+}
+
+.add-btn {
+  width: 105px;
+  height: 40px;
+  background-color: #3d8361;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 20px;
+  margin-left: auto;
+  margin-right: 20px;
+}
+
+.table {
+  width: 100%; /* Make the table container full width */
+  padding: 20px;
+}
+
+.player-table {
+  width: 100%; /* Make the table itself full width */
+  border-collapse: collapse;
+  text-align: center;
+}
+
+.header-title th {
+  background-color: #f2f2f2;
+  padding: 10px;
+  font-weight: bold;
+}
+
+.player-table th,
+.player-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+.player-table tbody tr:nth-child(even) {
+  background-color: #f2f2f2; /* Background color for odd rows */
+}
+
+.player-table tbody tr:nth-child(odd) {
+  background-color: #ffffff; /* Background color for even rows */
+}
+
+/* Make the Serial Number column narrower */
+.player-table th:first-child,
+.player-table td:first-child {
+  width: 5%; /* Adjust width as needed */
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+}
+
+.actions span {
+  margin: 0 5px;
+}
+
+.player-table .edit-icon,
+.player-table .delete-icon {
+  font-size: 16px;
+  color: #4f81bd;
+  cursor: pointer;
+}
+
+.player-table .delete-icon {
+  margin-left: 30px;
+  color: #d9534f;
+}
+
+.pagination-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding-bottom: 20px;
+  margin-top: auto;
+  position: relative;
+}
+.home-product__pagination {
+  display: flex;
+  gap: 5px;
+  list-style: none;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  flex-grow: 1;
+}
+.pagination-link {
+  width: 30px;
+  height: 30px;
+  color: #fff;
+  background-color: #80af81;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.pagination-doc {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 12px;
+  color: #80af81;
+  text-decoration: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+
+.pagination-icon {
+  font-size: 16px;
+}
+
+.pagination-link:hover {
+  background-color: #3d8361;
+}
+
+.pagination-active .pagination-link {
+  background-color: #3d8361;
+  color: white;
+}
+
+.pagination-doc {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 12px;
+  color: #80af81;
+  text-decoration: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  transition: background-color 0.3s, border-color 0.3s;
+  font-style: normal;
+}
+
+.pagination-icon {
+  font-size: 16px;
+  font-style: normal;
+}
+
+.pagination-link:hover {
+  background-color: #3d8361;
+}
+
+.pagination-active .pagination-link {
+  background-color: #3d8361;
+  color: white;
+}
+
+/* Định nghĩa CSS cho container thông báo */
+.notification-container {
+  display: none;
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  padding: 15px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: none;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+/* Màu sắc cho thông báo thành công */
+.notification-container.success {
+  background-color: #d4edda; /* Xanh nhạt */
+  color: #26913f; /* Xanh đậm */
+}
+
+/* Màu sắc cho thông báo lỗi */
+.notification-container.error {
+  background-color: #f8d7da; /* Đỏ nhạt */
+  color: #8d353e; /* Đỏ đậm */
+}
+
+/* Nút đóng thông báo */
+.notification-container .close-btn {
+  margin-left: 10px;
+  cursor: pointer;
+  font-size: 18px;
+  color: inherit;
+}

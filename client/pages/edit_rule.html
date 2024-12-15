@@ -5,93 +5,105 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="../styles/reset.css">
         <link rel="stylesheet" href="../styles/style_rule.css">
+        <link rel="stylesheet" href="../styles/header.css" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Yellowtail&display=swap"
+            rel="stylesheet">
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
         <title>Edit rule</title>
     </head>
     <body>
         <!-- phần header -->
         <header>
             <div class="header-logo">
-                <!-- <img src="./assets/img/Asset 1@4x 1.svg" alt="Logo"> -->
-                <img src="../assets/images/Asset 1@4x 1.svg" alt="Logo">
-                <h1>Football Championship</h1>
+              <img src="../assets/images/Asset 1@4x 1.svg" alt="Logo" />
+              <h1>Football Championship</h1>
             </div>
             <nav class="nav-tab">
-                <a href="#">Match</a>
-                <a href="#">Team</a>
-                <a href="#">Player</a>
-                <a href="#">Tournament</a>
-            </nav>
-            <div class="profile-icon">
-                <!-- <img src="./assets/img/Male_User.svg" alt="Profile Icon"> -->
-                <img src="../assets/images/Male_User.svg" alt="Profile Icon">
+                <a href="./match.html">Match</a>
+                <a href="./team.html">Team</a>
+                <a href="./players.html">Player</a>
+                <a href="./prepare_match_report.html">Rank</a>
+                <a href="./edit_rule.html">Rule</a>
+              </nav>
+            <div class="item-3">
+              <a class="button" href="#">Login</a>
             </div>
-        </header>
+          </header>
         <!-- Phần main -->
         <main>
-            <section class="view_rules">
-                <h2>VIEW RULE</h2>
-                <div class="rule_content">
-                    <div class="logo_rule">
-                        <!-- <img src="./assets/img/i.svg" alt="NWSL Logo"> -->
-                        <img src="./assets/images/i.svg" alt="NWSL Logo">
-                        <h3>NWSL</h3>
+                <section class="view_rules">
+                    <h2>VIEW RULE</h2>
+                    <div class = "container">
+                        <div class="rule_content">
+                            <div class="logo_rule">
+                                <img src="../assets/images/i.svg" alt="NWSL Logo">
+                                <h3>NWSL</h3>
+                            </div>
+                            <div class="rule-form">
+                                <div class="grid-item r1">
+                                    <label>Points for a win:</label>
+                                    <input type="number" id="pointsForWin"
+                                        readonly>
+                                </div>
+                                <div class="grid-item r2">
+                                    <label>Points for a loss:</label>
+                                    <input type="number" id="pointsForLoss" readonly>
+                                </div>
+                                <div class="grid-item r3">
+                                    <label>Points for a draw:</label>
+                                    <input type="number" id="pointsForDraw" readonly>
+                                </div>
+                                <div class="grid-item r4">
+                                    <label>Relegated Teams:</label>
+                                    <input type="number" id="relegatedTeams" readonly>
+                                </div>
+                                <div class="grid-item r5">
+                                    <label>Participating Teams:</label>
+                                    <input type="number" id="participatingTeams"
+                                        readonly>
+                                </div>
+                                <div class="grid-item r6">
+                                    <label>Champions League Teams:</label>
+                                    <input type="number" id="championsLeagueTeams"
+                                        readonly>
+                                </div>
+                                <div class="grid-item r7">
+                                    <label>Europa League Teams:</label>
+                                    <input type="number" id="europaLeagueTeams"
+                                        readonly>
+                                </div>
+                                <div class="grid-item r8">
+                                    <label>Max Foreign Players:</label>
+                                    <input type="number" id="maxForeignPlayers"
+                                        readonly>
+                                </div>
+                                <div class="grid-item r9">
+                                    <label>Max Added Time:</label>
+                                    <input type="number" id="maxAddedTime" readonly>
+                                </div>
+                                <div class="grid-item r10">
+                                    <label>Age Limit:</label>
+                                    <input type="number" id="ageLimitMin" readonly>
+                                    <input type="number" id="ageLimitMax" readonly>
+                                </div>
+                                <div class="grid-item r11">
+                                    <label>Player Limit:</label>
+                                    <input type="number" id="playerLimitMin" readonly>
+                                    <input type="number" id="playerLimitMax" readonly>
+                                </div>
+                                <div class="grid-text r12">
+                                    <label>Ranking Criteria:</label>
+                                    <input type="text"
+                                        id="rankingCriteria"
+                                        readonly>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="rule-form">
-                        <div class="grid-item r1">
-                            <label>Points for a win:</label>
-                            <input type="number" value="3"
-                                readonly>
-                        </div>
-                        <div class="grid-item r2">
-                            <label>Points for a loss:</label>
-                            <input type="number" value="0" readonly>
-                        </div>
-                        <div class="grid-item r3">
-                            <label>Points for a draw:</label>
-                            <input type="number" value="0" readonly>
-                        </div>
-                        <div class="grid-item r4">
-                            <label>Relegated Teams:</label>
-                            <input type="number" value="3" readonly>
-                        </div>
-                        <div class="grid-item r5">
-                            <label>Participating Teams:</label>
-                            <input type="number" value="4" readonly>
-                        </div>
-                        <div class="grid-item r6">
-                            <label>Champions League Teams:</label>
-                            <input type="number" value="2" readonly>
-                        </div>
-                        <div class="grid-item r7">
-                            <label>Europa League Teams:</label>
-                            <input type="number" value="2" readonly>
-                        </div>
-                        <div class="grid-item r8">
-                            <label>Max Foreign Players:</label>
-                            <input type="number" value="1" readonly>
-                        </div>
-                        <div class="grid-item r9">
-                            <label>Max Added Time:</label>
-                            <input type="number" value="1" readonly>
-                        </div>
-                        <div class="grid-item r10">
-                            <label>Age Limit:</label>
-                            <input type="number" value="1" readonly>
-                            <input type="number" value="1" readonly>
-                        </div>
-                        <div class="grid-item r11">
-                            <label>Player Limit:</label>
-                            <input type="number" value="1" readonly>
-                            <input type="number" value="1" readonly>
-                        </div>
-                        <div class="grid-text r12">
-                            <label>Ranking Criteria:</label>
-                            <input type="text"
-                                value="points - goals scored - and goal difference"
-                                readonly>
-                        </div>
-                    </div>
-
                 </section>
                 <div class="btn">
                     <button class="cancel-btn"
@@ -102,6 +114,7 @@
 
                 </div>
             </main>
-            <script src="./scripts/jvscript.js"></script>
+            <script src="../scripts/edit_rule.js"></script>
+            <script src="../scripts/main.js"></script>
         </body>
     </html>

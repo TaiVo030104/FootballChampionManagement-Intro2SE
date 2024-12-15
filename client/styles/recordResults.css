@@ -1,57 +1,37 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%; /* Chiều cao luôn chiếm toàn bộ viewport */
+}
+
 body {
     font-family: 'Exo 2', sans-serif;
     background-image: url('../assets/images/background.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    margin: 0; /* Remove default margin */
-    height: 100vh; /* Set to full viewport height */
+    background-size: cover; /* Ảnh bao phủ toàn bộ màn hình */
+    background-position: center; /* Canh giữa */
+    background-repeat: no-repeat; /* Không lặp */
     display: flex;
     flex-direction: column;
+    min-height: 100vh; /* Đảm bảo chiều cao tối thiểu là viewport height */
 }
+.button
+{
+    margin-right: .5rem;
 
-.header {
-    height: 60px;
-    background-color: #3D8361;
-    display: flex;
-    align-items: center; 
-    justify-content: space-between; 
-
-}
-
-.logo {
-    width: 270px;
-    height: 45px;
-    margin: 0 30px;
-}
-.header-item {
-    display: flex;
-    justify-content: center; 
-    gap: 100px; 
-}
-  
-.button {
-
-    color: white; 
-    font-weight: bold; 
     text-decoration: none;
-    font-size: 20px;
-    padding: 2px 2px;
-    border-radius: 5px;
-    transition: color 0.3s, background-color 0.3s; 
-}
-
-.button:hover {
     color: #3D8361;
-    background-color: #fff;
+    font-family: "Exo 2";
+    font-size: 0.9375rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 1.40625rem; /* 1.40625rem */
+    padding: 0.5rem 0.4375rem 0.47319rem 0.5625rem;
+
+    border-radius: 0.5rem;
+    background: #FCFCFC;
+    flex-shrink: 0;
 }
 
-.avatar {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    margin: 0 30px;
-}
 .body {
     display: flex;
     flex-direction: column;
@@ -86,6 +66,13 @@ body {
     justify-content: center;
     text-align: center;
 }
+.player-table thead {
+    background-color: #cccccc; /* Màu xám */
+    padding: 10px;
+    font-weight: bold;
+    color: black; /* Văn bản màu đen cho dễ đọc */
+}
+
 
 .details {
     flex: 2; /* Chiếm nhiều diện tích hơn để ở giữa */
@@ -207,7 +194,30 @@ body {
     margin: 0 5px;
 }
 
-
+.player-table input {
+    width: 100%;
+    border: none;
+    outline: none;
+    background: transparent;
+    padding: 5px;
+    font-size: 14px;
+    font-family: inherit;
+    text-align: left;
+    box-sizing: border-box;
+  }
+  
+  .player-table td {
+    padding: 10px;
+  }
+  
+  
+  .btn-remove i {
+    color: red;
+    cursor: pointer;
+    font-size: 16px;
+    background-color: none;
+  }
+  
 .player-table .edit-icon, .player-table .delete-icon {
     font-size: 16px; 
     color: #3D8361; 
