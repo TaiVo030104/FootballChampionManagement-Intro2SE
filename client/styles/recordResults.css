@@ -356,3 +356,31 @@ select, input {
 .btn-add {
     margin-right: 110px; /* Slight adjustment to space the Add button */
 }
+#notification-container {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 1000;
+    width: 300px;
+  }
+  
+  .notification {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    transform: translateY(-10px);
+    animation: fadeInOut 4s forwards;
+  }
+  
+  .notification.success {
+    background-color: #4CAF50;
+  }
+  
+  .notification.error {
+    background-color: #F44336;
+  }
+  

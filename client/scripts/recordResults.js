@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   async function fetchPlayers(team1Name, team2Name) {
     try {
-      const response = await fetch(PLAYERS_API_URL, {
+      const response = await fetch(`${PLAYERS_API_URL}&limit=1000`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -97,7 +97,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
   async function fetchPlayers(team1Name, team2Name) {
     try {
-      const response = await fetch(PLAYERS_API_URL, {
+      const response = await fetch(`${PLAYERS_API_URL}?limit=1000`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -261,10 +261,10 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   addButton.addEventListener("click", () => {
-    if (Object.keys(window.playersMap).length === 0) {
-      console.error("Players list is not available:", window.playersMap);
-      return;
-    }
+    // if (Object.keys(window.playersMap).length === 0) {
+    //   console.error("Players list is not available:", window.playersMap);
+    //   return;
+    // }
 
     const newRow = document.createElement("tr");
     const playerDropdown = `
@@ -380,19 +380,35 @@ document.addEventListener("DOMContentLoaded", async () => {
         },
         body: JSON.stringify(matchUpdateData),
       });
+      if (goalData.length > 0) {
+        await fetch(`${GOALS_API_URL}/${matchId}`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+          body: JSON.stringify(goalData),
+        });
+      } else {
+        console.error("No data goals to save");
+        showNotification("No data goals to save", "error");
+      }
 
-      await fetch(`${GOALS_API_URL}/${matchId}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-        body: JSON.stringify(goalData),
-      });
-
-      window.location.reload();
+      //window.location.reload();
     } catch (error) {
       console.error("Error saving data:", error);
     }
   });
 });
+function showNotification(message, type) {
+  const container = document.getElementById("notification-container");
+  const notification = document.createElement("div");
+  notification.className = `notification ${type}`;
+  notification.innerText = message;
+  container.appendChild(notification);
+  console.log("Notification:", container);
+  // Automatically remove notification after 4 seconds
+  setTimeout(() => {
+    notification.remove();
+  }, 4000);
+}

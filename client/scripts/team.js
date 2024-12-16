@@ -128,49 +128,49 @@ function updatePagination(data) {
 }
 
 // Change page functionality
-function changePage(page) {
-  const totalPages = Math.ceil(filteredData.length / teamsPerPage); // Recalculate total pages based on filtered data
-  if (page < 1 || page > totalPages) return; // Don't allow out of bounds pages
+// function changePage(page) {
+//   const totalPages = Math.ceil(filteredData.length / teamsPerPage); // Recalculate total pages based on filtered data
+//   if (page < 1 || page > totalPages) return; // Don't allow out of bounds pages
 
-  currentPage = page; // Update current page
-  renderTable(currentPage, filteredData); // Re-render the table
-  updatePagination(filteredData); // Update pagination controls
-}
+//   currentPage = page; // Update current page
+//   renderTable(currentPage, filteredData); // Re-render the table
+//   updatePagination(filteredData); // Update pagination controls
+// }
 
 // Delete team item
-async function deleteItem(index) {
-  const teamId = teamData[index].id;
+// async function deleteItem(index) {
+//   const teamId = teamData[index].id;
 
-  try {
-    const response = await fetch(`${API_BASE}/${teamId}`, {
-      method: "DELETE",
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-      },
-    });
-    if (response.ok) {
-      showNotification("Team deleted successfully!");
-      teamData.splice(index, 1);
-      filteredData = [...teamData];
+//   try {
+//     const response = await fetch(`${API_BASE}/${teamId}`, {
+//       method: "DELETE",
+//       headers: {
+//         Authorization: `Bearer ${localStorage.getItem("token")}`,
+//       },
+//     });
+//     if (response.ok) {
+//       showNotification("Team deleted successfully!");
+//       teamData.splice(index, 1);
+//       filteredData = [...teamData];
 
-      // Update current page if necessary (handle page out of bounds)
-      const totalPages = Math.ceil(filteredData.length / teamsPerPage);
-      if (currentPage > totalPages) {
-        currentPage = totalPages; // Go to the last page if the current one is empty
-      }
+//       // Update current page if necessary (handle page out of bounds)
+//       const totalPages = Math.ceil(filteredData.length / teamsPerPage);
+//       if (currentPage > totalPages) {
+//         currentPage = totalPages; // Go to the last page if the current one is empty
+//       }
 
-      renderTable(currentPage, filteredData); // Re-render the table with the updated data
-      updatePagination(filteredData); // Update pagination
-    } else {
-      const errorData = await response.json();
-      console.error("Failed to delete team:", response.status, errorData);
-      showNotification("Error deleting the team.");
-    }
-  } catch (error) {
-    console.error("Error:", error);
-    showNotification("Failed to delete the team.");
-  }
-}
+//       renderTable(currentPage, filteredData); // Re-render the table with the updated data
+//       updatePagination(filteredData); // Update pagination
+//     } else {
+//       const errorData = await response.json();
+//       console.error("Failed to delete team:", response.status, errorData);
+//       showNotification(errorData.message, "error");
+//     }
+//   } catch (error) {
+//     console.error("Error:", error);
+//     showNotification("Failed to delete the team.", "error");
+//   }
+// }
 
 // Change page functionality
 function changePage(page) {
@@ -191,7 +191,7 @@ async function deleteItem(index) {
       },
     });
     if (response.ok) {
-      showNotification("Team deleted successfully!");
+      showNotification("Team deleted successfully!", "success");
       teamData.splice(index, 1);
       filteredData = [...teamData];
 
@@ -206,11 +206,11 @@ async function deleteItem(index) {
     } else {
       const errorData = await response.json();
       console.error("Failed to delete team:", response.status, errorData);
-      showNotification("Error deleting the team.");
+      showNotification(errorData.message, "error");
     }
   } catch (error) {
     console.error("Error:", error);
-    showNotification("Failed to delete the team.");
+    showNotification("Failed to delete the team.", "error");
   }
 }
 
@@ -258,16 +258,16 @@ async function saveEdit(index) {
     });
 
     if (response.ok) {
-      showNotification("Team updated successfully!");
+      showNotification("Team updated successfully!", "success");
       fetchTeams(); // Refresh the table
     } else {
       const errorData = await response.json();
       console.error("Failed to update team:", errorData);
-      showNotification("Error updating the team.");
+      showNotification(errorData.message, "error");
     }
   } catch (error) {
     console.error("Error updating the team:", error);
-    showNotification("Failed to update the team.");
+    showNotification("Failed to update the team.", "error");
   }
 }
 
@@ -277,7 +277,7 @@ window.onload = () => {
   setupSearch();
 };
 
-function showNotification(message, type = "success") {
+function showNotification(message, type) {
   const container = document.getElementById("notification-container");
   const notification = document.createElement("div");
   notification.className = `notification ${type}`;
