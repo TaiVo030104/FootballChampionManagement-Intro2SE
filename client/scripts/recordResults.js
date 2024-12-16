@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const goalsPerPage = 7;
   async function fetchPlayers(team1Name, team2Name) {
     try {
-      const response = await fetch(`${PLAYERS_API_URL}&limit=1000`, {
+      const response = await fetch(`${PLAYERS_API_URL}?limit=1000`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
