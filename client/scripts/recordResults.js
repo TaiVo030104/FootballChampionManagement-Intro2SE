@@ -1,12 +1,14 @@
-
 document.addEventListener("DOMContentLoaded", async () => {
-  const API_URL = "https://footballchampionshipmanagement.onrender.com/api/v1/matches";
-  const PLAYERS_API_URL = "https://footballchampionshipmanagement.onrender.com/api/v1/players";
-  const GOALS_API_URL = "https://footballchampionshipmanagement.onrender.com/api/v1/goals";
+  const API_URL =
+    "https://footballchampionshipmanagement.onrender.com/api/v1/matches";
+  const PLAYERS_API_URL =
+    "https://footballchampionshipmanagement.onrender.com/api/v1/players";
+  const GOALS_API_URL =
+    "https://footballchampionshipmanagement.onrender.com/api/v1/goals";
   const matchId = new URLSearchParams(window.location.search).get("id");
-  let goals = []; 
-  let currentPage = 1; 
-  const goalsPerPage = 7; 
+  let goals = [];
+  let currentPage = 1;
+  const goalsPerPage = 7;
   if (!matchId) {
     console.error("No match ID provided in the URL.");
     return;
@@ -23,8 +25,15 @@ document.addEventListener("DOMContentLoaded", async () => {
       const data = await response.json();
       console.log("Response data:", data);
 
-      if (data.status !== "success" || !data.data || !Array.isArray(data.data.players)) {
-        console.error("Unexpected response format or players list is missing:", data);
+      if (
+        data.status !== "success" ||
+        !data.data ||
+        !Array.isArray(data.data.players)
+      ) {
+        console.error(
+          "Unexpected response format or players list is missing:",
+          data
+        );
         return {};
       }
 
@@ -119,10 +128,10 @@ document.addEventListener("DOMContentLoaded", async () => {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       });
-  
+
       const data = await response.json();
       console.log("Full response from fetchGoals:", data);
-  
+
       // Directly access the goals array
       if (data && data.goals) {
         goals = data.goals; // Lưu dữ liệu vào biến toàn cục
@@ -139,11 +148,11 @@ document.addEventListener("DOMContentLoaded", async () => {
   function renderGoalsTable(goals) {
     const goalsTableBody = document.getElementById("goals-table-body");
     goalsTableBody.innerHTML = ""; // Clear table trước khi render mới
-  
+
     // Tính khoảng index dữ liệu cần hiển thị
     const startIndex = (currentPage - 1) * goalsPerPage;
     const endIndex = Math.min(startIndex + goalsPerPage, goals.length);
-  
+
     // Duyệt qua mục trong khoảng cần hiển thị
     for (let i = startIndex; i < endIndex; i++) {
       const goal = goals[i];
@@ -158,15 +167,17 @@ document.addEventListener("DOMContentLoaded", async () => {
       `;
       goalsTableBody.appendChild(newRow);
     }
-  
+
     renderPagination(goals.length);
   }
-  
+
   function renderPagination(totalItems) {
     const totalPages = Math.ceil(totalItems / goalsPerPage);
-    const paginationContainer = document.querySelector(".home-product__pagination");
+    const paginationContainer = document.querySelector(
+      ".home-product__pagination"
+    );
     paginationContainer.innerHTML = ""; // Clear pagination trước khi render mới
-  
+
     // Tạo nút Previous
     const prevPage = document.createElement("li");
     prevPage.classList.add("pagination");
@@ -178,7 +189,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
     });
     paginationContainer.appendChild(prevPage);
-  
+
     // Tạo nút số trang
     for (let i = 1; i <= totalPages; i++) {
       const page = document.createElement("li");
@@ -191,7 +202,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       });
       paginationContainer.appendChild(page);
     }
-  
+
     // Tạo nút Next
     const nextPage = document.createElement("li");
     nextPage.classList.add("pagination");
@@ -204,13 +215,16 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
     paginationContainer.appendChild(nextPage);
   }
-  
+
   const matchDetails = await fetchMatchDetails();
- 
+
   if (matchDetails) {
     const goals = await fetchGoals(matchId);
-  
-    window.playersMap = await fetchPlayers(matchDetails.team1Name, matchDetails.team2Name);
+
+    window.playersMap = await fetchPlayers(
+      matchDetails.team1Name,
+      matchDetails.team2Name
+    );
   } else {
     console.error("Failed to fetch match details. Cannot fetch players.");
   }
@@ -236,12 +250,12 @@ document.addEventListener("DOMContentLoaded", async () => {
   function attachPlayerChangeHandler(playerDropdown, teamDisplay) {
     playerDropdown.addEventListener("change", () => {
       const playerName = playerDropdown.value;
-      const playerData = window.playersMap[playerName]; 
+      const playerData = window.playersMap[playerName];
 
       if (playerData) {
-        teamDisplay.value = playerData.team || ""; 
+        teamDisplay.value = playerData.team || "";
       } else {
-        teamDisplay.value = ""; 
+        teamDisplay.value = "";
       }
     });
   }
@@ -257,7 +271,10 @@ document.addEventListener("DOMContentLoaded", async () => {
       <select class="player-name">
         <option value="">Select Player</option>
         ${Object.keys(window.playersMap)
-          .map((playerName) => `<option value="${playerName}">${playerName}</option>`)
+          .map(
+            (playerName) =>
+              `<option value="${playerName}">${playerName}</option>`
+          )
           .join("")}
       </select>`;
     const goalTypeDropdown = `
@@ -277,10 +294,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     playerTableBody.appendChild(newRow);
     serialNumber++;
-
-  
-
-
     const playerDropdownElement = newRow.querySelector(".player-name");
     const teamDisplayElement = newRow.querySelector(".team-name");
     const timeInput = newRow.querySelector(".time");
@@ -290,34 +303,34 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   playerTableBody.addEventListener("click", async (event) => {
     const target = event.target;
-  
-  
-    if (target.classList.contains("trash-btn") || target.closest(".btn-remove")) {
+
+    if (
+      target.classList.contains("trash-btn") ||
+      target.closest(".btn-remove")
+    ) {
       const row = target.closest("tr");
       const goalTimeInput = row.children[4].textContent.trim();
-      console.log("Row HTML:", row.innerHTML); 
-      console.log("Goal Time Input:", goalTimeInput); 
+      console.log("Row HTML:", row.innerHTML);
+      console.log("Goal Time Input:", goalTimeInput);
       if (goalTimeInput) {
         const deleteGoalUrl = `${GOALS_API_URL}/${matchId}/${goalTimeInput}`;
-  
+
         try {
-     
           const response = await fetch(deleteGoalUrl, {
             method: "DELETE",
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,
             },
           });
-  
+
           if (response.ok) {
             console.log("Goal deleted successfully:", goalTimeInput.value);
-          
+
             playerTableBody.removeChild(row);
             window.location.reload();
           } else {
             console.error("Failed to delete goal:", await response.text());
           }
-
         } catch (error) {
           console.error("Error deleting goal data:", error);
         }
@@ -326,40 +339,39 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
     }
   });
-  
 
   const saveButton = document.querySelector(".btn-save");
   saveButton.addEventListener("click", async () => {
     const rows = document.querySelectorAll("#goals-table-body tr");
     let goalData = [];
-  
+
     Array.from(rows).forEach((row) => {
       const playerDropdown = row.querySelector(".player-name");
-      const playerId = playerDropdown?.value && window.playersMap[playerDropdown.value]?.playerid;
+      const playerId =
+        playerDropdown?.value &&
+        window.playersMap[playerDropdown.value]?.playerid;
       const goalTimeInput = row.querySelector(".time");
       const goalTypeDropdown = row.querySelector(".goal-type");
 
       if (playerId && goalTimeInput?.value && goalTypeDropdown?.value) {
-        goalData ={
+        goalData = {
           player_playerid: playerId,
           match_matchid: matchId,
           goaltime: goalTimeInput.value,
           goaltype: goalTypeDropdown.value,
-      };
-      
+        };
       }
     });
-  
+
     const matchUpdateData = {
       matchdate: document.getElementById("date-info").value,
       matchtime: document.getElementById("time-info").value,
     };
-  
+
     console.log("Match Update Data:", matchUpdateData);
     console.log("Goal Data:", goalData);
-  
+
     try {
- 
       await fetch(`${API_URL}/${matchId}`, {
         method: "PUT",
         headers: {
@@ -368,8 +380,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         },
         body: JSON.stringify(matchUpdateData),
       });
-  
-    
+
       await fetch(`${GOALS_API_URL}/${matchId}`, {
         method: "POST",
         headers: {
@@ -378,11 +389,10 @@ document.addEventListener("DOMContentLoaded", async () => {
         },
         body: JSON.stringify(goalData),
       });
-  
+
       window.location.reload();
     } catch (error) {
       console.error("Error saving data:", error);
     }
   });
-  
 });

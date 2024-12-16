@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   const API_URL =
-    "https://footballchampionshipmanagement.onrender.com/api/v1/matches";
+    "https://footballchampionshipmanagement.onrender.com/api/v1/matches?sort=matchid";
   const matchContainer = document.querySelector(".match-container");
 
   // Fetch dữ liệu từ API và hiển thị

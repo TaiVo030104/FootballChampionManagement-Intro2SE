@@ -6,7 +6,8 @@ const { parse } = require("dotenv");
 const matchController = {
   getAllMatchswithTeam: async (req, res, next) => {
     try {
-      const matches = await Match.findAll({
+      const features = new apiFeatures(Match, req.query).sort();
+      const matches = await features.execute({
         include: [
           {
             model: Team,
@@ -18,6 +19,19 @@ const matchController = {
           },
         ],
       });
+
+      // const matches = await Match.findAll({
+      //   include: [
+      //     {
+      //       model: Team,
+      //       as: "team1",
+      //     },
+      //     {
+      //       model: Team,
+      //       as: "team2",
+      //     },
+      //   ],
+      // });
       return res.status(200).json({
         status: "success",
         data: {
