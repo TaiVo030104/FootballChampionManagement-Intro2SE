@@ -7,12 +7,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   let goals = []; 
   let currentPage = 1; 
   const goalsPerPage = 7; 
-  if (!matchId) {
-    console.error("No match ID provided in the URL.");
-    return;
-  }
-
-  async function fetchPlayers(team1Name, team2Name) {
+    async function fetchPlayers(team1Name, team2Name) {
     try {
       const response = await fetch(PLAYERS_API_URL, {
         headers: {
@@ -21,10 +16,8 @@ document.addEventListener("DOMContentLoaded", async () => {
       });
 
       const data = await response.json();
-      console.log("Response data:", data);
-
-      if (data.status !== "success" || !data.data || !Array.isArray(data.data.players)) {
-        console.error("Unexpected response format or players list is missing:", data);
+           if (data.status !== "success" || !data.data || !Array.isArray(data.data.players)) {
+            showNotification(`Failed to load players: ${error.message}`);
         return {};
       }
 
@@ -38,11 +31,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
         return map;
       }, {});
-
-      console.log("Filtered Players Map:", playersMap);
       return playersMap;
     } catch (error) {
-      console.error("Error fetching players data:", error);
+      showNotification(`Failed to load players: ${error.message}`);
       return {};
     }
   }
@@ -60,11 +51,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       const match = matches.find((m) => m.matchid == matchId);
 
-      if (!match) {
-        console.error(`No match found with ID ${matchId}`);
-        return null;
-      }
-
       document.getElementById("teamA-input").textContent = match.team1.teamname;
       document.getElementById("teamB-input").textContent = match.team2.teamname;
       document.getElementById("round-info").value = match.roundcount;
@@ -72,7 +58,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       document.getElementById("time-info").value = match.matchtime;
       document.getElementById("stage-info").value = match.fieldname;
 
-      // Lưu thông tin team vào global object
+
       window.matchDetails = {
         team_team1: match.team1.teamid,
         team_team2: match.team2.teamid,
@@ -82,36 +68,11 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       return window.matchDetails;
     } catch (error) {
-      console.error("Error fetching match data:", error);
+      showNotification(`Failed to load matches: ${error.message}`);
       return null;
     }
   }
-  async function fetchPlayers(team1Name, team2Name) {
-    try {
-      const response = await fetch(PLAYERS_API_URL, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      });
-
-      const data = await response.json();
-      const playersMap = data?.data?.players?.reduce((map, player) => {
-        const playerTeamName = player.team?.teamname;
-        if (playerTeamName === team1Name || playerTeamName === team2Name) {
-          map[player.playername] = {
-            playerid: player.playerid,
-            team: playerTeamName,
-          };
-        }
-        return map;
-      }, {});
-
-      return playersMap || {};
-    } catch (error) {
-      console.error("Error fetching players data:", error);
-      return {};
-    }
-  }
+  
   async function fetchGoals(matchId) {
     try {
       const response = await fetch(`${GOALS_API_URL}/${matchId}`, {
@@ -121,18 +82,17 @@ document.addEventListener("DOMContentLoaded", async () => {
       });
   
       const data = await response.json();
-      console.log("Full response from fetchGoals:", data);
-  
-      // Directly access the goals array
+ 
+    
       if (data && data.goals) {
         goals = data.goals; // Lưu dữ liệu vào biến toàn cục
         renderGoalsTable(goals); // Render chỉ sau khi dữ liệu được fetch
       } else {
-        console.error("No goals found in response");
+        showNotification(`No goals found in response`);
         return [];
       }
     } catch (error) {
-      console.error("Error fetching goals data:", error);
+      showNotification(`Failed to load goals: ${error.message}`);
       return [];
     }
   }
@@ -199,7 +159,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     nextPage.addEventListener("click", () => {
       if (currentPage < totalPages) {
         currentPage++;
-        renderGoalsTable(goalsoals);
+        renderGoalsTable(goals);
       }
     });
     paginationContainer.appendChild(nextPage);
@@ -211,47 +171,28 @@ document.addEventListener("DOMContentLoaded", async () => {
     const goals = await fetchGoals(matchId);
   
     window.playersMap = await fetchPlayers(matchDetails.team1Name, matchDetails.team2Name);
-  } else {
-    console.error("Failed to fetch match details. Cannot fetch players.");
-  }
-
+  } 
   let serialNumber = goals.length + 1;
 
   console.log("Current number of goals in the array:", goals.length);
   const addButton = document.querySelector(".btn-add");
   const playerTableBody = document.getElementById("goals-table-body");
 
-  function attachTimeInputHandler(input) {
-    input.addEventListener("input", () => {
-      let value = input.value;
-      value = value.replace(/[^0-9:]/g, "");
-      const parts = value.split(":");
-      if (parts.length > 3) parts.length = 3;
-      const formattedParts = parts.map((part) => part.slice(0, 2));
-      value = formattedParts.join(":");
-      input.value = value;
-    });
-  }
-
   function attachPlayerChangeHandler(playerDropdown, teamDisplay) {
     playerDropdown.addEventListener("change", () => {
       const playerName = playerDropdown.value;
-      const playerData = window.playersMap[playerName]; 
+      const playerData = window.playersMap[playerName];
 
       if (playerData) {
-        teamDisplay.value = playerData.team || ""; 
+        teamDisplay.value = playerData.team || "";
       } else {
-        teamDisplay.value = ""; 
+        teamDisplay.value = "";
       }
     });
   }
 
   addButton.addEventListener("click", () => {
-    if (Object.keys(window.playersMap).length === 0) {
-      console.error("Players list is not available:", window.playersMap);
-      return;
-    }
-
+  
     const newRow = document.createElement("tr");
     const playerDropdown = `
       <select class="player-name">
@@ -277,15 +218,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     playerTableBody.appendChild(newRow);
     serialNumber++;
-
-  
-
-
     const playerDropdownElement = newRow.querySelector(".player-name");
     const teamDisplayElement = newRow.querySelector(".team-name");
     const timeInput = newRow.querySelector(".time");
     attachPlayerChangeHandler(playerDropdownElement, teamDisplayElement);
-    attachTimeInputHandler(timeInput);
   });
 
   playerTableBody.addEventListener("click", async (event) => {
@@ -310,19 +246,18 @@ document.addEventListener("DOMContentLoaded", async () => {
           });
   
           if (response.ok) {
-            console.log("Goal deleted successfully:", goalTimeInput.value);
-          
+            showNotification("Goals deleted successfully!", "success");
             playerTableBody.removeChild(row);
             window.location.reload();
           } else {
-            console.error("Failed to delete goal:", await response.text());
+            showNotification(`Failed to delete goals: ${error.message}`);
           }
 
         } catch (error) {
-          console.error("Error deleting goal data:", error);
+          showNotification(`Failed to delete goals: ${error.message}`);
         }
       } else {
-        console.error("Invalid goal time for deletion");
+        showNotification("An unexpected error occurred. Please try again.");
       }
     }
   });
@@ -332,35 +267,46 @@ document.addEventListener("DOMContentLoaded", async () => {
   saveButton.addEventListener("click", async () => {
     const rows = document.querySelectorAll("#goals-table-body tr");
     let goalData = [];
-  
+
     Array.from(rows).forEach((row) => {
       const playerDropdown = row.querySelector(".player-name");
-      const playerId = playerDropdown?.value && window.playersMap[playerDropdown.value]?.playerid;
+      const playerId =
+        playerDropdown?.value &&
+        window.playersMap[playerDropdown.value]?.playerid;
       const goalTimeInput = row.querySelector(".time");
       const goalTypeDropdown = row.querySelector(".goal-type");
-
+      
+      
       if (playerId && goalTimeInput?.value && goalTypeDropdown?.value) {
-        goalData ={
+        goalData = {
           player_playerid: playerId,
           match_matchid: matchId,
           goaltime: goalTimeInput.value,
           goaltype: goalTypeDropdown.value,
-      };
+        };
       
       }
+      
     });
-  
+    
+      
+
+    const matchDate = document.getElementById("date-info").value;
+    const matchTime = document.getElementById("time-info").value;
+
+
+
     const matchUpdateData = {
-      matchdate: document.getElementById("date-info").value,
-      matchtime: document.getElementById("time-info").value,
+      matchdate: matchDate,
+      matchtime: matchTime,
     };
-  
-    console.log("Match Update Data:", matchUpdateData);
-    console.log("Goal Data:", goalData);
-  
-    try {
+
+
  
-      await fetch(`${API_URL}/${matchId}`, {
+
+    try {
+      // Cập nhật thông tin trận đấu
+      const matchResponse = await fetch(`${API_URL}/${matchId}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -369,8 +315,13 @@ document.addEventListener("DOMContentLoaded", async () => {
         body: JSON.stringify(matchUpdateData),
       });
   
-    
-      await fetch(`${GOALS_API_URL}/${matchId}`, {
+      if (!matchResponse.ok) {
+        showNotification("Please fill in match details before saving.", "error");
+        return;
+      }
+  
+      // Lưu dữ liệu bàn thắng
+      const goalsResponse = await fetch(`${GOALS_API_URL}/${matchId}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -379,10 +330,43 @@ document.addEventListener("DOMContentLoaded", async () => {
         body: JSON.stringify(goalData),
       });
   
+      if (!goalsResponse.ok) {
+        showNotification("Please fill in goals before saving.", "error");
+        return;
+      }
+  
+      // Thông báo và reload sau khi lưu thành công
+      showNotification("Saved successfully!", "success");
       window.location.reload();
+
     } catch (error) {
-      console.error("Error saving data:", error);
+      showNotification("An unexpected error occurred. Please try again.");
     }
   });
-  
+});
+function showNotification(message, type = "error") {
+  const notificationContainer = document.getElementById(
+    "notificationContainer"
+  );
+  const notificationMessage = document.getElementById("notificationMessage");
+
+  // Gán nội dung thông báo
+  notificationMessage.textContent = message;
+
+  // Xóa các lớp CSS cũ và thêm lớp theo loại thông báo
+  notificationContainer.className = "notification-container"; // Xóa các lớp cũ
+  notificationContainer.classList.add(type);
+
+  // Hiển thị thông báo
+  notificationContainer.style.display = "flex";
+
+  // Tự động ẩn sau 3 giây
+  setTimeout(() => {
+    notificationContainer.style.display = "none";
+  }, 5000);
+}
+
+// Đóng thông báo khi nhấn nút "×"
+document.getElementById("notificationClose").addEventListener("click", () => {
+  document.getElementById("notificationContainer").style.display = "none";
 });
