@@ -28,7 +28,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         return {};
       }
 
-      // Lọc cầu thủ thuộc 2 team cụ thể
       const playersMap = data.data.players.reduce((map, player) => {
         const playerTeamName = player.team.teamname;
         if (playerTeamName === team1Name || playerTeamName === team2Name) {
@@ -279,10 +278,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     playerTableBody.appendChild(newRow);
     serialNumber++;
 
-    const removeButton = newRow.querySelector(".btn-remove");
-    removeButton.addEventListener("click", () => {
-      playerTableBody.removeChild(newRow);
-    });
+  
+
 
     const playerDropdownElement = newRow.querySelector(".player-name");
     const teamDisplayElement = newRow.querySelector(".team-name");
@@ -290,6 +287,46 @@ document.addEventListener("DOMContentLoaded", async () => {
     attachPlayerChangeHandler(playerDropdownElement, teamDisplayElement);
     attachTimeInputHandler(timeInput);
   });
+
+  playerTableBody.addEventListener("click", async (event) => {
+    const target = event.target;
+  
+  
+    if (target.classList.contains("trash-btn") || target.closest(".btn-remove")) {
+      const row = target.closest("tr");
+      const goalTimeInput = row.children[4].textContent.trim();
+      console.log("Row HTML:", row.innerHTML); 
+      console.log("Goal Time Input:", goalTimeInput); 
+      if (goalTimeInput) {
+        const deleteGoalUrl = `${GOALS_API_URL}/${matchId}/${goalTimeInput}`;
+  
+        try {
+     
+          const response = await fetch(deleteGoalUrl, {
+            method: "DELETE",
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          });
+  
+          if (response.ok) {
+            console.log("Goal deleted successfully:", goalTimeInput.value);
+          
+            playerTableBody.removeChild(row);
+            window.location.reload();
+          } else {
+            console.error("Failed to delete goal:", await response.text());
+          }
+
+        } catch (error) {
+          console.error("Error deleting goal data:", error);
+        }
+      } else {
+        console.error("Invalid goal time for deletion");
+      }
+    }
+  });
+  
 
   const saveButton = document.querySelector(".btn-save");
   saveButton.addEventListener("click", async () => {
@@ -301,8 +338,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       const playerId = playerDropdown?.value && window.playersMap[playerDropdown.value]?.playerid;
       const goalTimeInput = row.querySelector(".time");
       const goalTypeDropdown = row.querySelector(".goal-type");
-  
-      // Kiểm tra null hoặc dữ liệu rỗng
+
       if (playerId && goalTimeInput?.value && goalTypeDropdown?.value) {
         goalData ={
           player_playerid: playerId,
@@ -310,6 +346,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           goaltime: goalTimeInput.value,
           goaltype: goalTypeDropdown.value,
       };
+      
       }
     });
   
@@ -322,7 +359,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     console.log("Goal Data:", goalData);
   
     try {
-      // Gọi cập nhật thông tin trận đấu
+ 
       await fetch(`${API_URL}/${matchId}`, {
         method: "PUT",
         headers: {
@@ -332,7 +369,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         body: JSON.stringify(matchUpdateData),
       });
   
-      // Gọi lưu thông tin goal
+    
       await fetch(`${GOALS_API_URL}/${matchId}`, {
         method: "POST",
         headers: {
