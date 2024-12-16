@@ -356,31 +356,36 @@ select, input {
 .btn-add {
     margin-right: 110px; /* Slight adjustment to space the Add button */
 }
-#notification-container {
+.notification-container {
+    display: none;
     position: fixed;
     top: 10px;
     right: 10px;
-    z-index: 1000;
-    width: 300px;
-  }
-  
-  .notification {
-    background-color: #333;
-    color: #fff;
-    padding: 10px 20px;
-    margin-bottom: 10px;
+    padding: 15px 20px;
     border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-    opacity: 0;
-    transform: translateY(-10px);
-    animation: fadeInOut 4s forwards;
+    font-size: 16px;
+    font-weight: none;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
   }
   
-  .notification.success {
-    background-color: #4CAF50;
+  /* Màu sắc cho thông báo thành công */
+  .notification-container.success {
+    background-color: #d4edda; /* Xanh nhạt */
+    color: #26913f; /* Xanh đậm */
   }
   
-  .notification.error {
-    background-color: #F44336;
+  /* Màu sắc cho thông báo lỗi */
+  .notification-container.error {
+    background-color: #f8d7da; /* Đỏ nhạt */
+    color: #8d353e; /* Đỏ đậm */
+  }
+  
+  /* Nút đóng thông báo */
+  .notification-container .close-btn {
+    margin-left: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    color: inherit;
   }
   
