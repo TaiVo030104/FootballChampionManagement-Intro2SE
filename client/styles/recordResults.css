@@ -73,12 +73,13 @@ body {
     color: black; /* Văn bản màu đen cho dễ đọc */
 }
 
-
 .details {
-    flex: 2; /* Chiếm nhiều diện tích hơn để ở giữa */
+    flex: 2;
     display: flex;
     flex-direction: column;
-    text-align: left;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
     gap: 10px;
 }
 
@@ -86,15 +87,14 @@ body {
 .detail-item {
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 10px; /* Khoảng cách giữa label và input */
 }
 
 .details label {
-    text-align: left; /* Căn trái nội dung bên trong label */
+    text-align: left;
     font-weight: bold;
     color: #333;
-
-    padding-left: 380px;
+    width: 120px; /* Đặt chiều rộng cố định cho label để căn thẳng hàng */
 }
 
 .details .info-box {
@@ -103,10 +103,11 @@ body {
     padding: 5px 10px;
     border-radius: 5px;
     font-size: 16px;
-    text-align: left; /* Căn văn bản bên trong info-box */
-    width: auto; /* Đảm bảo chiều rộng vừa đủ với nội dung */
-    display: inline-block; /* Đặt info-box thành inline-block để không chiếm toàn bộ chiều rộng */
+    text-align: left;
+    width: 300px; /* Đặt chiều rộng cố định cho input */
+    display: inline-block;
 }
+
 
 .team-info {
     display: flex;
